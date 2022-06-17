@@ -9,4 +9,16 @@ body {
     background-color: #F6FBF4;
     background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
 }
-
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #a0d995e4;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(81, 81, 81);
+  border-radius: 18px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
