@@ -1,0 +1,107 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+    
+}
+  
+header{
+  display: flex;
+  background: #a0d995e4;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 1%;
+}
+
+
+.nav_logo{
+  cursor: pointer;
+  float: left;
+  width: 55px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+
+header ::after {
+  content: '';
+  display: table;
+  clear:both;
+}
+
+nav ul{
+  margin:0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li{
+  display: inline-block;
+  margin-left: 55px;
+  padding: 9px 12px;
+  position: relative;
+}
+
+nav ul li a{
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 22px 0px;
+  cursor: pointer;
+}
+
+nav a:hover {
+  color:rgb(52, 49, 44);
+}
+
+.nav_options a::before {
+  content:'';
+  display:block;
+  height:5px;
+  width:100%;
+  background-color: rgba(243, 236, 236, 0.87);
+
+  position:absolute;
+  top: -8px;
+  width:0%;
+
+  transition: all ease-in-out 0.22s;
+}
+
+.nav_options a:hover::before {
+  width:100%;
+}
+
+nav ul ul{
+  position: absolute;
+  padding: 0;
+  min-width: 182px;
+  display: none;
+  top: 53px;
+  overflow: hidden;
+  background-color: rgb(245 247 237);
+  left: 0;
+}
+
+nav ul li:hover ul{
+  display:block;
+}
+
+nav ul ul li:hover a{
+  background: #a0d995e4;
+}
+.logout{
+  color: black;
+  text-decoration: none;
+  padding: 9px 25px;
+  background-color: #eef3ee;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.22s ease 0s;
+}
+
+.logout:hover,.logout_btn:hover{
+  color: white;
+  background-color: rgb(131, 209, 88);
+}
