@@ -1,0 +1,19 @@
+.home-parent{
+    display: flex;
+    padding: 24px;
+}
+.left{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a0d995e4;
+    text-shadow: 0 0 3px #6CC4A1;;
+    font-size: 54px;
+    font-weight: 800;
+}
+.right{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
