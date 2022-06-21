@@ -10,6 +10,7 @@ header{
   justify-content: space-around;
   align-items: center;
   padding: 4px 1%;
+  height: 10vh;
 }
 
 .intro{
