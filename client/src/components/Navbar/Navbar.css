@@ -32,7 +32,6 @@
 .tab-container {
   width: 80%;
   margin: 0 54px;
-  
 }
 .nav-parent::after {
   content: '';
@@ -97,12 +96,12 @@
   padding: 10px 0px;
   min-width: 194px;
   display: none;
-  top: 9vh;
+  top: 7.5vh;
   overflow: hidden;
   background-color: rgba(245, 247, 237, 0.5);
   list-style: none;
 }
-nav ul li:hover ul{
+ul li:hover ul{
   display: block;
 }
 .sub-items{
