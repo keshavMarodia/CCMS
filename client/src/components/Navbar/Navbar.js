@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
   return (
     <>
-      <header>
+      <div className="nav-parent">
         <div className="intro">
           <div className="nav-img">
             <img
@@ -15,36 +16,78 @@ const Navbar = () => {
           </div>
           <div className="officer">loremipsumlorem</div>
         </div>
-        <div className="container">
+        <div className="tab-container">
           <nav>
-            <ul className="nav_options">
-              <li className="items">
-                <a href="#">Home</a>
+            <ul className="nav-options">
+              <li className="tab-items">
+                <Link
+                  to={{
+                    pathname: "/home",
+                  }}
+                  className="tab-link"
+                >
+                  Home
+                </Link>
               </li>
-              <li className="Court">
-                <a href="#">Courts</a>
+              <li className="tab-items">
+                <Link
+                  to={{
+                    pathname: "/home",
+                  }}
+                  className="tab-link"
+                >
+                  Courts
+                </Link>
                 <ul className="subnav">
-                  <li>
-                    <a href="#">City-Civil-Court</a>
+                  <li className="sub-items">
+                    <Link
+                      to={{
+                        pathname: "/home",
+                      }}
+                      className="sub-link"
+                    >
+                      City-Civil-Court
+                    </Link>
                   </li>
-                  <li>
-                    <a href="#">LG-Court</a>
+                  <li className="sub-items">
+                    <Link
+                      to={{
+                        pathname: "/home",
+                      }}
+                      className="sub-link"
+                    >
+                      LG-Court
+                    </Link>
                   </li>
-                  <li>
-                    <a href="#">High-Court</a>
+                  <li className="sub-items">
+                    <Link
+                      to={{
+                        pathname: "/home",
+                      }}
+                      className="sub-link"
+                    >
+                      High-Court
+                    </Link>
                   </li>
                 </ul>
               </li>
-              <li className="items">
-                <a href="#">Reports</a>
+              <li className="tab-items">
+                <Link
+                  to={{
+                    pathname: "/home",
+                  }}
+                  className="tab-link"
+                >
+                  Reports
+                </Link>
               </li>
             </ul>
           </nav>
         </div>
-        <a className="logout" href="#">
-          Logout
-        </a>
-      </header>
+        <div className="logout-contianer">
+          <button className="logout">Logout</button>
+        </div>
+      </div>
     </>
   );
 };

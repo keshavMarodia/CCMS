@@ -1,18 +1,16 @@
-.container {
-    width: 80%;
-    margin: 0 54px;
-    
-}
-  
-header{
+.nav-parent{
   display: flex;
   background: #a0d995e4;
   justify-content: space-around;
   align-items: center;
-  padding: 4px 1%;
+  padding: 4px 16px;
   height: 10vh;
 }
-
+.nav-parent ::after{
+    content: '';
+    display: table;
+    clear:both;
+}
 .intro{
   display: flex;
   justify-content: space-evenly;
@@ -31,37 +29,42 @@ header{
   margin-left: 8px;
   font-size: 24px;
 }
-header ::after {
+.tab-container {
+  width: 80%;
+  margin: 0 54px;
+  
+}
+.nav-parent::after {
   content: '';
   display: table;
   clear:both;
 }
 
-nav ul{
+.nav-options{
   margin:0;
   padding: 0;
   list-style: none;
 }
 
-nav li{
+.tab-items{
   display: inline-block;
   margin-left: 25px;
   margin-right: 25px;
   padding: 9px 12px;
-  position: relative;
 }
-
-nav ul li a{
+.tab-link{
   color: rgb(81, 81, 81);
   font-weight: bold;
   text-decoration: none;
-  text-transform: uppercase;
-  font-size: 14px;
-  padding: 22px 0px;
-  cursor: pointer;
+  font-size: 18px;
 }
-
-.nav_options a::before {
+.sub-link{
+  color: rgb(81, 81, 81);
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 16px;
+}
+.nav_options link::before {
   content:'';
   display:block;
   height:5px;
@@ -75,32 +78,38 @@ nav ul li a{
   transition: all ease-in-out 0.22s;
 }
 
-.nav_options a:hover::before {
+.nav_options link:hover::before {
   width:66%;
   text-decoration: none;
 }
 
-nav ul ul{
+.tab-link:hover::before {
+  width:66%;
+  text-decoration: none;
+}
+.sub-link:hover{
+  color: #a0d995e4;
+}
+.subnav{
   position: absolute;
   border: 1px solid #6CC4A1;
   box-shadow: 0 0 8px #6CC4A1;
   padding: 10px 0px;
   min-width: 194px;
   display: none;
-  top: 54px;
+  top: 9vh;
   overflow: hidden;
   background-color: rgba(245, 247, 237, 0.5);
-}
-nav ul ul li{
-  padding: 8px;
+  list-style: none;
 }
 nav ul li:hover ul{
-  display:block;
+  display: block;
 }
-
-/* nav ul ul li:hover a{
-  background: #a0d995e4;
-} */
+.sub-items{
+  margin-left: 28px;
+  padding: 8px;
+  text-align: justify;
+}
 .logout{
   color: rgb(81, 81, 81);
   text-decoration: none;
@@ -113,7 +122,7 @@ nav ul li:hover ul{
   font-weight: bold;
 }
 
-.logout:hover,.logout_btn:hover{
+.logout:hover{
   color: white;
   background-color: rgb(131, 209, 88);
   border: 1px solid #6CC4A1;

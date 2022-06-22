@@ -68,21 +68,22 @@ const Login = () => {
             </div>
             <div className="input-group mb-3">
               <span className="input-group-text accent" id="basic-addon1">
-                <span class="material-symbols-outlined">lock</span>
+                <span className="material-symbols-outlined">lock</span>
               </span>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                class="form-control"
+                className="form-control"
                 placeholder="Password"
                 aria-label="Password"
                 aria-describedby="basic-addon1"
                 required
               />
             </div>
-            <div>
-              <button className="button-container">Login</button>
+            <div className="button-container">
+              <button className="login-container">Login</button>
+              <button className="signup-container">Sign-Up</button>
             </div>
           </form>
         </div>

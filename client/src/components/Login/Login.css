@@ -30,6 +30,11 @@
   'opsz' 48
 }
 .button-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+.login-container,.signup-container{
+    width: 124px;
     text-decoration: none;
     border: 0;
     padding: 8px 28px;
@@ -42,7 +47,7 @@
     border: 1px solid #6CC4A1;
     box-shadow: 0 0 8px #6CC4A1;
 }
-.button-container:hover {
+.login-container:hover,.signup-container:hover {
     box-shadow: 0 0 12px #6CC4A1;
   }
 .scrollable-menu {
@@ -50,7 +55,7 @@
     max-height: 122px;
     overflow-x: hidden;
     overflow-y: scroll;
-    width: 81%;
+    width: 82%;
     border-radius: 0;
 }
 .form-control:focus{
