@@ -11,7 +11,7 @@ const Home = () => {
         </div>
         <div className="right">
           <img
-            src="https://i.postimg.cc/W42fC3T9/distmap.png"
+            src="https://i.postimg.cc/4xKxHYgt/distmap.png"
             alt="map"
             className="map"
           />
