@@ -32,13 +32,14 @@
 .button-container{
     display: flex;
     justify-content: space-evenly;
+    margin: 20px;
 }
 .login-container,.signup-container{
     width: 124px;
     text-decoration: none;
     border: 0;
     padding: 8px 28px;
-    margin: 6px;
+    margin: 10px;
     border-radius: 8px;
     background-color: #a0d995e4;
     font-size: 1.1rem;
@@ -52,10 +53,10 @@
   }
 .scrollable-menu {
     height: auto;
-    max-height: 124px;
+    max-height: 90px;
     overflow-x: hidden;
     overflow-y: scroll;
-    width: 82%;
+    width: 85%;
     border-radius: 0;
 }
 .form-control:focus{

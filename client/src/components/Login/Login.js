@@ -4,8 +4,13 @@ import "./Login.css";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [list, setList] = useState([]);
   const baseURL = "http://localhost:8000/api/user";
-
+  useEffect(() => {
+    axios.get(baseURL).then(function (response) {
+      setList(response.data);
+    });
+  }, []);
   const handleSubmit = (e) => {
     const data = { username, password };
     e.preventDefault();
@@ -38,11 +43,23 @@ const Login = () => {
                 aria-label="Username"
                 aria-describedby="basic-addon1"
                 data-bs-toggle="dropdown"
-                aria-expanded="false"
                 required
               />
               <ul className="dropdown-menu scrollable-menu" role="menu">
-                <li>
+                {list.map(function (value) {
+                  return (
+                    <li>
+                      <div
+                        id={value._id}
+                        className="dropdown-item"
+                        onClick={(e) => setUsername(value.username)}
+                      >
+                        {value.username}
+                      </div>
+                    </li>
+                  );
+                })}
+                {/* <li>
                   <div
                     className="dropdown-item"
                     onClick={(e) => setUsername("Action")}
@@ -63,7 +80,7 @@ const Login = () => {
                 </li>
                 <li>
                   <div className="dropdown-item">Another action</div>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="input-group mb-3">

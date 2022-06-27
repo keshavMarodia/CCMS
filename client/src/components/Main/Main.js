@@ -33,7 +33,6 @@ const Main = () => {
                   aria-label="Case Type"
                   aria-describedby="basic-addon1"
                   data-bs-toggle="dropdown"
-                  aria-expanded="false"
                   required
                 />
                 <ul
@@ -99,7 +98,6 @@ const Main = () => {
                   aria-label="Case Year"
                   aria-describedby="basic-addon1"
                   data-bs-toggle="dropdown"
-                  aria-expanded="false"
                   required
                 />
                 <ul
