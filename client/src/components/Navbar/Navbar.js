@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const handleClick = (e) => {
     navigate("/");
   };
@@ -96,7 +95,7 @@ const Navbar = () => {
           {/* </nav> */}
         </div>
         <div className="intro-parent">
-          <div className="officer">{location.state.username}</div>
+          <div className="officer">{localStorage.getItem("username")}</div>
           <div className="logout-contianer">
             <button className="logout" onClick={handleClick}>
               Logout
