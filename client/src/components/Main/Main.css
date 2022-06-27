@@ -10,7 +10,7 @@
     font-size: 24px;
 }
 .main-body{
-    height: 40vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;

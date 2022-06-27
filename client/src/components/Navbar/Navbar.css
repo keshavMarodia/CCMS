@@ -28,6 +28,7 @@
   font-weight: bolder;
   margin-left: 8px;
   font-size: 24px;
+  width: max-content;
 }
 .tab-container {
   width: 80%;

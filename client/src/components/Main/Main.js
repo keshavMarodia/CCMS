@@ -12,7 +12,7 @@ const Main = () => {
     <div>
       <Navbar />
       <div className="main-parent">
-        <div className="court-heading">City-Civil-Court</div>
+        <div className="court-heading">{location.state.court}</div>
         <div className="main-body">
           <div className="enter-heading">Enter Case Details</div>
           <div className="main-input">
