@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const [court, setCourt] = useState("");
+  const location = useLocation();
   const handleClick = (e) => {
     navigate("/");
   };
@@ -19,7 +19,7 @@ const Navbar = () => {
               className="nav_logo"
             ></img>
           </div>
-          <div className="officer">NIC Hyderabad</div>
+          <div className="company">NIC Hyderabad</div>
         </div>
         <div className="tab-container">
           {/* <nav> */}
@@ -44,10 +44,7 @@ const Navbar = () => {
                 Courts
               </Link>
               <ul className="subnav">
-                <li
-                  id="city"
-                  className="sub-items"
-                >
+                <li id="city" className="sub-items">
                   <Link
                     to={"/main"}
                     state={{ court: "City-Civil-Court" }}
@@ -56,10 +53,7 @@ const Navbar = () => {
                     City-Civil-Court
                   </Link>
                 </li>
-                <li
-                  id="lg"
-                  className="sub-items"
-                >
+                <li id="lg" className="sub-items">
                   <Link
                     to={"/main"}
                     state={{ court: "LG-Court" }}
@@ -68,22 +62,16 @@ const Navbar = () => {
                     LG-Court
                   </Link>
                 </li>
-                <li
-                  id="high"
-                  className="sub-items"
-                >
+                <li id="high" className="sub-items">
                   <Link
                     to={"/main"}
-                    state={{ court: "High-Court"}}
+                    state={{ court: "High-Court" }}
                     className="sub-link"
                   >
                     High-Court
                   </Link>
                 </li>
-                <li
-                  id="city"
-                  className="sub-items"
-                >
+                <li id="city" className="sub-items">
                   <Link
                     to={"/main"}
                     state={{ court: "Supreme-Court" }}
@@ -107,10 +95,13 @@ const Navbar = () => {
           </ul>
           {/* </nav> */}
         </div>
-        <div className="logout-contianer">
-          <button className="logout" onClick={handleClick}>
-            Logout
-          </button>
+        <div className="intro-parent">
+          <div className="officer">{location.state.username}</div>
+          <div className="logout-contianer">
+            <button className="logout" onClick={handleClick}>
+              Logout
+            </button>
+          </div>
         </div>
       </div>
     </>

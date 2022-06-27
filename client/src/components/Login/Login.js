@@ -44,7 +44,7 @@ const Login = () => {
           setEmpty(false);
           setIncorrect(true);
         } else if (status == "match") {
-          navigate("/home");
+          navigate("/home", { state: { username: username } });
         } else {
           console.log("Unknown response");
         }
@@ -61,7 +61,7 @@ const Login = () => {
         setFill(false);
         console.log(response);
         if (response.data.status == "UpdateSuccess") {
-          navigate("/home");
+          navigate("/home", { state: { username: username } });
         } else {
           setError(true);
         }

@@ -7,7 +7,6 @@ const Main = () => {
   const [casetype, setCaseType] = useState("");
   const [caseYear, setCaseYear] = useState("");
   const [caseNo, setCaseNo] = useState("");
-  console.log(location.state.court);
   return (
     <div>
       <Navbar />
