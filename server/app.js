@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 const routes = require("./routes/demo");
 
 const app = express();
@@ -40,17 +42,20 @@ app
     });
   })
   .post(function (req, res) {
-    User.updateOne(
-      { username: req.body.username },
-      { password: req.body.password },
-      function (err) {
-        if (err) {
-          res.json({ status: "UpdateFailure" });
-        } else {
-          res.json({ status: "UpdateSuccess" });
+    // bcrypt is used to hash the password to be saved in database
+    bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
+      User.updateOne(
+        { username: req.body.username },
+        { password: hash },
+        function (err) {
+          if (err) {
+            res.json({ status: "UpdateFailure" });
+          } else {
+            res.json({ status: "UpdateSuccess" });
+          }
         }
-      }
-    );
+      );
+    });
   });
 // this route is defined for the login button for finding the already existing users and comparing password
 app.route("/api/user").post(function (req, res) {
@@ -59,46 +64,20 @@ app.route("/api/user").post(function (req, res) {
       if (foundUser.password == "") {
         res.json({ status: "emptyPassword" });
       } else {
-        User.findOne(
-          { password: req.body.password },
-          function (err, foundName) {
-            if (!err) {
-              if (!foundName) {
+        if (foundUser) {
+          // decryption of the password to compare with the typed password
+          bcrypt.compare(
+            req.body.password,
+            foundUser.password,
+            function (err, result) {
+              if (result === true) res.json({ status: "match" });
+              else {
                 res.json({ status: "incorrect" });
-              } else {
-                res.json({ status: "match" });
               }
-            } else {
-              res.json({ status: "secondaryError" });
             }
-          }
-        );
+          );
+        }
       }
-      // if (!foundUser) {
-      //   const newUser = new User({
-      //     fName: _.trim(_.capitalize(req.body.fName)),
-      //     lName: _.trim(_.capitalize(req.body.lName)),
-      //     username: req.body.username,
-      //   });
-      //   newUser.save();
-      //   res.json({ status: "success" });
-      // } else {
-      //   User.findOne(
-      //     {
-      //       fName: _.trim(_.capitalize(req.body.fName)),
-      //       lName: _.trim(_.capitalize(req.body.lName)),
-      //     },
-      //     function (err, foundName) {
-      //       if (!err) {
-      //         if (!foundName) {
-      //           res.json({ status: "failure" });
-      //         } else {
-      //           res.json({ status: "success" });
-      //         }
-      //       }
-      //     }
-      //   );
-      // }
     } else {
       res.json({ status: "primaryError" });
     }

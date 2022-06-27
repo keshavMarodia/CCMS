@@ -31,7 +31,7 @@ const Login = () => {
       setFill(false);
       axios.post(userURL, data).then((response) => {
         const status = response.data.status;
-        if (status == "primaryError" || status == "secondaryError") {
+        if (status == "primaryError") {
           setError(true);
           setEmpty(false);
           setIncorrect(false);
