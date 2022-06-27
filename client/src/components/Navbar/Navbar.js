@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const [court, setCourt] = useState("");
   const handleClick = (e) => {
     navigate("/");
   };
@@ -43,34 +44,64 @@ const Navbar = () => {
                 Courts
               </Link>
               <ul className="subnav">
-                <li className="sub-items">
+                <li
+                  id="city"
+                  className="sub-items"
+                  onClick={(e) => {
+                    setCourt("City-Civil-Court");
+                  }}
+                >
                   <Link
-                    to={{
-                      pathname: "/home",
-                    }}
+                    to={"/main"}
+                    state={{ court: court }}
                     className="sub-link"
                   >
                     City-Civil-Court
                   </Link>
                 </li>
-                <li className="sub-items">
+                <li
+                  id="lg"
+                  className="sub-items"
+                  onClick={(e) => {
+                    setCourt("LG-Court");
+                  }}
+                >
                   <Link
-                    to={{
-                      pathname: "/home",
-                    }}
+                    to={"/main"}
+                    state={{ court: court }}
                     className="sub-link"
                   >
                     LG-Court
                   </Link>
                 </li>
-                <li className="sub-items">
+                <li
+                  id="high"
+                  className="sub-items"
+                  onClick={(e) => {
+                    setCourt("High-Court");
+                  }}
+                >
                   <Link
-                    to={{
-                      pathname: "/home",
-                    }}
+                    to={"/main"}
+                    state={{ court: court }}
                     className="sub-link"
                   >
                     High-Court
+                  </Link>
+                </li>
+                <li
+                  id="city"
+                  className="sub-items"
+                  onClick={(e) => {
+                    setCourt("Supreme-Court");
+                  }}
+                >
+                  <Link
+                    to={"/main"}
+                    state={{ court: court }}
+                    className="sub-link"
+                  >
+                    Supreme-Court
                   </Link>
                 </li>
               </ul>
