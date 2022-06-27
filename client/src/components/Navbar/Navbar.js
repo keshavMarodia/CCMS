@@ -19,7 +19,7 @@ const Navbar = () => {
               className="nav_logo"
             ></img>
           </div>
-          <div className="officer">loremipsumlorem</div>
+          <div className="officer">NIC Hyderabad</div>
         </div>
         <div className="tab-container">
           {/* <nav> */}
@@ -47,13 +47,10 @@ const Navbar = () => {
                 <li
                   id="city"
                   className="sub-items"
-                  onClick={(e) => {
-                    setCourt("City-Civil-Court");
-                  }}
                 >
                   <Link
                     to={"/main"}
-                    state={{ court: court }}
+                    state={{ court: "City-Civil-Court" }}
                     className="sub-link"
                   >
                     City-Civil-Court
@@ -62,13 +59,10 @@ const Navbar = () => {
                 <li
                   id="lg"
                   className="sub-items"
-                  onClick={(e) => {
-                    setCourt("LG-Court");
-                  }}
                 >
                   <Link
                     to={"/main"}
-                    state={{ court: court }}
+                    state={{ court: "LG-Court" }}
                     className="sub-link"
                   >
                     LG-Court
@@ -77,13 +71,10 @@ const Navbar = () => {
                 <li
                   id="high"
                   className="sub-items"
-                  onClick={(e) => {
-                    setCourt("High-Court");
-                  }}
                 >
                   <Link
                     to={"/main"}
-                    state={{ court: court }}
+                    state={{ court: "High-Court"}}
                     className="sub-link"
                   >
                     High-Court
@@ -92,13 +83,10 @@ const Navbar = () => {
                 <li
                   id="city"
                   className="sub-items"
-                  onClick={(e) => {
-                    setCourt("Supreme-Court");
-                  }}
                 >
                   <Link
                     to={"/main"}
-                    state={{ court: court }}
+                    state={{ court: "Supreme-Court" }}
                     className="sub-link"
                   >
                     Supreme-Court
