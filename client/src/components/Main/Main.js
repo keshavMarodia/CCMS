@@ -1,21 +1,37 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import "./Main.css";
 const Main = () => {
   const location = useLocation();
-  const [casetype, setCaseType] = useState("");
+  const navigate = useNavigate();
+  let court = location.state.court;
+  const [caseType, setCaseType] = useState("");
   const [caseYear, setCaseYear] = useState("");
   const [caseNo, setCaseNo] = useState("");
+  var max = new Date().getFullYear();
+  var min = max - 24;
+  var years = [];
+
+  for (var i = max; i >= min; i--) {
+    years.push(i);
+  }
+  console.log(years);
+  const handleSubmit = (e) => {
+    const data = { court, caseType, caseNo, caseYear };
+    navigate("/input", {
+      state: data,
+    });
+  };
   return (
     <div>
       <Navbar />
       <div className="main-parent">
-        <div className="court-heading">{location.state.court}</div>
+        <div className="court-heading">{court}</div>
         <div className="main-body">
           <div className="enter-heading">Enter Case Details</div>
           <div className="main-input">
-            <form className="main-form">
+            <form className="main-form" onSubmit={handleSubmit}>
               {/* Case Type */}
               <div className="input-group mb-3">
                 <span
@@ -26,7 +42,7 @@ const Main = () => {
                 </span>
                 <input
                   type="text"
-                  value={casetype}
+                  value={caseType}
                   className="form-control dropdown-toggle"
                   placeholder="Case Type"
                   aria-label="Case Type"
@@ -41,24 +57,58 @@ const Main = () => {
                   <li>
                     <div
                       className="dropdown-item"
-                      onClick={(e) => setCaseType("Action")}
+                      onClick={(e) => setCaseType("OS")}
                     >
-                      Action
+                      OS
                     </div>
                   </li>
                   <li>
                     <div
                       className="dropdown-item"
-                      onClick={(e) => setCaseType("Another Action")}
+                      onClick={(e) => setCaseType("LGOP")}
                     >
-                      Another action
+                      LGOP
                     </div>
                   </li>
                   <li>
-                    <div className="dropdown-item">Another action</div>
+                    <div
+                      className="dropdown-item"
+                      onClick={(e) => setCaseType("LGCSR")}
+                    >
+                      LGCSR
+                    </div>
                   </li>
                   <li>
-                    <div className="dropdown-item">Another action</div>
+                    <div
+                      className="dropdown-item"
+                      onClick={(e) => setCaseType("LGC")}
+                    >
+                      LGC
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      className="dropdown-item"
+                      onClick={(e) => setCaseType("WP")}
+                    >
+                      WP
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      className="dropdown-item"
+                      onClick={(e) => setCaseType("WP(PLI)")}
+                    >
+                      WP(PLI)
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      className="dropdown-item"
+                      onClick={(e) => setCaseType("PLI")}
+                    >
+                      PLI
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -103,28 +153,18 @@ const Main = () => {
                   className="dropdown-menu scrollable-menu custom-scroll"
                   role="menu"
                 >
-                  <li>
-                    <div
-                      className="dropdown-item"
-                      onClick={(e) => setCaseYear("Action")}
-                    >
-                      Action
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      className="dropdown-item"
-                      onClick={(e) => setCaseYear("Another Action")}
-                    >
-                      Another action
-                    </div>
-                  </li>
-                  <li>
-                    <div className="dropdown-item">Another action</div>
-                  </li>
-                  <li>
-                    <div className="dropdown-item">Another action</div>
-                  </li>
+                  {years.map(function (value) {
+                    return (
+                      <li>
+                        <div
+                          className="dropdown-item"
+                          onClick={(e) => setCaseYear(value)}
+                        >
+                          {value}
+                        </div>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
               <div className="button-container">

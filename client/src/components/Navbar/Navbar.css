@@ -100,7 +100,7 @@
   display: none;
   top: 7.5vh;
   overflow: hidden;
-  background-color: rgba(245, 247, 237, 0.5);
+  background-color: rgba(245, 247, 237,0.9);
   list-style: none;
 }
 ul li:hover ul{

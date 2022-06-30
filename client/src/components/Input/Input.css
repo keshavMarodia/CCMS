@@ -1,0 +1,94 @@
+.input-table {
+    display: flex;
+    justify-content: center;
+    margin: 26px;
+    align-items: center;
+}
+table,
+tr,
+th,
+td {
+  border: 1px solid #6CC4A1;
+  box-shadow: 0 0 4px #6CC4A1;
+  background-color: rgba(81, 81, 81, 0.5);
+  color: white;
+  text-align: center;
+}
+td,th{
+    padding: 12px 22px;
+}
+th{
+  font-size: 16px;
+}
+.custom-width{
+  width: fit-content;
+}
+.static{
+  background-color: white;
+  box-shadow: 0 0 2px white;
+  color: black;
+  border: none;
+  border-radius: 0.2rem;
+  padding: 4px 8px;
+  font-size: 0.875rem;
+  text-align: center;
+}
+.land{
+  /* width: 140px; */
+  box-shadow: 0 0 2px white;
+}
+.land-scroll{
+  height: auto;
+  border-radius: 0.2rem;
+  position: relative;
+}
+.imp{
+  /* width: 100px; */
+  box-shadow: 0 0 2px white;
+}
+.imp-scroll {
+  height: auto;
+  /* min-width: 101px; */
+  border-radius: 0.2rem;
+}
+.file{
+  /* width: 150px; */
+  box-shadow: 0 0 2px white;
+}
+.file-scroll {
+  height: auto;
+  /* min-width: 150px; */
+  border-radius: 0.2rem;
+}
+.try{
+  width: 100%;
+}
+.court{
+  /* width: 80%; */
+  box-shadow: 0 0 2px white;
+}
+.court-scroll {
+  min-width: 5%;
+  height: auto;
+  border-radius: 0.2rem;
+}
+.judge{
+  /* width: 180px; */
+  box-shadow: 0 0 2px white;
+}
+.judge-scroll {
+  height: auto;
+  min-width: 181px;
+  border-radius: 0.2rem;
+}
+.hall{
+  /* width: 180px; */
+  box-shadow: 0 0 2px white;
+}
+.hall-scroll {
+  height: auto;
+  border-radius: 0.2rem;
+}
+.dropdown-item{
+  word-wrap: wrap;
+}
