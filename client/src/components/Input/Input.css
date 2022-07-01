@@ -1,7 +1,7 @@
 .input-table {
     display: flex;
     justify-content: center;
-    margin: 22px;
+    margin: 26px;
     align-items: center;
 }
 table,
@@ -92,4 +92,21 @@ th{
   min-width: 10%;
   font-size: 12px;
   border-radius: 0.2rem;
+}
+.button-table,.button-row,.button-data{
+  background-color: #a0d995e4;
+}
+.button-data{
+  color: black;
+  text-shadow: 0 0 2px white;
+  font-weight: bold;
+  font-size: 14px;
+}
+.button-data:hover{
+  background-color: rgba(81, 81, 81, 0.5);
+  color: white;
+  text-shadow: 0 0 2px #6CC4A1;
+}
+.specific-parent{
+  margin: 6px;
 }

@@ -1,0 +1,14 @@
+.wstmt-parent{
+    display: flex;
+    align-items: center;
+}
+.wstmt-drop,.wstmt-result{
+    width: 50%;
+    padding: 32px;
+}
+.wstmt-accent{
+    font-size: 15px;
+}
+.wstmt-scroll{
+    width: 66.2%;
+}

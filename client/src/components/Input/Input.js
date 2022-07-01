@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import Relief from "../Relief/Relief";
+import Wstmt from "../Wstmt/Wstmt";
 import "./Input.css";
 const Input = () => {
   const location = useLocation();
@@ -11,6 +13,7 @@ const Input = () => {
   const [icourt, setiCourt] = useState("");
   const [judge, setJudge] = useState("");
   const [hall, setHall] = useState("");
+  const [specific, setSpecific] = useState("");
   return (
     <div>
       <Navbar />
@@ -292,6 +295,44 @@ const Input = () => {
                 </td>
               </tr>
             </table>
+          </div>
+          <div className="input-table">
+            <table className="button-table">
+              <tr className="button-row">
+                <td
+                  className="button-data"
+                  onClick={(e) => setSpecific("Wstmt")}
+                >
+                  WSTMT/COUNT
+                </td>
+                <td
+                  className="button-data"
+                  onClick={(e) => setSpecific("Relief")}
+                >
+                  RELIEF
+                </td>
+                <td className="button-data">PETITIONER(s)</td>
+                <td className="button-data">RESPONDANTS(s)</td>
+                <td className="button-data">PROPERTY</td>
+                <td className="button-data">TSLR</td>
+                <td className="button-data">EXTENT</td>
+                <td className="button-data">MANDAL</td>
+              </tr>
+              <tr className="button-row">
+                <td className="button-data">PAHANI</td>
+                <td className="button-data">LAND STATUS</td>
+                <td className="button-data">OTHER GOVT. DEPTS.</td>
+                <td className="button-data">FILE NO.(s)</td>
+                <td className="button-data">OTHER CASES</td>
+                <td className="button-data">POSTING DATES</td>
+                <td className="button-data">GP</td>
+                <td className="button-data">MAIN CASE STATUS</td>
+              </tr>
+            </table>
+          </div>
+          <div className="specific-parent">
+            <Wstmt />
+            {/* <Relief /> */}
           </div>
         </form>
       </div>
