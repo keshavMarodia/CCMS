@@ -21,7 +21,7 @@ const Input = () => {
               <tr>
                 <th colSpan={3}>Case Details</th>
                 <th colSpan={1}>Filed By</th>
-                <th colSpan={1}>Land Matter Case</th>
+                <th colSpan={1}>Land Case</th>
                 <th colSpan={1}>Imp. Case</th>
                 <th colSpan={1}>Court</th>
                 <th colSpan={1}>Judge Designation</th>
@@ -37,11 +37,11 @@ const Input = () => {
                 <td>
                   <div className="static">{caseYear}</div>
                 </td>
-                <td>
+                <td className="file">
                   <input
                     type="text"
                     value={filed}
-                    className="form-control form-control-sm dropdown-toggle file"
+                    className="form-control form-control-sm dropdown-toggle"
                     placeholder="Filed By"
                     aria-label="Filed By"
                     aria-describedby="basic-addon1"
@@ -91,13 +91,13 @@ const Input = () => {
                     </li>
                   </ul>
                 </td>
-                <td>
+                <td className="land">
                   <input
                     type="text"
                     value={land}
-                    className="form-control form-control-sm dropdown-toggle land"
-                    placeholder="Land Matter Case"
-                    aria-label="Land Matter Case"
+                    className="form-control form-control-sm dropdown-toggle"
+                    placeholder="Land Case"
+                    aria-label="Land Case"
                     aria-describedby="basic-addon1"
                     data-bs-toggle="dropdown"
                     required
@@ -121,11 +121,11 @@ const Input = () => {
                     </li>
                   </ul>
                 </td>
-                <td>
+                <td className="imp">
                   <input
                     type="text"
                     value={imp}
-                    className="form-control form-control-sm dropdown-toggle imp"
+                    className="form-control form-control-sm dropdown-toggle"
                     placeholder="Imp. Case"
                     aria-label="Imp. Case"
                     aria-describedby="basic-addon1"
@@ -151,12 +151,12 @@ const Input = () => {
                     </li>
                   </ul>
                 </td>
-                <td>
+                <td className="court">
                   {" "}
                   <input
                     type="text"
                     value={icourt}
-                    className="form-control form-control-sm dropdown-toggle court"
+                    className="form-control form-control-sm dropdown-toggle"
                     placeholder="Court"
                     aria-label="Court"
                     aria-describedby="basic-addon1"
@@ -198,11 +198,11 @@ const Input = () => {
                     </li>
                   </ul>
                 </td>
-                <td>
+                <td className="judge">
                   <input
                     type="text"
                     value={judge}
-                    className="form-control form-control-sm dropdown-toggle judge"
+                    className="form-control form-control-sm dropdown-toggle"
                     placeholder="Judge Designation"
                     aria-label="Judge Designation"
                     aria-describedby="basic-addon1"
@@ -260,11 +260,11 @@ const Input = () => {
                     </li>
                   </ul>
                 </td>
-                <td>
+                <td className=" hall">
                   <input
                     type="text"
                     value={hall}
-                    className="form-control form-control-sm dropdown-toggle hall"
+                    className="form-control form-control-sm dropdown-toggle"
                     placeholder="Court Hall"
                     aria-label="Court Hall"
                     aria-describedby="basic-addon1"
@@ -277,7 +277,7 @@ const Input = () => {
                         className="dropdown-item"
                         onClick={(e) => setHall("Yes")}
                       >
-                        Yes
+                        I ASJ for SPE and ACB cum V ACJ
                       </div>
                     </li>
                     <li>

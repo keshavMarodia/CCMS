@@ -1,7 +1,7 @@
 .input-table {
     display: flex;
     justify-content: center;
-    margin: 26px;
+    margin: 22px;
     align-items: center;
 }
 table,
@@ -18,7 +18,7 @@ td,th{
     padding: 12px 22px;
 }
 th{
-  font-size: 16px;
+  font-size: 14px;
 }
 .custom-width{
   width: fit-content;
@@ -34,61 +34,62 @@ th{
   text-align: center;
 }
 .land{
-  /* width: 140px; */
+  width: 9%;
   box-shadow: 0 0 2px white;
 }
 .land-scroll{
   height: auto;
   border-radius: 0.2rem;
-  position: relative;
+  min-width: 5.7%;
+  font-size: 12px;
 }
 .imp{
-  /* width: 100px; */
+  width: 9%;
   box-shadow: 0 0 2px white;
 }
 .imp-scroll {
   height: auto;
-  /* min-width: 101px; */
+  min-width: 5.8%;
+  font-size: 12px;
   border-radius: 0.2rem;
 }
 .file{
-  /* width: 150px; */
+  width: 10.5%;
   box-shadow: 0 0 2px white;
 }
 .file-scroll {
   height: auto;
-  /* min-width: 150px; */
+  min-width: 3%;
+  font-size: 12px;
   border-radius: 0.2rem;
 }
-.try{
-  width: 100%;
-}
 .court{
-  /* width: 80%; */
+  width: 14.2%;
   box-shadow: 0 0 2px white;
 }
 .court-scroll {
-  min-width: 5%;
+  min-width: 10%;
+  font-size: 12px;
   height: auto;
   border-radius: 0.2rem;
 }
 .judge{
-  /* width: 180px; */
+  width: 13.4%;
   box-shadow: 0 0 2px white;
 }
 .judge-scroll {
   height: auto;
-  min-width: 181px;
+  min-width: 10%;
+  font-size: 12px;
   border-radius: 0.2rem;
 }
 .hall{
-  /* width: 180px; */
+  width: 17.4%;
   box-shadow: 0 0 2px white;
 }
 .hall-scroll {
   height: auto;
+  min-width: 10%;
+  font-size: 12px;
   border-radius: 0.2rem;
-}
-.dropdown-item{
-  word-wrap: wrap;
 }
