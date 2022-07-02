@@ -1,8 +1,8 @@
-.relief-parent{
+.property-parent{
     display: flex;
     justify-content: center;
 }
-.relief{
+.property{
     width: 40%;
     font-size: 22px;
     font-weight: bold;

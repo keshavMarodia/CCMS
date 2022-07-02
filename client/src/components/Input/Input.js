@@ -1,12 +1,25 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import Case from "../Case/Case";
+import Extent from "../Extent/Extent";
+import Govt from "../Govt/Govt";
+import Gp from "../Gp/Gp";
+import MainCase from "../MainCase/MainCase";
+import Mandal from "../Mandal/Mandal";
 import Navbar from "../Navbar/Navbar";
+import Pahani from "../Pahani/Pahani";
+import Petitioner from "../Petitioner/Petitioner";
+import Posting from "../Posting/Posting";
+import Property from "../Property/Property";
 import Relief from "../Relief/Relief";
+import Respondent from "../Respondent/Respondent";
+import Status from "../Status/Status";
+import Tslr from "../Tslr/Tslr";
 import Wstmt from "../Wstmt/Wstmt";
 import "./Input.css";
 const Input = () => {
   const location = useLocation();
-  const { court, caseType, caseNo, caseYear } = location.state;
+  const { caseType, caseNo, caseYear } = location.state;
   const [imp, setImp] = useState("");
   const [land, setLand] = useState("");
   const [filed, setFiled] = useState("");
@@ -312,7 +325,7 @@ const Input = () => {
                   RELIEF
                 </td>
                 <td className="button-data">PETITIONER(s)</td>
-                <td className="button-data">RESPONDANTS(s)</td>
+                <td className="button-data">RESPONDENTS(s)</td>
                 <td className="button-data">PROPERTY</td>
                 <td className="button-data">TSLR</td>
                 <td className="button-data">EXTENT</td>
@@ -331,8 +344,22 @@ const Input = () => {
             </table>
           </div>
           <div className="specific-parent">
-            <Wstmt />
+            {/* <Wstmt /> */}
             {/* <Relief /> */}
+            {/* <Petitioner /> */}
+            <Respondent />
+            {/* <Property /> */}
+            {/* <Tslr /> */}
+            {/* <Extent /> */}
+            {/* <Mandal /> */}
+            {/* <Pahani /> */}
+            {/* <Status /> */}
+            {/* <Govt /> */}
+            {/* <File /> */}
+            {/* <Case /> */}
+            {/* <Posting /> */}
+            {/* <Gp /> */}
+            {/* <MainCase /> */}
           </div>
         </form>
       </div>

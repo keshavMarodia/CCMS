@@ -18,7 +18,7 @@ const Main = () => {
   }
   console.log(years);
   const handleSubmit = (e) => {
-    const data = { court, caseType, caseNo, caseYear };
+    const data = { caseType, caseNo, caseYear };
     navigate("/input", {
       state: data,
     });

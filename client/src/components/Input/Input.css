@@ -31,7 +31,6 @@ th{
   border-radius: 0.2rem;
   padding: 4px 8px;
   font-size: 0.875rem;
-  text-align: center;
 }
 .land{
   width: 9%;
@@ -40,7 +39,7 @@ th{
 .land-scroll{
   height: auto;
   border-radius: 0.2rem;
-  min-width: 5.7%;
+  min-width: 5.8%;
   font-size: 12px;
 }
 .imp{
@@ -49,7 +48,7 @@ th{
 }
 .imp-scroll {
   height: auto;
-  min-width: 5.8%;
+  min-width: 5.9%;
   font-size: 12px;
   border-radius: 0.2rem;
 }
@@ -68,7 +67,7 @@ th{
   box-shadow: 0 0 2px white;
 }
 .court-scroll {
-  min-width: 10%;
+  min-width: 10.1%;
   font-size: 12px;
   height: auto;
   border-radius: 0.2rem;
@@ -108,5 +107,5 @@ th{
   text-shadow: 0 0 2px #6CC4A1;
 }
 .specific-parent{
-  margin: 6px;
+  margin: 26px;
 }
