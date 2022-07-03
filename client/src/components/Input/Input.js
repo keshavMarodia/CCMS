@@ -347,9 +347,9 @@ const Input = () => {
             {/* <Wstmt /> */}
             {/* <Relief /> */}
             {/* <Petitioner /> */}
-            <Respondent />
+            {/* <Respondent /> */}
             {/* <Property /> */}
-            {/* <Tslr /> */}
+            <Tslr />
             {/* <Extent /> */}
             {/* <Mandal /> */}
             {/* <Pahani /> */}

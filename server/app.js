@@ -42,6 +42,7 @@ app
     });
   })
   .post(function (req, res) {
+    console.log(req.body);
     // bcrypt is used to hash the password to be saved in database
     bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
       User.updateOne(
@@ -83,10 +84,9 @@ app.route("/api/user").post(function (req, res) {
     }
   });
 });
-// app.get("/home", (req, res) => {
-//   res.send({ message: "hello this is home with get " });
-// });
-
+app.route("/api/try").get(function (req, res) {
+  console.log(req.body);
+});
 // app.post("/home", (req, res) => {
 //   res.send({ message: "hello this is home page but with post method " });
 // });

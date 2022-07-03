@@ -15,7 +15,7 @@ const Respondent = () => {
     }
   };
   const handleDelete = (e, index) => {
-    setRespList(respList.filter((x) => x !== respList[index]));
+    setRespList(respList.filter((x, i) => i !== index));
   };
   return (
     <div className="resp-parent">

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Petitioner.css";
+import axios from "axios";
 const Petitioner = () => {
   const [peti, setPeti] = useState("");
   const [petiList, setPetiList] = useState([]);
@@ -15,8 +16,15 @@ const Petitioner = () => {
     }
   };
   const handleDelete = (e, index) => {
-    setPetiList(petiList.filter((x) => x !== petiList[index]));
+    setPetiList(petiList.filter((x, i) => i !== index));
   };
+  // const listURL = "http://localhost:8000/api/list";
+  // const see = (e) => {
+  //   const data = { petiList };
+  //   axios.post(listURL, data).then((response) => {
+  //     console.log(response);
+  //   });
+  // };
   return (
     <div className="peti-parent">
       <div className="peti-left">
@@ -57,6 +65,7 @@ const Petitioner = () => {
             </div>
           );
         })}
+        {/* <button onClick={see}>fsda</button> */}
       </div>
     </div>
   );
