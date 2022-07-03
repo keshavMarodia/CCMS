@@ -44,16 +44,22 @@ const Tslr = () => {
   };
   const handleDelete = (e, index) => {
     setWard(ward.filter((x, i) => i !== index));
-    // document.getElementById("row" + index).remove();
+    setBlock(block.filter((x, i) => i !== index));
+    setTs(ts.filter((x, i) => i !== index));
+    setTsExtent(tsExtent.filter((x, i) => i !== index));
+    setOld(old.filter((x, i) => i !== index));
+    setC10(c10.filter((x, i) => i !== index));
+    setC20(c20.filter((x, i) => i !== index));
+    setC30(c30.filter((x, i) => i !== index));
     setTslrArray(tslrArray.filter((x, i) => i != index));
   };
-  const listURL = "http://localhost:8000/api/list";
-  const data = { ward };
-  const see = (e) => {
-    axios.post(listURL, data).then((response) => {
-      console.log(response);
-    });
-  };
+  // const listURL = "http://localhost:8000/api/list";
+  // const data = { c20 };
+  // const see = (e) => {
+  //   axios.post(listURL, data).then((response) => {
+  //     console.log(response);
+  //   });
+  // };
   return (
     <div className="tslr-parent">
       <div className="tslr-intro">
@@ -82,6 +88,7 @@ const Tslr = () => {
                 <td>
                   <input
                     type="text"
+                    value={ward[index]}
                     className="form-control form-control-sm"
                     aria-describedby="basic-addon1"
                     required
@@ -92,6 +99,7 @@ const Tslr = () => {
                 <td>
                   <input
                     type="text"
+                    value={block[index]}
                     className="form-control form-control-sm"
                     aria-describedby="basic-addon1"
                     required
@@ -102,6 +110,7 @@ const Tslr = () => {
                 <td>
                   <input
                     type="text"
+                    value={ts[index]}
                     className="form-control form-control-sm"
                     aria-describedby="basic-addon1"
                     required
@@ -112,6 +121,7 @@ const Tslr = () => {
                 <td>
                   <input
                     type="text"
+                    value={tsExtent[index]}
                     className="form-control form-control-sm"
                     aria-describedby="basic-addon1"
                     required
@@ -122,6 +132,7 @@ const Tslr = () => {
                 <td>
                   <input
                     type="text"
+                    value={old[index]}
                     className="form-control form-control-sm"
                     aria-describedby="basic-addon1"
                     required
@@ -132,6 +143,7 @@ const Tslr = () => {
                 <td>
                   <input
                     type="text"
+                    value={c10[index]}
                     className="form-control form-control-sm"
                     aria-describedby="basic-addon1"
                     required
@@ -142,6 +154,7 @@ const Tslr = () => {
                 <td>
                   <input
                     type="text"
+                    value={c20[index]}
                     className="form-control form-control-sm"
                     aria-describedby="basic-addon1"
                     required
@@ -152,6 +165,7 @@ const Tslr = () => {
                 <td>
                   <input
                     type="text"
+                    value={c30[index]}
                     className="form-control form-control-sm"
                     aria-describedby="basic-addon1"
                     required
@@ -178,13 +192,13 @@ const Tslr = () => {
               </tr>
             );
           })}
-          {ward.map(function (value) {
+          {/* {c20.map(function (value) {
             return <div>{value}</div>;
           })}
           {tslrArray.map(function (value) {
             return <div>{value}</div>;
-          })}
-          <button onClick={see}>dfg</button>
+          })} */}
+          {/* <button onClick={see}>dfg</button> */}
         </table>
       </div>
     </div>

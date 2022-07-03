@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Case from "../Case/Case";
 import Extent from "../Extent/Extent";
@@ -16,6 +16,7 @@ import Respondent from "../Respondent/Respondent";
 import Status from "../Status/Status";
 import Tslr from "../Tslr/Tslr";
 import Wstmt from "../Wstmt/Wstmt";
+import File from "../File/File";
 import "./Input.css";
 const Input = () => {
   const location = useLocation();
@@ -26,7 +27,25 @@ const Input = () => {
   const [icourt, setiCourt] = useState("");
   const [judge, setJudge] = useState("");
   const [hall, setHall] = useState("");
-  const [specific, setSpecific] = useState("");
+  const [specific, setSpecific] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+  console.log(specific);
   return (
     <div>
       <Navbar />
@@ -314,52 +333,186 @@ const Input = () => {
               <tr className="button-row">
                 <td
                   className="button-data"
-                  onClick={(e) => setSpecific("Wstmt")}
+                  onClick={(e) => {
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 0 ? true : false))
+                    );
+                  }}
                 >
                   WSTMT/COUNT
                 </td>
                 <td
                   className="button-data"
-                  onClick={(e) => setSpecific("Relief")}
+                  onClick={(e) => {
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 1 ? true : false))
+                    );
+                  }}
                 >
                   RELIEF
                 </td>
-                <td className="button-data">PETITIONER(s)</td>
-                <td className="button-data">RESPONDENTS(s)</td>
-                <td className="button-data">PROPERTY</td>
-                <td className="button-data">TSLR</td>
-                <td className="button-data">EXTENT</td>
-                <td className="button-data">MANDAL</td>
+                <td
+                  className="button-data"
+                  onClick={(e) =>
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 2 ? true : false))
+                    )
+                  }
+                >
+                  PETITIONER(s)
+                </td>
+                <td
+                  className="button-data"
+                  onClick={(e) =>
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 3 ? true : false))
+                    )
+                  }
+                >
+                  RESPONDENTS(s)
+                </td>
+                <td
+                  className="button-data"
+                  onClick={(e) =>
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 4 ? true : false))
+                    )
+                  }
+                >
+                  PROPERTY
+                </td>
+                <td
+                  className="button-data"
+                  onClick={(e) =>
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 5 ? true : false))
+                    )
+                  }
+                >
+                  TSLR
+                </td>
+                <td
+                  className="button-data"
+                  onClick={(e) =>
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 6 ? true : false))
+                    )
+                  }
+                >
+                  EXTENT
+                </td>
+                <td
+                  className="button-data"
+                  onClick={(e) =>
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 7 ? true : false))
+                    )
+                  }
+                >
+                  MANDAL
+                </td>
               </tr>
               <tr className="button-row">
-                <td className="button-data">PAHANI</td>
-                <td className="button-data">LAND STATUS</td>
-                <td className="button-data">OTHER GOVT. DEPTS.</td>
-                <td className="button-data">FILE NO.(s)</td>
-                <td className="button-data">OTHER CASES</td>
-                <td className="button-data">POSTING DATES</td>
-                <td className="button-data">GP</td>
-                <td className="button-data">MAIN CASE STATUS</td>
+                <td
+                  className="button-data"
+                  onClick={(e) =>
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 8 ? true : false))
+                    )
+                  }
+                >
+                  PAHANI
+                </td>
+                <td
+                  className="button-data"
+                  onClick={(e) =>
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 9 ? true : false))
+                    )
+                  }
+                >
+                  LAND STATUS
+                </td>
+                <td
+                  className="button-data"
+                  onClick={(e) =>
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 10 ? true : false))
+                    )
+                  }
+                >
+                  OTHER GOVT. DEPTS.
+                </td>
+                <td
+                  className="button-data"
+                  onClick={(e) =>
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 11 ? true : false))
+                    )
+                  }
+                >
+                  FILE NO.(s)
+                </td>
+                <td
+                  className="button-data"
+                  onClick={(e) =>
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 12 ? true : false))
+                    )
+                  }
+                >
+                  OTHER CASES
+                </td>
+                <td
+                  className="button-data"
+                  onClick={(e) =>
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 13 ? true : false))
+                    )
+                  }
+                >
+                  POSTING DATES
+                </td>
+                <td
+                  className="button-data"
+                  onClick={(e) =>
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 14 ? true : false))
+                    )
+                  }
+                >
+                  GP
+                </td>
+                <td
+                  className="button-data"
+                  onClick={(e) =>
+                    setSpecific(
+                      specific.map((val, idx) => (idx === 15 ? true : false))
+                    )
+                  }
+                >
+                  MAIN CASE STATUS
+                </td>
               </tr>
             </table>
           </div>
           <div className="specific-parent">
-            {/* <Wstmt /> */}
-            {/* <Relief /> */}
-            {/* <Petitioner /> */}
-            {/* <Respondent /> */}
-            {/* <Property /> */}
-            <Tslr />
-            {/* <Extent /> */}
-            {/* <Mandal /> */}
-            {/* <Pahani /> */}
-            {/* <Status /> */}
-            {/* <Govt /> */}
-            {/* <File /> */}
-            {/* <Case /> */}
-            {/* <Posting /> */}
-            {/* <Gp /> */}
-            {/* <MainCase /> */}
+            {specific[0] && <Wstmt />}
+            {specific[1] && <Relief />}
+            {specific[2] && <Petitioner />}
+            {specific[3] && <Respondent />}
+            {specific[4] && <Property />}
+            {specific[5] && <Tslr />}
+            {specific[6] && <Extent />}
+            {specific[7] && <Mandal />}
+            {specific[8] && <Pahani />}
+            {specific[9] && <Status />}
+            {specific[10] && <Govt />}
+            {specific[11] && <File />}
+            {specific[12] && <Case />}
+            {specific[13] && <Posting />}
+            {specific[14] && <Gp />}
+            {specific[15] && <MainCase />}
           </div>
         </form>
       </div>

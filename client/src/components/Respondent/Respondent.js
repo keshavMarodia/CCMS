@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Respondent.css";
 const Respondent = () => {
   const [resp, setResp] = useState("");
   const [respList, setRespList] = useState([]);
   const [respWarn, setRespWarn] = useState(false);
+  const [show, setShow] = useState(false);
   const handleClick = (e) => {
     if (resp == "") {
       setRespWarn(true);
@@ -17,6 +18,9 @@ const Respondent = () => {
   const handleDelete = (e, index) => {
     setRespList(respList.filter((x, i) => i !== index));
   };
+  useEffect(() => {
+    respList.length === 0 ? setShow(false) : setShow(true);
+  }, [respList]);
   return (
     <div className="resp-parent">
       <div className="resp-left">
@@ -57,6 +61,11 @@ const Respondent = () => {
             </div>
           );
         })}
+        {show && (
+          <div className="specific-button-container">
+            <div className="specific-button">Save</div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Petitioner.css";
-import axios from "axios";
 const Petitioner = () => {
   const [peti, setPeti] = useState("");
   const [petiList, setPetiList] = useState([]);
   const [petiWarn, setPetiWarn] = useState(false);
+  const [show, setShow] = useState(false);
   const handleClick = (e) => {
     if (peti == "") {
       setPetiWarn(true);
@@ -18,13 +18,9 @@ const Petitioner = () => {
   const handleDelete = (e, index) => {
     setPetiList(petiList.filter((x, i) => i !== index));
   };
-  // const listURL = "http://localhost:8000/api/list";
-  // const see = (e) => {
-  //   const data = { petiList };
-  //   axios.post(listURL, data).then((response) => {
-  //     console.log(response);
-  //   });
-  // };
+  useEffect(() => {
+    petiList.length === 0 ? setShow(false) : setShow(true);
+  }, [petiList]);
   return (
     <div className="peti-parent">
       <div className="peti-left">
@@ -65,7 +61,11 @@ const Petitioner = () => {
             </div>
           );
         })}
-        {/* <button onClick={see}>fsda</button> */}
+        {show && (
+          <div className="specific-button-container">
+            <div className="specific-button">Save</div>
+          </div>
+        )}
       </div>
     </div>
   );

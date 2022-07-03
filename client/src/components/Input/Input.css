@@ -109,3 +109,25 @@ th{
 .specific-parent{
   margin: 26px;
 }
+.specific-button-container{
+  display: flex;
+  justify-content: center;
+  margin: 16px;
+}
+.specific-button{
+  width: 100px;
+  text-decoration: none;
+  padding: 9px 25px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(131, 209, 88);
+  border: 1px solid #6CC4A1;
+  box-shadow: 0 0 8px #6CC4A1;
+  text-align: center;
+}
+.specific-button:hover{
+  cursor: pointer;
+  box-shadow: 0 0 12px #6CC4A1;
+}

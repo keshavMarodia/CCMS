@@ -1,7 +1,7 @@
-.extent-parent{
+.extent-form{
     display: flex;
     justify-content: center;
 }
 .extent{
-    width: 45%;
+    width: 50%;
 }
