@@ -1,0 +1,14 @@
+.status-parent{
+    display: flex;
+    justify-content: center;
+}
+.status-scroll{
+    height: auto;
+    max-height: 150px;
+    overflow-x: hidden;
+    width: 58.5%;
+    border-radius: 0;
+}
+.status-accent{
+    width: 150px;
+}

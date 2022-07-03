@@ -1,5 +1,4 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import "./Tslr.css";
 const Tslr = () => {
   const [tslrArray, setTslrArray] = useState([]);
@@ -13,6 +12,10 @@ const Tslr = () => {
   const [c30, setC30] = useState([]);
   const [add, setAdd] = useState(true);
   const [tick, setTick] = useState(false);
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    tslrArray.length === 0 ? setShow(false) : setShow(true);
+  }, [tslrArray]);
   const handleClick = (e) => {
     setTslrArray((prevName) => {
       return [...prevName, "a"];
@@ -209,6 +212,11 @@ const Tslr = () => {
           <button onClick={see}>dfg</button> */}
         </table>
       </div>
+      {show && (
+        <div className="specific-button-container">
+          <div className="specific-button">Save</div>
+        </div>
+      )}
     </div>
   );
 };
