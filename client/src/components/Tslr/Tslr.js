@@ -11,6 +11,8 @@ const Tslr = () => {
   const [c10, setC10] = useState([]);
   const [c20, setC20] = useState([]);
   const [c30, setC30] = useState([]);
+  const [add, setAdd] = useState(true);
+  const [tick, setTick] = useState(false);
   const handleClick = (e) => {
     setTslrArray((prevName) => {
       return [...prevName, "a"];
@@ -41,6 +43,9 @@ const Tslr = () => {
     setC30((prev) => {
       return [...prev, document.getElementById("c30" + index).value];
     });
+    setAdd(false);
+    setTick(true);
+    document.getElementById("add" + index).click(false);
   };
   const handleDelete = (e, index) => {
     setWard(ward.filter((x, i) => i !== index));
@@ -173,13 +178,16 @@ const Tslr = () => {
                     id={"c30" + index}
                   />
                 </td>
-                <td>
-                  <div
-                    className="add-tslr"
-                    onClick={(e) => handleAdd(e, index)}
-                  >
-                    +
-                  </div>
+                <td id={"add" + index}>
+                  {add && (
+                    <div
+                      className="add-tslr"
+                      onClick={(e) => handleAdd(e, index)}
+                    >
+                      +
+                    </div>
+                  )}
+                  {tick && <span class="material-symbols-outlined">done</span>}
                 </td>
                 <td>
                   <div
@@ -197,8 +205,8 @@ const Tslr = () => {
           })}
           {tslrArray.map(function (value) {
             return <div>{value}</div>;
-          })} */}
-          {/* <button onClick={see}>dfg</button> */}
+          })}
+          <button onClick={see}>dfg</button> */}
         </table>
       </div>
     </div>
