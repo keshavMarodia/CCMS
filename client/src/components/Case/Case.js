@@ -1,6 +1,184 @@
+import { useState, useEffect } from "react";
+// import axios from "axios";
 import "./Case.css";
 const Case = () => {
-  return <div>Case</div>;
+  const [caseArray, setCaseArray] = useState([]);
+  const [typeArray, setTypeArray] = useState([
+    "OS",
+    "AS",
+    "SA",
+    "CCA",
+    "SLP",
+    "CA",
+    "LGOP",
+    "LGA",
+    "LGC",
+    "WP",
+    "WA",
+  ]);
+  const [type, setType] = useState([]);
+  const [no, setNo] = useState([]);
+  const [year, setYear] = useState([]);
+  const [add, setAdd] = useState([]);
+  const [tick, setTick] = useState([]);
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    caseArray.length === 0 ? setShow(false) : setShow(true);
+  }, [caseArray]);
+  const handleClick = (e) => {
+    setCaseArray((prevName) => {
+      return [...prevName, "a"];
+    });
+    setType((prevName) => {
+      return [...prevName, ""];
+    });
+    setAdd((prevName) => {
+      return [...prevName, true];
+    });
+    setTick((prevName) => {
+      return [...prevName, false];
+    });
+  };
+  const handleAdd = (e, index) => {
+    setNo((prev) => {
+      return [...prev, document.getElementById("no" + index).value];
+    });
+    setYear((prev) => {
+      return [...prev, document.getElementById("year" + index).value];
+    });
+    setAdd(add.map((val, idx) => (idx === index ? false : val)));
+    setTick(tick.map((val, idx) => (idx === index ? true : val)));
+    document.getElementById("add" + index).click(false);
+  };
+  const handleDelete = (e, index) => {
+    setType(type.filter((x, i) => i !== index));
+    setNo(no.filter((x, i) => i !== index));
+    setYear(year.filter((x, i) => i !== index));
+    setCaseArray(caseArray.filter((x, i) => i != index));
+  };
+  // const listURL = "http://localhost:8000/api/list";
+  // const data = { type, no };
+  // const seel = (e) => {
+  //   axios.post(listURL, data).then((response) => {
+  //     console.log(response);
+  //   });
+  // };
+  return (
+    <div className="case-parent">
+      <div className="case-intro">
+        <div className="tslr-heading">Other Court Cases(if any)</div>
+        <div className="tslr-add" onClick={handleClick}>
+          Add Case
+        </div>
+      </div>
+      <div className="case-table">
+        <table>
+          <tr>
+            <th>Case Type</th>
+            <th>Case Number</th>
+            <th>Year</th>
+            <th>Add</th>
+            <th>Remove</th>
+          </tr>
+          {caseArray.map(function (value, index) {
+            return (
+              <tr id={"row" + index}>
+                <td>
+                  <input
+                    type="text"
+                    value={type[index]}
+                    className="form-control form-control-sm dropdown-toggle"
+                    aria-describedby="basic-addon1"
+                    data-bs-toggle="dropdown"
+                    id={"type" + index}
+                    required
+                  />
+                  <ul className="dropdown-menu type-scroll" role="menu">
+                    {typeArray.map(function (v, i) {
+                      return (
+                        <li>
+                          <div
+                            className="dropdown-item"
+                            onClick={(e) => {
+                              setType(
+                                type.map((val, idx) =>
+                                  idx === index ? v : val
+                                )
+                              );
+                            }}
+                          >
+                            {v}
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={no[index]}
+                    className="form-control form-control-sm"
+                    aria-describedby="basic-addon1"
+                    required
+                    autoComplete="off"
+                    id={"no" + index}
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={year[index]}
+                    className="form-control form-control-sm"
+                    aria-describedby="basic-addon1"
+                    required
+                    autoComplete="off"
+                    id={"year" + index}
+                  />
+                </td>
+                <td id={"add" + index}>
+                  {add[index] && (
+                    <div
+                      className="add-tslr"
+                      onClick={(e) => handleAdd(e, index)}
+                    >
+                      +
+                    </div>
+                  )}
+                  {tick[index] && (
+                    <span class="material-symbols-outlined">done</span>
+                  )}
+                </td>
+                <td>
+                  <div
+                    className="remove"
+                    onClick={(e) => handleDelete(e, index)}
+                  >
+                    -
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
+          {/* {type.map(function (value) {
+            return <div>{value}</div>;
+          })}
+          {caseArray.map(function (value) {
+            return <div>{value}</div>;
+          })}
+          {year.map(function (value) {
+            return <div>{value}</div>;
+          })}
+          <button onClick={seel}>dfg</button> */}
+        </table>
+      </div>
+      {show && (
+        <div className="specific-button-container">
+          <div className="specific-button">Save</div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Case;

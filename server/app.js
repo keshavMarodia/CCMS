@@ -42,6 +42,7 @@ app
     });
   })
   .post(function (req, res) {
+    console.log(req.body);
     // bcrypt is used to hash the password to be saved in database
     bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
       User.updateOne(

@@ -1,0 +1,59 @@
+.case-parent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.case-intro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.case-heading{
+    font-size: 22px;
+    font-weight: bold;
+    color: rgb(81, 81, 81);
+}
+.case-add{
+    text-decoration: none;
+    border: 0;
+    padding: 6px 22px;
+    margin-left: 48px;
+    border-radius: 0.2rem;
+    background-color: #a0d995e4;
+    color: rgb(81, 81, 81);
+    font-weight: 900;
+    border: 1px solid #6CC4A1;
+    box-shadow: 0 0 8px #6CC4A1;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.case-add:hover{
+    cursor: pointer;
+    background-color: rgb(81, 81, 81);
+    color: white;
+}
+.case-table{
+    margin: 24px;
+}
+.add-case{
+    text-decoration: none;
+    border: 0;
+    padding: 2px 16px;
+    border-radius: 0.2rem;
+    background-color: rgb(98, 203, 98);
+    color: rgb(81, 81, 81);
+    font-weight: bolder;
+    border: 1px solid white;
+    box-shadow: 0 0 8px white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.type-scroll {
+    height: auto;
+    max-height: 105px;
+    overflow-x: hidden;
+    min-width: 11.9%;
+    border-radius: 0.2rem;
+}

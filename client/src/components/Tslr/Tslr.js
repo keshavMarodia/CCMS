@@ -10,8 +10,8 @@ const Tslr = () => {
   const [c10, setC10] = useState([]);
   const [c20, setC20] = useState([]);
   const [c30, setC30] = useState([]);
-  const [add, setAdd] = useState(true);
-  const [tick, setTick] = useState(false);
+  const [add, setAdd] = useState([]);
+  const [tick, setTick] = useState([]);
   const [show, setShow] = useState(false);
   useEffect(() => {
     tslrArray.length === 0 ? setShow(false) : setShow(true);
@@ -19,6 +19,12 @@ const Tslr = () => {
   const handleClick = (e) => {
     setTslrArray((prevName) => {
       return [...prevName, "a"];
+    });
+    setAdd((prevName) => {
+      return [...prevName, true];
+    });
+    setTick((prevName) => {
+      return [...prevName, false];
     });
   };
   const handleAdd = (e, index) => {
@@ -46,8 +52,8 @@ const Tslr = () => {
     setC30((prev) => {
       return [...prev, document.getElementById("c30" + index).value];
     });
-    setAdd(false);
-    setTick(true);
+    setAdd(add.map((val, idx) => (idx === index ? false : val)));
+    setTick(tick.map((val, idx) => (idx === index ? true : val)));
     document.getElementById("add" + index).click(false);
   };
   const handleDelete = (e, index) => {
@@ -182,7 +188,7 @@ const Tslr = () => {
                   />
                 </td>
                 <td id={"add" + index}>
-                  {add && (
+                  {add[index] && (
                     <div
                       className="add-tslr"
                       onClick={(e) => handleAdd(e, index)}
@@ -190,7 +196,9 @@ const Tslr = () => {
                       +
                     </div>
                   )}
-                  {tick && <span class="material-symbols-outlined">done</span>}
+                  {tick[index] && (
+                    <span class="material-symbols-outlined">done</span>
+                  )}
                 </td>
                 <td>
                   <div
@@ -203,8 +211,11 @@ const Tslr = () => {
               </tr>
             );
           })}
-          {/* {c20.map(function (value) {
-            return <div>{value}</div>;
+          {/* {tick.map(function (value) {
+            return <div>dgf</div>;
+          })}
+          {add.map(function (value) {
+            return <div>dfg</div>;
           })}
           {tslrArray.map(function (value) {
             return <div>{value}</div>;
