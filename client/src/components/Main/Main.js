@@ -6,6 +6,15 @@ const Main = () => {
   const location = useLocation();
   const navigate = useNavigate();
   let court = location.state.court;
+  const [caseTypeArray, setCaseTypeArray] = useState([
+    "OS",
+    "LGOP",
+    "LGCSR",
+    "LGC",
+    "WP",
+    "WP(PLI)",
+    "PLI",
+  ]);
   const [caseType, setCaseType] = useState("");
   const [caseYear, setCaseYear] = useState("");
   const [caseNo, setCaseNo] = useState("");
@@ -16,9 +25,8 @@ const Main = () => {
   for (var i = max; i >= min; i--) {
     years.push(i);
   }
-  console.log(years);
   const handleSubmit = (e) => {
-    const data = { caseType, caseNo, caseYear };
+    const data = { court, caseType, caseNo, caseYear };
     navigate("/input", {
       state: data,
     });
@@ -54,62 +62,18 @@ const Main = () => {
                   className="dropdown-menu scrollable-menu custom-scroll"
                   role="menu"
                 >
-                  <li>
-                    <div
-                      className="dropdown-item"
-                      onClick={(e) => setCaseType("OS")}
-                    >
-                      OS
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      className="dropdown-item"
-                      onClick={(e) => setCaseType("LGOP")}
-                    >
-                      LGOP
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      className="dropdown-item"
-                      onClick={(e) => setCaseType("LGCSR")}
-                    >
-                      LGCSR
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      className="dropdown-item"
-                      onClick={(e) => setCaseType("LGC")}
-                    >
-                      LGC
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      className="dropdown-item"
-                      onClick={(e) => setCaseType("WP")}
-                    >
-                      WP
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      className="dropdown-item"
-                      onClick={(e) => setCaseType("WP(PLI)")}
-                    >
-                      WP(PLI)
-                    </div>
-                  </li>
-                  <li>
-                    <div
-                      className="dropdown-item"
-                      onClick={(e) => setCaseType("PLI")}
-                    >
-                      PLI
-                    </div>
-                  </li>
+                  {caseTypeArray.map(function (value, index) {
+                    return (
+                      <li>
+                        <div
+                          className="dropdown-item"
+                          onClick={(e) => setCaseType(value)}
+                        >
+                          {value}
+                        </div>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
               {/* Case Number */}

@@ -23,49 +23,52 @@ const Petitioner = () => {
   }, [petiList]);
   return (
     <div className="peti-parent">
-      <div className="peti-left">
-        <div className="peti-add">
-          <div className="input-group mb-3">
-            <span
-              className="input-group-text accent main-accent"
-              id="basic-addon1"
-            >
-              Petitioner(s)
-            </span>
-            <input
-              type="text"
-              value={peti}
-              onChange={(e) => setPeti(e.target.value)}
-              className="form-control"
-              aria-describedby="basic-addon1"
-              required
-            />
-            <div>
-              <div className="peti-button" onClick={handleClick}>
-                +
+      <div className="intro-heading">Petitioner(s)</div>
+      <div className="peti-form">
+        <div className="peti-left">
+          <div className="peti-add">
+            <div className="input-group mb-3">
+              <span
+                className="input-group-text accent main-accent"
+                id="basic-addon1"
+              >
+                Petitioner(s)
+              </span>
+              <input
+                type="text"
+                value={peti}
+                onChange={(e) => setPeti(e.target.value)}
+                className="form-control"
+                aria-describedby="basic-addon1"
+                required
+              />
+              <div>
+                <div className="peti-button" onClick={handleClick}>
+                  +
+                </div>
               </div>
             </div>
           </div>
+          {petiWarn && <div className="peti-warn">Fill Entry</div>}
         </div>
-        {petiWarn && <div className="peti-warn">Fill Entry</div>}
-      </div>
-      <div className="peti-list-parent">
-        {petiList.map(function (value, index) {
-          return (
-            <div className="peti-list">
-              <div className="peti-index">{index + 1}</div>
-              <div className="peti-name">{value}</div>
-              <div className="remove" onClick={(e) => handleDelete(e, index)}>
-                -
+        <div className="peti-list-parent">
+          {petiList.map(function (value, index) {
+            return (
+              <div className="peti-list">
+                <div className="peti-index">{index + 1}</div>
+                <div className="peti-name">{value}</div>
+                <div className="remove" onClick={(e) => handleDelete(e, index)}>
+                  -
+                </div>
               </div>
+            );
+          })}
+          {show && (
+            <div className="specific-button-container">
+              <div className="specific-button">Save</div>
             </div>
-          );
-        })}
-        {show && (
-          <div className="specific-button-container">
-            <div className="specific-button">Save</div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

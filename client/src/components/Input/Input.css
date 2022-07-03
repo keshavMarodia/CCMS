@@ -45,6 +45,7 @@ th{
 .imp{
   width: 9%;
   box-shadow: 0 0 2px white;
+  font-size: 12px;
 }
 .imp-scroll {
   height: auto;
@@ -53,27 +54,27 @@ th{
   border-radius: 0.2rem;
 }
 .file{
-  width: 10.5%;
+  width: 12.4%;
   box-shadow: 0 0 2px white;
 }
 .file-scroll {
   height: auto;
-  min-width: 3%;
+  min-width: 9%;
   font-size: 12px;
   border-radius: 0.2rem;
 }
 .court{
-  width: 14.2%;
+  width: 16%;
   box-shadow: 0 0 2px white;
 }
 .court-scroll {
-  min-width: 10.1%;
+  min-width: 12.5%;
   font-size: 12px;
   height: auto;
   border-radius: 0.2rem;
 }
 .judge{
-  width: 13.4%;
+  width: 13.7%;
   box-shadow: 0 0 2px white;
 }
 .judge-scroll {
@@ -83,7 +84,7 @@ th{
   border-radius: 0.2rem;
 }
 .hall{
-  width: 17.4%;
+  width: 18.5%;
   box-shadow: 0 0 2px white;
 }
 .hall-scroll {
@@ -130,4 +131,12 @@ th{
 .specific-button:hover{
   cursor: pointer;
   box-shadow: 0 0 12px #6CC4A1;
+}
+.intro-heading{
+  display: flex;
+  justify-content: center;
+  margin: 16px;
+  font-size: 22px;
+  font-weight: bold;
+  color: rgb(81, 81, 81);
 }

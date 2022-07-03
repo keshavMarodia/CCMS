@@ -1,14 +1,15 @@
-.status-parent{
+.status-form{
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 .status-scroll{
     height: auto;
-    max-height: 150px;
     overflow-x: hidden;
-    width: 58.5%;
-    border-radius: 0;
+    width: 66.2%;
+    border-radius: 0.2rem;
 }
-.status-accent{
-    width: 150px;
+.status-input{
+    width: 36%;
 }

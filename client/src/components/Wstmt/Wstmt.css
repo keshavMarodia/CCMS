@@ -1,6 +1,5 @@
-.wstmt-parent{
+.wstmt-form{
     display: flex;
-    align-items: center;
 }
 .wstmt-drop,.wstmt-result{
     width: 50%;

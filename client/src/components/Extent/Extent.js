@@ -4,6 +4,7 @@ const Extent = () => {
   const [extent, setExtent] = useState("");
   return (
     <div className="extent-parent">
+      <div className="intro-heading">Extent</div>
       <div className="extent-form">
         <div className="input-group mb-3 extent">
           <span

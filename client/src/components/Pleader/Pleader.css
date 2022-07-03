@@ -1,0 +1,13 @@
+.pleader-form{
+    display: flex;
+    justify-content: center;
+}
+.pleader-input{
+    width: 30%;
+}
+.pleader-scroll{
+    height: auto;
+    overflow-x: hidden;
+    width: 66%;
+    border-radius: 0.2rem;   
+}

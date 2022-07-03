@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Case from "../Case/Case";
 import Extent from "../Extent/Extent";
 import Govt from "../Govt/Govt";
-import Gp from "../Gp/Gp";
+import Pleader from "../Pleader/Pleader";
 import MainCase from "../MainCase/MainCase";
 import Mandal from "../Mandal/Mandal";
 import Navbar from "../Navbar/Navbar";
@@ -20,7 +20,53 @@ import File from "../File/File";
 import "./Input.css";
 const Input = () => {
   const location = useLocation();
-  const { caseType, caseNo, caseYear } = location.state;
+  const { court, caseType, caseNo, caseYear } = location.state;
+  const [yesNoArray, setYesNoArray] = useState(["NO", "YES"]);
+  const [filedArray, setFilledArray] = useState([
+    "PVT. PARTY",
+    "COLLECTOR",
+    "JOINT COLLECTOR",
+    "RDO",
+    "MRO",
+  ]);
+  const [icourtArray, setICourtArray] = useState([
+    "CITY-CIVIL-COURT-HYD",
+    "CITY-CIVIL-COURT-SECBAD",
+    "HIGH-COURT",
+    "WKAF-TRIBUNAL-CCC-HYD",
+  ]);
+  const [judgeArray, setJudgeArray] = useState([
+    "JR. CIVIL JUDGE",
+    "SR. CIVIL JUDGE",
+    "ADDL. SR. CIVIL JUDGE",
+    "ADDL. CHIEF JUDGE",
+    "CHIEF JUDGE",
+    "NIL",
+  ]);
+  const [hallArray, setHallArray] = useState([
+    "I ASJ FOR SPE AND ACB CUM V ACJ",
+    "ADD MORE",
+  ]);
+  const [specificArrayOne, setSpecificArrayOne] = useState([
+    "WSTMT/COUNT",
+    "RELIEF",
+    "PETITIONER(S)",
+    "RESPONDENT(S)",
+    "PROPERTY",
+    "TSLR",
+    "EXTENT",
+    "MANDAL",
+  ]);
+  const [specificArrayTwo, setSpecificArrayTwo] = useState([
+    "PAHANI",
+    "LAND STATUS",
+    "OTHER GOVT. DEPT.",
+    "FILE NO.(S)",
+    "OTHER CASES",
+    "POSTING DETAILS",
+    "GOVT. PLEADER",
+    "MAIN CASE STATUS",
+  ]);
   const [imp, setImp] = useState("");
   const [land, setLand] = useState("");
   const [filed, setFiled] = useState("");
@@ -84,46 +130,18 @@ const Input = () => {
                     required
                   />
                   <ul className="dropdown-menu file-scroll" role="menu">
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setFiled("PVT. Party")}
-                      >
-                        PVT. Party
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setFiled("Collector")}
-                      >
-                        Collector
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setFiled("Joint Collector")}
-                      >
-                        Joint Collector
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setFiled("RDO")}
-                      >
-                        RDO
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setFiled("MRO")}
-                      >
-                        MRO
-                      </div>
-                    </li>
+                    {filedArray.map(function (value, index) {
+                      return (
+                        <li>
+                          <div
+                            className="dropdown-item"
+                            onClick={(e) => setFiled(value)}
+                          >
+                            {value}
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </td>
                 <td className="land">
@@ -138,22 +156,18 @@ const Input = () => {
                     required
                   />
                   <ul className="dropdown-menu land-scroll" role="menu">
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setLand("Yes")}
-                      >
-                        Yes
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setLand("No")}
-                      >
-                        No
-                      </div>
-                    </li>
+                    {yesNoArray.map(function (value, index) {
+                      return (
+                        <li>
+                          <div
+                            className="dropdown-item"
+                            onClick={(e) => setLand(value)}
+                          >
+                            {value}
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </td>
                 <td className="imp">
@@ -168,22 +182,18 @@ const Input = () => {
                     required
                   />
                   <ul className="dropdown-menu imp-scroll" role="menu">
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setImp("Yes")}
-                      >
-                        Yes
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setImp("No")}
-                      >
-                        No
-                      </div>
-                    </li>
+                    {yesNoArray.map(function (value, index) {
+                      return (
+                        <li>
+                          <div
+                            className="dropdown-item"
+                            onClick={(e) => setImp(value)}
+                          >
+                            {value}
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </td>
                 <td className="court">
@@ -199,38 +209,18 @@ const Input = () => {
                     required
                   />
                   <ul className="dropdown-menu court-scroll" role="menu">
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setiCourt("City-Civil-Court-HYD")}
-                      >
-                        City-Civil-Court-HYD
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setiCourt("City-Civil-Court-SECBAD")}
-                      >
-                        City-Civil-Court-SECBAD
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setiCourt("High-Court")}
-                      >
-                        High-Court
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setiCourt("WKAF-Tribunal-CCC-HYD")}
-                      >
-                        WKAF-Tribunal-CCC-HYD
-                      </div>
-                    </li>
+                    {icourtArray.map(function (value, index) {
+                      return (
+                        <li>
+                          <div
+                            className="dropdown-item"
+                            onClick={(e) => setiCourt(value)}
+                          >
+                            {value}
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </td>
                 <td className="judge">
@@ -245,54 +235,18 @@ const Input = () => {
                     required
                   />
                   <ul className="dropdown-menu judge-scroll" role="menu">
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setJudge("Jr. Civil Judge")}
-                      >
-                        Jr. Civil Judge
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setJudge("Sr. Civil Judge")}
-                      >
-                        Sr. Civil Judge
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setJudge("Addl. Sr. Civil Judge")}
-                      >
-                        Addl. Sr. Civil Judge
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setJudge("Addl. Chief Judge")}
-                      >
-                        Addl. Chief Judge
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setJudge("Chief Judge")}
-                      >
-                        Chief Judge
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setJudge("NIL")}
-                      >
-                        NIL
-                      </div>
-                    </li>
+                    {judgeArray.map(function (value, index) {
+                      return (
+                        <li>
+                          <div
+                            className="dropdown-item"
+                            onClick={(e) => setJudge(value)}
+                          >
+                            {value}
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </td>
                 <td className=" hall">
@@ -307,22 +261,18 @@ const Input = () => {
                     required
                   />
                   <ul className="dropdown-menu hall-scroll" role="menu">
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setHall("Yes")}
-                      >
-                        I ASJ for SPE and ACB cum V ACJ
-                      </div>
-                    </li>
-                    <li>
-                      <div
-                        className="dropdown-item"
-                        onClick={(e) => setHall("No")}
-                      >
-                        No
-                      </div>
-                    </li>
+                    {hallArray.map(function (value, index) {
+                      return (
+                        <li>
+                          <div
+                            className="dropdown-item"
+                            onClick={(e) => setHall(value)}
+                          >
+                            {value}
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </td>
               </tr>
@@ -331,168 +281,42 @@ const Input = () => {
           <div className="input-table">
             <table className="button-table">
               <tr className="button-row">
-                <td
-                  className="button-data"
-                  onClick={(e) => {
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 0 ? true : false))
-                    );
-                  }}
-                >
-                  WSTMT/COUNT
-                </td>
-                <td
-                  className="button-data"
-                  onClick={(e) => {
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 1 ? true : false))
-                    );
-                  }}
-                >
-                  RELIEF
-                </td>
-                <td
-                  className="button-data"
-                  onClick={(e) =>
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 2 ? true : false))
-                    )
-                  }
-                >
-                  PETITIONER(s)
-                </td>
-                <td
-                  className="button-data"
-                  onClick={(e) =>
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 3 ? true : false))
-                    )
-                  }
-                >
-                  RESPONDENTS(s)
-                </td>
-                <td
-                  className="button-data"
-                  onClick={(e) =>
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 4 ? true : false))
-                    )
-                  }
-                >
-                  PROPERTY
-                </td>
-                <td
-                  className="button-data"
-                  onClick={(e) =>
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 5 ? true : false))
-                    )
-                  }
-                >
-                  TSLR
-                </td>
-                <td
-                  className="button-data"
-                  onClick={(e) =>
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 6 ? true : false))
-                    )
-                  }
-                >
-                  EXTENT
-                </td>
-                <td
-                  className="button-data"
-                  onClick={(e) =>
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 7 ? true : false))
-                    )
-                  }
-                >
-                  MANDAL
-                </td>
+                {specificArrayOne.map(function (value, index) {
+                  return (
+                    <td
+                      id={index}
+                      className="button-data"
+                      onClick={(e) => {
+                        setSpecific(
+                          specific.map((val, idx) =>
+                            idx === index ? true : false
+                          )
+                        );
+                      }}
+                    >
+                      {value}
+                    </td>
+                  );
+                })}
               </tr>
               <tr className="button-row">
-                <td
-                  className="button-data"
-                  onClick={(e) =>
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 8 ? true : false))
-                    )
-                  }
-                >
-                  PAHANI
-                </td>
-                <td
-                  className="button-data"
-                  onClick={(e) =>
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 9 ? true : false))
-                    )
-                  }
-                >
-                  LAND STATUS
-                </td>
-                <td
-                  className="button-data"
-                  onClick={(e) =>
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 10 ? true : false))
-                    )
-                  }
-                >
-                  OTHER GOVT. DEPTS.
-                </td>
-                <td
-                  className="button-data"
-                  onClick={(e) =>
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 11 ? true : false))
-                    )
-                  }
-                >
-                  FILE NO.(s)
-                </td>
-                <td
-                  className="button-data"
-                  onClick={(e) =>
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 12 ? true : false))
-                    )
-                  }
-                >
-                  OTHER CASES
-                </td>
-                <td
-                  className="button-data"
-                  onClick={(e) =>
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 13 ? true : false))
-                    )
-                  }
-                >
-                  POSTING DATES
-                </td>
-                <td
-                  className="button-data"
-                  onClick={(e) =>
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 14 ? true : false))
-                    )
-                  }
-                >
-                  GP
-                </td>
-                <td
-                  className="button-data"
-                  onClick={(e) =>
-                    setSpecific(
-                      specific.map((val, idx) => (idx === 15 ? true : false))
-                    )
-                  }
-                >
-                  MAIN CASE STATUS
-                </td>
+                {specificArrayTwo.map(function (value, index) {
+                  return (
+                    <td
+                      id={index + 8}
+                      className="button-data"
+                      onClick={(e) => {
+                        setSpecific(
+                          specific.map((val, idx) =>
+                            idx === index + 8 ? true : false
+                          )
+                        );
+                      }}
+                    >
+                      {value}
+                    </td>
+                  );
+                })}
               </tr>
             </table>
           </div>
@@ -511,7 +335,7 @@ const Input = () => {
             {specific[11] && <File />}
             {specific[12] && <Case />}
             {specific[13] && <Posting />}
-            {specific[14] && <Gp />}
+            {specific[14] && <Pleader />}
             {specific[15] && <MainCase />}
           </div>
         </form>

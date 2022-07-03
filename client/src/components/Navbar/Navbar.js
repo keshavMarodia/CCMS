@@ -3,6 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = () => {
+  const [courts, setCourts] = useState([
+    "CITY-CIVIL-COURT",
+    "LG-COURT",
+    "HIGH-COURT",
+    "SUPREME-COURT",
+  ]);
   const navigate = useNavigate();
   const handleClick = (e) => {
     navigate("/");
@@ -43,42 +49,19 @@ const Navbar = () => {
                 Courts
               </Link>
               <ul className="subnav">
-                <li id="city" className="sub-items">
-                  <Link
-                    to={"/main"}
-                    state={{ court: "City-Civil-Court" }}
-                    className="sub-link"
-                  >
-                    City-Civil-Court
-                  </Link>
-                </li>
-                <li id="lg" className="sub-items">
-                  <Link
-                    to={"/main"}
-                    state={{ court: "LG-Court" }}
-                    className="sub-link"
-                  >
-                    LG-Court
-                  </Link>
-                </li>
-                <li id="high" className="sub-items">
-                  <Link
-                    to={"/main"}
-                    state={{ court: "High-Court" }}
-                    className="sub-link"
-                  >
-                    High-Court
-                  </Link>
-                </li>
-                <li id="city" className="sub-items">
-                  <Link
-                    to={"/main"}
-                    state={{ court: "Supreme-Court" }}
-                    className="sub-link"
-                  >
-                    Supreme-Court
-                  </Link>
-                </li>
+                {courts.map(function (value, index) {
+                  return (
+                    <li id={index} className="sub-items">
+                      <Link
+                        to={"/main"}
+                        state={{ court: value }}
+                        className="sub-link"
+                      >
+                        {value}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </li>
             <li className="tab-items">

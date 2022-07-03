@@ -4,12 +4,19 @@ const Status = () => {
   const [status, setStatus] = useState("");
   const [svalue, setSvalue] = useState("");
   const [sdate, setSdate] = useState("");
+  const [statusArray, setStatusArray] = useState([
+    "VACANT LAND",
+    "SEMI STRUCTURED",
+    "FULLY STRUCTURED",
+    "OTHERS",
+  ]);
   return (
     <div className="status-parent">
+      <div className="intro-heading">Land Status</div>
       <div className="status-form">
-        <div className="input-group mb-3">
+        <div className="input-group mb-3 status-input">
           <span
-            className="input-group-text accent main-accent status-accent"
+            className="input-group-text accent main-accent"
             id="basic-addon1"
           >
             Value As On Date
@@ -23,9 +30,9 @@ const Status = () => {
             required
           />
         </div>
-        <div className="input-group mb-3 wstmt-input">
+        <div className="input-group mb-3 status-input">
           <span
-            className="input-group-text accent main-accent status-accent"
+            className="input-group-text accent main-accent"
             id="basic-addon1"
           >
             Status
@@ -39,43 +46,23 @@ const Status = () => {
             required
           />
           <ul className="dropdown-menu status-scroll" role="menu">
-            <li>
-              <div
-                className="dropdown-item"
-                onClick={(e) => setStatus("Vacant Land")}
-              >
-                Vacant Land
-              </div>
-            </li>
-            <li>
-              <div
-                className="dropdown-item"
-                onClick={(e) => setStatus("Semi Structured")}
-              >
-                Semi Structured
-              </div>
-            </li>
-            <li>
-              <div
-                className="dropdown-item"
-                onClick={(e) => setStatus("Fully Structured")}
-              >
-                Fully Structured
-              </div>
-            </li>
-            <li>
-              <div
-                className="dropdown-item"
-                onClick={(e) => setStatus("Others")}
-              >
-                Others
-              </div>
-            </li>
+            {statusArray.map(function (value, index) {
+              return (
+                <li>
+                  <div
+                    className="dropdown-item"
+                    onClick={(e) => setStatus(value)}
+                  >
+                    {value}
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </div>
-        <div className="input-group mb-3">
+        <div className="input-group mb-3 status-input">
           <span
-            className="input-group-text accent main-accent status-accent"
+            className="input-group-text accent main-accent"
             id="basic-addon1"
           >
             Value
@@ -89,9 +76,9 @@ const Status = () => {
             required
           />
         </div>
-        <div className="specific-button-container">
-          <div className="specific-button">Save</div>
-        </div>
+      </div>
+      <div className="specific-button-container">
+        <div className="specific-button">Save</div>
       </div>
     </div>
   );

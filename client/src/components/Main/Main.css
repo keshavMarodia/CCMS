@@ -32,9 +32,8 @@
     height: auto;
     max-height: 105px;
     overflow-x: hidden;
-    /* overflow-y: scroll; */
     width: 66%;
-    border-radius: 0;
+    border-radius: 0.2rem;
 }
 .submit-container{
     width: 86px;

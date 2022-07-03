@@ -25,8 +25,9 @@ const Mandal = () => {
   const [locality, setLocality] = useState("");
   return (
     <div className="mandal-parent">
+      <div className="intro-heading">Mandal</div>
       <div className="mandal-form">
-        <div className="input-group mb-3 wstmt-input">
+        <div className="input-group mb-3 mandal-input">
           <span
             className="input-group-text accent main-accent wstmt-accent"
             id="basic-addon1"
@@ -57,7 +58,7 @@ const Mandal = () => {
             })}
           </ul>
         </div>
-        <div className="input-group mb-3 wstmt-input">
+        <div className="input-group mb-3 mandal-input">
           <span
             className="input-group-text accent main-accent wstmt-accent"
             id="basic-addon1"
@@ -83,7 +84,7 @@ const Mandal = () => {
             </li>
           </ul>
         </div>
-        <div className="input-group mb-3">
+        <div className="input-group mb-3 mandal-input">
           <span
             className="input-group-text accent main-accent"
             id="basic-addon1"
@@ -99,7 +100,7 @@ const Mandal = () => {
             required
           />
         </div>
-        <div className="input-group mb-3">
+        <div className="input-group mb-3 mandal-input">
           <span
             className="input-group-text accent main-accent"
             id="basic-addon1"
@@ -115,9 +116,9 @@ const Mandal = () => {
             required
           />
         </div>
-        <div className="specific-button-container">
-          <div className="specific-button">Save</div>
-        </div>
+      </div>
+      <div className="specific-button-container">
+        <div className="specific-button">Save</div>
       </div>
     </div>
   );
