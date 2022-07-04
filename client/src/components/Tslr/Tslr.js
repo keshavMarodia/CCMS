@@ -12,22 +12,42 @@ const Tslr = () => {
   const [c30, setC30] = useState([]);
   const [add, setAdd] = useState([]);
   const [tick, setTick] = useState([]);
-  const [show, setShow] = useState(false);
-  useEffect(() => {
-    tslrArray.length === 0 ? setShow(false) : setShow(true);
-  }, [tslrArray]);
+  // const [show, setShow] = useState(false);
+  const [entry, setEntry] = useState(false);
+  // useEffect(() => {
+  //   tslrArray.length === 0 ? setShow(false) : setShow(true);
+  // }, [tslrArray]);
   const handleClick = (e) => {
-    setTslrArray((prevName) => {
-      return [...prevName, "a"];
-    });
-    setAdd((prevName) => {
-      return [...prevName, true];
-    });
-    setTick((prevName) => {
-      return [...prevName, false];
-    });
+    if (tslrArray.length === 0) {
+      setEntry(false);
+      setTslrArray((prevName) => {
+        return [...prevName, "a"];
+      });
+      setAdd((prevName) => {
+        return [...prevName, true];
+      });
+      setTick((prevName) => {
+        return [...prevName, false];
+      });
+    } else {
+      if (add.every((val) => val === false)) {
+        setEntry(false);
+        setTslrArray((prevName) => {
+          return [...prevName, "a"];
+        });
+        setAdd((prevName) => {
+          return [...prevName, true];
+        });
+        setTick((prevName) => {
+          return [...prevName, false];
+        });
+      } else {
+        setEntry(true);
+      }
+    }
   };
   const handleAdd = (e, index) => {
+    setEntry(false);
     setWard((prev) => {
       return [...prev, document.getElementById("ward" + index).value];
     });
@@ -57,6 +77,7 @@ const Tslr = () => {
     document.getElementById("add" + index).click(false);
   };
   const handleDelete = (e, index) => {
+    setEntry(false);
     setWard(ward.filter((x, i) => i !== index));
     setBlock(block.filter((x, i) => i !== index));
     setTs(ts.filter((x, i) => i !== index));
@@ -65,6 +86,8 @@ const Tslr = () => {
     setC10(c10.filter((x, i) => i !== index));
     setC20(c20.filter((x, i) => i !== index));
     setC30(c30.filter((x, i) => i !== index));
+    setAdd(add.filter((x, i) => i !== index));
+    setTick(tick.filter((x, i) => i !== index));
     setTslrArray(tslrArray.filter((x, i) => i != index));
   };
   // const listURL = "http://localhost:8000/api/list";
@@ -83,6 +106,7 @@ const Tslr = () => {
         </div>
       </div>
       <div className="tslr-table">
+        {entry && <div className="entry">Please Save The Record </div>}
         <table>
           <tr>
             <th>Ward</th>
@@ -223,11 +247,9 @@ const Tslr = () => {
           <button onClick={see}>dfg</button> */}
         </table>
       </div>
-      {show && (
-        <div className="specific-button-container">
-          <div className="specific-button">Save</div>
-        </div>
-      )}
+      <div className="specific-button-container">
+        <div className="specific-button">Save</div>
+      </div>
     </div>
   );
 };

@@ -74,13 +74,12 @@ const Govt = () => {
               </li>
             </ul>
           </div>
+          <div className="specific-button-container">
+            <div className="specific-button">Save</div>
+          </div>
         </div>
         <div className="govt-result">
-          {govtNo && (
-            <div className="govt-no-save">
-              <div className="specific-button">Save</div>
-            </div>
-          )}
+          {govtNo && <div></div>}
           {govtYes && (
             <div className="govt-yes-parent">
               <div className="input-group mb-3 wstmt-input">
@@ -144,9 +143,6 @@ const Govt = () => {
                     );
                   })}
                 </ul>
-              </div>
-              <div className="specific-button-container">
-                <div className="specific-button">Save</div>
               </div>
             </div>
           )}

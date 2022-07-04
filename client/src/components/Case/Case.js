@@ -21,25 +21,48 @@ const Case = () => {
   const [year, setYear] = useState([]);
   const [add, setAdd] = useState([]);
   const [tick, setTick] = useState([]);
-  const [show, setShow] = useState(false);
-  useEffect(() => {
-    caseArray.length === 0 ? setShow(false) : setShow(true);
-  }, [caseArray]);
+  // const [show, setShow] = useState(false);
+  const [entry, setEntry] = useState(false);
+  // useEffect(() => {
+  //   caseArray.length === 0 ? setShow(false) : setShow(true);
+  // }, [caseArray]);
   const handleClick = (e) => {
-    setCaseArray((prevName) => {
-      return [...prevName, "a"];
-    });
-    setType((prevName) => {
-      return [...prevName, ""];
-    });
-    setAdd((prevName) => {
-      return [...prevName, true];
-    });
-    setTick((prevName) => {
-      return [...prevName, false];
-    });
+    if (caseArray.length === 0) {
+      setEntry(false);
+      setCaseArray((prevName) => {
+        return [...prevName, "a"];
+      });
+      setType((prevName) => {
+        return [...prevName, ""];
+      });
+      setAdd((prevName) => {
+        return [...prevName, true];
+      });
+      setTick((prevName) => {
+        return [...prevName, false];
+      });
+    } else {
+      if (add.every((val) => val === false)) {
+        setEntry(false);
+        setCaseArray((prevName) => {
+          return [...prevName, "a"];
+        });
+        setType((prevName) => {
+          return [...prevName, ""];
+        });
+        setAdd((prevName) => {
+          return [...prevName, true];
+        });
+        setTick((prevName) => {
+          return [...prevName, false];
+        });
+      } else {
+        setEntry(true);
+      }
+    }
   };
   const handleAdd = (e, index) => {
+    setEntry(false);
     setNo((prev) => {
       return [...prev, document.getElementById("no" + index).value];
     });
@@ -51,9 +74,12 @@ const Case = () => {
     document.getElementById("add" + index).click(false);
   };
   const handleDelete = (e, index) => {
+    setEntry(false);
     setType(type.filter((x, i) => i !== index));
     setNo(no.filter((x, i) => i !== index));
     setYear(year.filter((x, i) => i !== index));
+    setAdd(add.filter((x, i) => i !== index));
+    setTick(tick.filter((x, i) => i !== index));
     setCaseArray(caseArray.filter((x, i) => i != index));
   };
   // const listURL = "http://localhost:8000/api/list";
@@ -66,12 +92,13 @@ const Case = () => {
   return (
     <div className="case-parent">
       <div className="case-intro">
-        <div className="tslr-heading">Other Court Cases(if any)</div>
-        <div className="tslr-add" onClick={handleClick}>
+        <div className="case-heading">Other Court Cases(if any)</div>
+        <div className="case-add" onClick={handleClick}>
           Add Case
         </div>
       </div>
       <div className="case-table">
+        {entry && <div className="entry">Please Save The Record </div>}
         <table>
           <tr>
             <th>Case Type</th>
@@ -139,7 +166,7 @@ const Case = () => {
                 <td id={"add" + index}>
                   {add[index] && (
                     <div
-                      className="add-tslr"
+                      className="add-case"
                       onClick={(e) => handleAdd(e, index)}
                     >
                       +
@@ -166,17 +193,18 @@ const Case = () => {
           {caseArray.map(function (value) {
             return <div>{value}</div>;
           })}
+          {add.map(function (value) {
+            return <div>fd</div>;
+          })}
           {year.map(function (value) {
             return <div>{value}</div>;
           })}
           <button onClick={seel}>dfg</button> */}
         </table>
       </div>
-      {show && (
-        <div className="specific-button-container">
-          <div className="specific-button">Save</div>
-        </div>
-      )}
+      <div className="specific-button-container">
+        <div className="specific-button">Save</div>
+      </div>
     </div>
   );
 };

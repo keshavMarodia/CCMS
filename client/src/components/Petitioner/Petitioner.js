@@ -4,7 +4,6 @@ const Petitioner = () => {
   const [peti, setPeti] = useState("");
   const [petiList, setPetiList] = useState([]);
   const [petiWarn, setPetiWarn] = useState(false);
-  const [show, setShow] = useState(false);
   const handleClick = (e) => {
     if (peti == "") {
       setPetiWarn(true);
@@ -18,9 +17,6 @@ const Petitioner = () => {
   const handleDelete = (e, index) => {
     setPetiList(petiList.filter((x, i) => i !== index));
   };
-  useEffect(() => {
-    petiList.length === 0 ? setShow(false) : setShow(true);
-  }, [petiList]);
   return (
     <div className="peti-parent">
       <div className="intro-heading">Petitioner(s)</div>
@@ -50,6 +46,9 @@ const Petitioner = () => {
             </div>
           </div>
           {petiWarn && <div className="peti-warn">Fill Entry</div>}
+          <div className="specific-button-container">
+            <div className="specific-button">Save</div>
+          </div>
         </div>
         <div className="peti-list-parent">
           {petiList.map(function (value, index) {
@@ -63,11 +62,6 @@ const Petitioner = () => {
               </div>
             );
           })}
-          {show && (
-            <div className="specific-button-container">
-              <div className="specific-button">Save</div>
-            </div>
-          )}
         </div>
       </div>
     </div>

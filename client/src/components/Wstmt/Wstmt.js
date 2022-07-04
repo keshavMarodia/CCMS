@@ -74,6 +74,9 @@ const Wstmt = () => {
               </li>
             </ul>
           </div>
+          <div className="specific-button-container">
+            <div className="specific-button">Save</div>
+          </div>
         </div>
         <div className="wstmt-result">
           {wstmtNo && (
@@ -186,9 +189,6 @@ const Wstmt = () => {
                   />
                 </div>
               )}
-              <div className="specific-button-container">
-                <div className="specific-button">Save</div>
-              </div>
             </div>
           )}
           {wstmtYes && (
@@ -225,9 +225,6 @@ const Wstmt = () => {
                   required
                 />
               </div>
-              <div className="specific-button-container">
-                <div className="specific-button">Save</div>
-              </div>
             </div>
           )}
           {wstmtOther && (
@@ -263,9 +260,6 @@ const Wstmt = () => {
                   aria-describedby="basic-addon1"
                   required
                 />
-              </div>
-              <div className="specific-button-container">
-                <div className="specific-button">Save</div>
               </div>
             </div>
           )}

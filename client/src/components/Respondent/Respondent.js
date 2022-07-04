@@ -4,7 +4,6 @@ const Respondent = () => {
   const [resp, setResp] = useState("");
   const [respList, setRespList] = useState([]);
   const [respWarn, setRespWarn] = useState(false);
-  const [show, setShow] = useState(false);
   const handleClick = (e) => {
     if (resp == "") {
       setRespWarn(true);
@@ -18,9 +17,6 @@ const Respondent = () => {
   const handleDelete = (e, index) => {
     setRespList(respList.filter((x, i) => i !== index));
   };
-  useEffect(() => {
-    respList.length === 0 ? setShow(false) : setShow(true);
-  }, [respList]);
   return (
     <div className="resp-parent">
       <div className="intro-heading">Respondent(s)</div>
@@ -50,6 +46,9 @@ const Respondent = () => {
             </div>
           </div>
           {respWarn && <div className="resp-warn">Fill Entry</div>}
+          <div className="specific-button-container">
+            <div className="specific-button">Save</div>
+          </div>
         </div>
         <div className="resp-list-parent">
           {respList.map(function (value, index) {
@@ -63,11 +62,6 @@ const Respondent = () => {
               </div>
             );
           })}
-          {show && (
-            <div className="specific-button-container">
-              <div className="specific-button">Save</div>
-            </div>
-          )}
         </div>
       </div>
     </div>

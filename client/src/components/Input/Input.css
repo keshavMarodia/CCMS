@@ -9,7 +9,6 @@ tr,
 th,
 td {
   border: 1px solid #6CC4A1;
-  box-shadow: 0 0 4px #6CC4A1;
   background-color: rgba(81, 81, 81, 0.5);
   color: white;
   text-align: center;
@@ -139,4 +138,12 @@ th{
   font-size: 22px;
   font-weight: bold;
   color: rgb(81, 81, 81);
+}
+.entry{
+  display: flex;
+  justify-content: center;
+  margin: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(255, 0, 0);
 }
