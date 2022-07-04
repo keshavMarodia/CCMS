@@ -1,0 +1,18 @@
+.main-case-form,.dismissed-yes-form,.direction-yes-form,.pending-yes-form,.against-yes-form,.favour-yes-form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.main-case-input{
+    width: 46%;
+}
+.main-case-accent{
+    font-weight: bold;
+    font-size: 14px;
+    width: 280px;
+}
+.main-case-scroll{
+    font-size: 12px;
+    width: 59.3%;
+}
