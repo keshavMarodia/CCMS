@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// import axios from "axios";
+
 import "./Case.css";
 const Case = () => {
   const [caseArray, setCaseArray] = useState([]);

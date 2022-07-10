@@ -7,6 +7,13 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const routes = require("./routes/demo");
+const {getCase , updateCase } = require("./controllers/case");
+
+
+// Connection URL
+const url = 'mongodb://localhost:27017';
+// Database Name
+const dbName = 'ccmsDB';
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -20,10 +27,12 @@ app.use(
 );
 app.use(cors());
 app.use(express.json());
-mongoose.connect("mongodb://localhost:27017/ccmsDB", {
+mongoose.connect(url+"/"+dbName , {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
+
 const userSchema = new mongoose.Schema({
   username: String,
   password: String,
@@ -84,13 +93,38 @@ app.route("/api/user").post(function (req, res) {
     }
   });
 });
-app.route("/api/try").get(function (req, res) {
+app.route("/api/try").get(async function (req, res) {
+  await client.connect();
+  console.log('Connected successfully to server');
+  const db = client.db(dbName);
+  const collection = db.collection('commments');
   console.log(req.body);
+  const findResult = await collection.find({}).toArray();
+console.log('Found documents =>', findResult);
+res.json(findResult);
 });
-// app.post("/home", (req, res) => {
-//   res.send({ message: "hello this is home page but with post method " });
-// });
+
+
+app.route("/case")
+.get(async function(req, res){
+
+  const caseobj = await getCase(req,res);
+  console.log(caseobj);
+  res.json(caseobj);
+}
+).post(async function(req,res){
+  const updatedCase = await updateCase(req,res);
+  res.json(updatedCase);
+
+}) 
+
+
 
 app.listen(PORT, function () {
   console.log("Server started on port " + PORT);
 });
+
+
+
+
+

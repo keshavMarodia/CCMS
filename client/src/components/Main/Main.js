@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import "./Main.css";
+
+
 const Main = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -23,12 +25,18 @@ const Main = () => {
   var years = [];
 
   for (var i = max; i >= min; i--) {
-    years.push(i);
+    years.push(i); 
   }
-  const handleSubmit = (e) => {
-    const data = { court, caseType, caseNo, caseYear };
+  const handleSubmit = async(e) => {
+    // const data = { court, caseType, caseNo, caseYear };
+    const params = { 
+      "court": court,
+      "caseType" : caseType,
+      "caseNo" : caseNo,
+      "caseYear" :caseYear
+  };
     navigate("/input", {
-      state: data,
+      state: params,
     });
   };
   return (
