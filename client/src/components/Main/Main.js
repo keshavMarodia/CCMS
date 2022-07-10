@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-// import axios from "axios";
 import "./Main.css";
+
+
 const Main = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -27,18 +28,16 @@ const Main = () => {
     years.push(i); 
   }
   const handleSubmit = async(e) => {
-    const data = { court, caseType, caseNo, caseYear };
+    // const data = { court, caseType, caseNo, caseYear };
     const params = { 
       "court": court,
       "caseType" : caseType,
       "caseNo" : caseNo,
       "caseYear" :caseYear
   };
-    const response = await fetch('http://localhost:8000/case?' + ( new URLSearchParams( params ) ).toString());
-    console.log(response );
-    // navigate("/input", {
-    //   state: data,
-    // });
+    navigate("/input", {
+      state: params,
+    });
   };
   return (
     <div>

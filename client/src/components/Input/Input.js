@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState ,useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Case from "../Case/Case";
 import Extent from "../Extent/Extent";
@@ -18,9 +18,17 @@ import Tslr from "../Tslr/Tslr";
 import Wstmt from "../Wstmt/Wstmt";
 import File from "../File/File";
 import "./Input.css";
+
 const Input = () => {
   const location = useLocation();
   const { court, caseType, caseNo, caseYear } = location.state;
+  const params = { 
+    "court": court,
+    "caseType" : caseType,
+    "caseNo" : caseNo,
+    "caseYear" :caseYear
+  };
+  const [data, setData] = useState(undefined);
   const [yesNoArray, setYesNoArray] = useState(["NO", "YES"]);
   const [filedArray, setFilledArray] = useState([
     "PVT. PARTY",
@@ -92,6 +100,64 @@ const Input = () => {
     false,
   ]);
   console.log(specific);
+  async function setAttribute(value , type){
+      switch(type){
+        case 'filedBy': setFiled(value); 
+                    const filed = {'filedBy' : value};
+                    await updateCase(filed);
+                     break;
+        case 'imp' : setImp(value);
+                     const imp = {'impCase' : value==='YES'? true : false};
+                     await updateCase(imp);
+                     break;
+        default : console.log("invalid type");
+      }
+  }
+
+  async function updateCase(caseObj){
+    const newFlag = {isNewCase:false};
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...params , ...newFlag , ...caseObj})
+      };
+    
+      const resp = await fetch('http://localhost:8000/case' , requestOptions);
+      const result = await resp.json();
+      return result;
+  }
+
+  useEffect(() => {
+    async function saveNewCase() {
+      const newFlag = {isNewCase: true};
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...params , ...newFlag})
+      };
+    
+      const resp = await fetch('http://localhost:8000/case' , requestOptions);
+      const result = await resp.json();
+      return result;
+    }
+    async function fetchData() {
+      const resp = await fetch('http://localhost:8000/case?' + ( new URLSearchParams( params ) ).toString());
+      const result = await resp.json();
+      console.log(result);
+      if(result.length>0){
+        setData(result[0]);
+      } else {
+        const savedResp = await saveNewCase(params);
+        console.log(savedResp);
+        setData(savedResp[0]);
+      }
+      setFiled(result[0]['filedBy']);
+      setImp(result[0]['impCase'] ? 'YES' :'NO'); 
+    }
+    fetchData();
+  },[]);
+    
+
   return (
     <div>
       <Navbar />
@@ -135,7 +201,7 @@ const Input = () => {
                         <li>
                           <div
                             className="dropdown-item"
-                            onClick={(e) => setFiled(value)}
+                            onClick={(e) => setAttribute(value ,"filedBy")}
                           >
                             {value}
                           </div>
@@ -187,7 +253,7 @@ const Input = () => {
                         <li>
                           <div
                             className="dropdown-item"
-                            onClick={(e) => setImp(value)}
+                            onClick={(e) => setAttribute(value ,"imp")}
                           >
                             {value}
                           </div>

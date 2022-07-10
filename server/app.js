@@ -7,7 +7,7 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const routes = require("./routes/demo");
-const {getCase} = require("./controllers/case");
+const {getCase , updateCase } = require("./controllers/case");
 
 
 // Connection URL
@@ -105,12 +105,20 @@ res.json(findResult);
 });
 
 
-app.route("/case").post(async function(req, res){
+app.route("/case")
+.get(async function(req, res){
+
   const caseobj = await getCase(req,res);
   console.log(caseobj);
   res.json(caseobj);
 }
-);
+).post(async function(req,res){
+  const updatedCase = await updateCase(req,res);
+  res.json(updatedCase);
+
+}) 
+
+
 
 app.listen(PORT, function () {
   console.log("Server started on port " + PORT);
