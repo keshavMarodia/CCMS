@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const otherDeptSchema = new mongoose.Schema ({
     deptInterest:{
-      type: bool
+      type: Boolean
     },
     dept:{
         type: String

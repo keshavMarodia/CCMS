@@ -107,7 +107,6 @@ res.json(findResult);
 
 app.route("/case")
 .get(async function(req, res){
-
   const caseobj = await getCase(req,res);
   console.log(caseobj);
   res.json(caseobj);
@@ -115,7 +114,6 @@ app.route("/case")
 ).post(async function(req,res){
   const updatedCase = await updateCase(req,res);
   res.json(updatedCase);
-
 }) 
 
 

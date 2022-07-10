@@ -4,6 +4,7 @@ const { Wstmt ,wstmtSchema } = require("./wstmt");
 const { FileNo ,fileNoSchema } = require("./fileNo");
 const { LandStatus ,landStatusSchema } = require("./landStatus");
 const { OtherDept ,otherDeptSchema } = require("./otherDept");
+const { Mandal , mandalSchema }  = require("./mandal");
 const { Pahani , pahaniSchema} = require("./pahani");
 const { PostDetails , postDetailsSchema} = require("./postDetails");
 
@@ -33,7 +34,7 @@ const caseSchema = new mongoose.Schema ({
     impCase : {
       type: Boolean
     },
-    court : {
+    icourt : {
       type: String
     },
     judgeDesig : {

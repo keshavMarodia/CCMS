@@ -110,6 +110,23 @@ const Input = () => {
                      const imp = {'impCase' : value==='YES'? true : false};
                      await updateCase(imp);
                      break;
+        case 'landCase' : setLand(value);
+                    const land ={'landCase' : value=='YES'?true : false};
+                    await updateCase(land);
+                    break;
+        case 'icourt': setiCourt(value);
+                    const icourt ={'icourt' : value};
+                    await updateCase(icourt);
+                    break;
+        case 'judge': setJudge(value);
+                    const judge ={'judgeDesig' : value};
+                    await updateCase(judge);
+                    break;
+        case 'courtHall': setHall(value);
+                    const courthall ={'courtHall' : value};
+                    await updateCase(courthall);
+                    break;
+
         default : console.log("invalid type");
       }
   }
@@ -153,6 +170,11 @@ const Input = () => {
       }
       setFiled(result[0]['filedBy']);
       setImp(result[0]['impCase'] ? 'YES' :'NO'); 
+      setLand(result[0]['landCase'] ? 'YES' :'NO');
+      setiCourt(result[0]['icourt']);
+      setHall(result[0]['courtHall']);
+      setJudge(result[0]['judgeDesig']);
+      
     }
     fetchData();
   },[]);
@@ -227,7 +249,7 @@ const Input = () => {
                         <li>
                           <div
                             className="dropdown-item"
-                            onClick={(e) => setLand(value)}
+                            onClick={(e) => setAttribute(value , 'landCase')}
                           >
                             {value}
                           </div>
@@ -280,7 +302,7 @@ const Input = () => {
                         <li>
                           <div
                             className="dropdown-item"
-                            onClick={(e) => setiCourt(value)}
+                            onClick={(e) => setAttribute(value , "icourt")}
                           >
                             {value}
                           </div>
@@ -306,7 +328,7 @@ const Input = () => {
                         <li>
                           <div
                             className="dropdown-item"
-                            onClick={(e) => setJudge(value)}
+                            onClick={(e) => setAttribute(value , "judge")}
                           >
                             {value}
                           </div>
@@ -332,7 +354,7 @@ const Input = () => {
                         <li>
                           <div
                             className="dropdown-item"
-                            onClick={(e) => setHall(value)}
+                            onClick={(e) => setAttribute(value ,"courtHall")}
                           >
                             {value}
                           </div>
