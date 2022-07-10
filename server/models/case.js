@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const { Tslr ,tslrSchema } = require("./tslr");
 const { Wstmt ,wstmtSchema } = require("./wstmt");
+const { FileNo ,fileNoSchema } = require("./fileNo");
+const { LandStatus ,landStatusSchema } = require("./landStatus");
+const { OtherDept ,otherDeptSchema } = require("./otherDept");
+const { Pahani , pahaniSchema} = require("./pahani");
+const { PostDetails , postDetailsSchema} = require("./postDetails");
 
 const caseSchema = new mongoose.Schema ({
     caseType:{
@@ -57,6 +62,30 @@ const caseSchema = new mongoose.Schema ({
     },
     extent : { 
       type: String
+    },
+    mandal : {
+      type : [mandalSchema]
+    },
+    pahani : {
+      type : [pahaniSchema]
+    },
+    landStatus : {
+      type : [landStatusSchema]
+    },
+    otherDept : {
+      type : [otherDeptSchema]
+    },
+    fileNo : {
+      type : [fileNoSchema]
+    },
+    postDetails : {
+      type : [postDetailsSchema]
+    },
+    govtPleader : { 
+      type: String
+    },
+    mainCaseStatus : {
+      type :String
     }
 });
   
