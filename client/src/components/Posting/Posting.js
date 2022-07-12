@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Posting.css";
-const Posting = () => {
+const Posting = ({ data , updateCase }) => {
   const [postArray, setPostArray] = useState([]);
   const [reasonArray, setReasonArray] = useState([
     "No Admission",
@@ -18,15 +18,39 @@ const Posting = () => {
     "For Production of Records",
     "Others",
   ]);
+
+ 
   const [pDate, setPDate] = useState([]);
   const [pReason, setPReason] = useState([]);
   const [add, setAdd] = useState([]);
   const [tick, setTick] = useState([]);
   // const [show, setShow] = useState(false);
   const [entry, setEntry] = useState(false);
-  // useEffect(() => {
-  //   postArray.length === 0 ? setShow(false) : setShow(true);
-  // }, [postArray]);
+    useEffect(() => {
+      if(data.postDetails){
+        const initpDate = [];
+        const initpReason = [];
+        data.postDetails.forEach((val, index)=> {
+          initpDate.push(val.postDate);
+          initpReason.push(val.postReason);
+        
+        })
+        setPDate(initpDate);
+        setPReason(initpReason);
+
+      }
+      // postArray.length === 0 ? setShow(false) : setShow(true);
+    }, []);
+
+  function updatePosting(){
+
+      const postDetails = [];
+      postArray.forEach((val, index)=> {
+        postDetails.push({"postDate":pDate[index], "postReason": pReason[index]})
+    })
+
+      updateCase({"postDetails" : postDetails})
+  }
   const handleClick = (e) => {
     if (postArray.length === 0) {
       setEntry(false);
@@ -184,7 +208,7 @@ const Posting = () => {
         </table>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button">Save</div>
+        <div className="specific-button" onClick={updatePosting()}>Save</div>
       </div>
     </div>
   );

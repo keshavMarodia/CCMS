@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
 import "./Petitioner.css";
-const Petitioner = () => {
+
+const Petitioner = ({ data , updateCase }) => {
   const [peti, setPeti] = useState("");
-  const [petiList, setPetiList] = useState([]);
+  const [petiList, setPetiList] = useState(data.petitioners || []);
   const [petiWarn, setPetiWarn] = useState(false);
+
+  function updatePetitioner(){
+    updateCase({"petitioners" : petiList});
+  }
+
   const handleClick = (e) => {
     if (peti == "") {
       setPetiWarn(true);
@@ -14,6 +20,7 @@ const Petitioner = () => {
       });
     }
   };
+
   const handleDelete = (e, index) => {
     setPetiList(petiList.filter((x, i) => i !== index));
   };
@@ -47,7 +54,7 @@ const Petitioner = () => {
           </div>
           {petiWarn && <div className="peti-warn">Fill Entry</div>}
           <div className="specific-button-container">
-            <div className="specific-button">Save</div>
+            <div className="specific-button" onClick={updatePetitioner()}>Save</div>
           </div>
         </div>
         <div className="peti-list-parent">
