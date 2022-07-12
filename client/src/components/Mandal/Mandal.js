@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Mandal.css";
-const Mandal = () => {
+const Mandal = ( {data, updateCase } ) => {
   const [mandalArray, settMandalArray] = useState([
     "TIRUMALAGIRI",
     "SHAIKPET",
@@ -15,14 +15,25 @@ const Mandal = () => {
     "CHARMINAR",
     "BANDLAGUDA",
     "BAHADURPURA",
-    "ASIFNAGAR",
     "AMEERPET",
+    "ASIFNAGAR",
     "AMBERPET",
   ]);
-  const [mandal, setMandal] = useState("");
-  const [village, setVillage] = useState("");
-  const [road, setRoad] = useState("");
-  const [locality, setLocality] = useState("");
+  const [mandal, setMandal] = useState(data?.mandal?.length >0 ? data.mandal[0].mandalName : "");
+  const [village, setVillage] = useState(data?.mandal?.length >0 ? data.mandal[0].village : "");
+  const [road, setRoad] = useState(data?.mandal?.length >0 ? data.mandal[0].road : "");
+  const [locality, setLocality] = useState(data?.mandal?.length >0 ? data.mandal[0].locality : "");
+
+  function updateMandal(){
+    const mandalvalues = { 
+      "mandalName" : mandal ,
+      "village" : village,
+      "road" : road,
+      "locality" : locality
+    };
+
+    updateCase({"mandal" : [mandalvalues] }) ;
+  }
   return (
     <div className="mandal-parent">
       <div className="intro-heading">Mandal</div>
@@ -118,7 +129,7 @@ const Mandal = () => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button">Save</div>
+        <div className="specific-button" onClick={updateMandal()}>Save</div>
       </div>
     </div>
   );

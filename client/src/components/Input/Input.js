@@ -409,20 +409,20 @@ const Input = () => {
             </table>
           </div>
           <div className="specific-parent">
-            {specific[0] && <Wstmt />}
-            {specific[1] && <Relief />}
-            {specific[2] && <Petitioner />}
-            {specific[3] && <Respondent />}
-            {specific[4] && <Property />}
+            {specific[0] && <Wstmt data={data} updateCase={updateCase} />}
+            {specific[1] && <Relief data={data} updateCase={updateCase} />}
+            {specific[2] && <Petitioner data={data} updateCase={updateCase}/>}
+            {specific[3] && <Respondent data={data} updateCase={updateCase}/>}
+            {specific[4] && <Property data={data} updateCase={updateCase}/>}
             {specific[5] && <Tslr />}
-            {specific[6] && <Extent />}
-            {specific[7] && <Mandal />}
+            {specific[6] && <Extent data={data} updateCase={updateCase} />}
+            {specific[7] && <Mandal data={data} updateCase={updateCase} />}
             {specific[8] && <Pahani />}
             {specific[9] && <Status />}
             {specific[10] && <Govt />}
             {specific[11] && <File />}
             {specific[12] && <Case />}
-            {specific[13] && <Posting />}
+            {specific[13] && <Posting data={data} updateCase={updateCase} />}
             {specific[14] && <Pleader />}
             {specific[15] && <MainCase />}
           </div>

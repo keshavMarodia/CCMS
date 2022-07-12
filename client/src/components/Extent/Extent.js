@@ -1,7 +1,11 @@
 import { useState } from "react";
 import "./Extent.css";
-const Extent = () => {
-  const [extent, setExtent] = useState("");
+const Extent = ( {data, updateCase }) => {
+  const [extent, setExtent] = useState(data.extent || "");
+
+  function updateExtent(){
+    updateCase({"extent" : extent});
+  }
   return (
     <div className="extent-parent">
       <div className="intro-heading">Extent</div>
@@ -24,7 +28,7 @@ const Extent = () => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button">Save</div>
+        <div className="specific-button" onClick={updateExtent()}>Save</div>
       </div>
     </div>
   );

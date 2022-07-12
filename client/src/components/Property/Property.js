@@ -1,7 +1,11 @@
 import { useState } from "react";
 import "./Property.css";
-const Property = () => {
-  const [property, setProperty] = useState("");
+const Property = ({data , updateCase}) => {
+  const [property, setProperty] = useState(data.property || "");
+  function updateProperty(){
+    updateCase({"property" : property});
+  }
+
   return (
     <div className="property-parent">
       <div className="property-form">
@@ -19,7 +23,7 @@ const Property = () => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button">Save</div>
+        <div className="specific-button" onClick={updateProperty()}>Save</div>
       </div>
     </div>
   );

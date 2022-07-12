@@ -1,17 +1,32 @@
 import { useState } from "react";
 import "./Wstmt.css";
-const Wstmt = () => {
-  const [wstmt, setWstmt] = useState("");
-  const [wstmtNo, setWstmtNo] = useState(false);
-  const [wstmtYes, setWstmtYes] = useState(false);
-  const [wstmtOther, setWstmtOther] = useState(false);
-  const [pending, setPending] = useState("");
-  const [reason, setReason] = useState("");
-  const [notice, setNotice] = useState("");
-  const [wstmtNoOther, setWstmtNoOther] = useState(false);
-  const [wstmtNoOtherReason, setWstmtNoOtherReason] = useState("");
-  const [counter, setCounter] = useState("");
-  const [dept, setDept] = useState("");
+
+const Wstmt = ( { data ,updateCase } ) => {
+  const [wstmt, setWstmt] = useState(data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].wscf : "");
+  const [wstmtNo, setWstmtNo] = useState(data?.wstmtOptions[0]?.wscf === "NO" ? true :false);
+  const [wstmtYes, setWstmtYes] = useState(data?.wstmtOptions[0]?.wscf === "YES" ? true :false);
+  const [wstmtOther, setWstmtOther] = useState(data?.wstmtOptions[0]?.wscf === "OTHER DEPT. TO BE FILLED" ? true :false);
+  const [pending, setPending] = useState(data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].pendingAt : "");
+  const [reason, setReason] = useState(data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].reasonforPend : "");
+  const datesetter = new Date(data.wstmtOptions[0].noticeDate).toLocaleString().split(',')[0];
+  const [notice, setNotice] = useState(datesetter?.length > 0? datesetter:  "");
+  const [wstmtNoOther, setWstmtNoOther] = useState(data?.wstmtOptions[0]?.pendingAt === "OTHERS" ? true: false);
+  const [wstmtNoOtherReason, setWstmtNoOtherReason] = useState(data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].specifyOthers :"");
+  const [counter, setCounter] = useState(data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].coAffidavit  : "");
+  const [dept, setDept] = useState(data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].deptName :"");
+
+  function updateWstmt(){
+    const wstmtvalues = { 
+      "wscf": wstmt,
+      "noticeDate" : notice,
+      "pendingAt" : pending,
+      "reasonforPend" : reason,
+      "coAffidavit" : counter,
+      "deptName" : dept,
+      "specifyOthers" : wstmtNoOtherReason
+    };
+    updateCase({"wstmtOptions" : [wstmtvalues]});
+  }
   return (
     <div className="wstmt-parent">
       <div className="intro-heading">Written Statement/Counter Filed</div>
@@ -75,7 +90,7 @@ const Wstmt = () => {
             </ul>
           </div>
           <div className="specific-button-container">
-            <div className="specific-button">Save</div>
+            <div className="specific-button" onClick={updateWstmt()}>Save</div>
           </div>
         </div>
         <div className="wstmt-result">

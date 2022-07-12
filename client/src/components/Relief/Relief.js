@@ -1,7 +1,14 @@
 import { useState } from "react";
-import "./Relief.css";
-const Relief = () => {
-  const [relief, setRelief] = useState("");
+import "./Relief.css" ;
+
+const Relief = ( {data , updateCase} ) => {
+
+  const [relief, setRelief] = useState(data.relief || "");
+
+  function updateRelief(){
+    updateCase({"relief" : relief});
+  }
+
   return (
     <div className="relief-parent">
       <div className="relief-form">
@@ -19,7 +26,7 @@ const Relief = () => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button">Save</div>
+        <div className="specific-button" onClick={updateRelief()}>Save</div>
       </div>
     </div>
   );

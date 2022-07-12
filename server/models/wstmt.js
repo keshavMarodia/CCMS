@@ -18,6 +18,9 @@ const wstmtSchema = new mongoose.Schema ({
     },
     deptName : { 
         type : String
+    },
+    specifyOthers : {
+        type : String
     }
   });
   

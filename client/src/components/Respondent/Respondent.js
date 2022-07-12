@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
 import "./Respondent.css";
-const Respondent = () => {
+
+const Respondent = ({ data , updateCase }) => {
   const [resp, setResp] = useState("");
-  const [respList, setRespList] = useState([]);
+  const [respList, setRespList] = useState(data.respondents || []);
   const [respWarn, setRespWarn] = useState(false);
+
+  function updateRespondent(){
+    updateCase({"respondents" : respList});
+  }
+
   const handleClick = (e) => {
     if (resp == "") {
       setRespWarn(true);
@@ -47,7 +53,7 @@ const Respondent = () => {
           </div>
           {respWarn && <div className="resp-warn">Fill Entry</div>}
           <div className="specific-button-container">
-            <div className="specific-button">Save</div>
+            <div className="specific-button" onClick={updateRespondent}>Save</div>
           </div>
         </div>
         <div className="resp-list-parent">
