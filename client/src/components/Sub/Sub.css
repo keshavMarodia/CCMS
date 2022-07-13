@@ -48,13 +48,17 @@
 .sub-list{
     width:15.1%;
 }
+.sub-case-2{
+    width: 55px;
+}
+/* .sub-file{
+    width: 100px;
+} */
 .sub-scroll {
     height: auto;
     max-height: 150px;
     overflow-x: hidden;
     border-radius: 0.2rem;
     font-size: 12px;
-}
-.sub-case-2{
-    width: 55px;
+    min-width: 100px;
 }

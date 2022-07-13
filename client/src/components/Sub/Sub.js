@@ -233,7 +233,7 @@ const Sub = () => {
                   <input
                     type="text"
                     value={subFile[index]}
-                    className="form-control form-control-sm dropdown-toggle"
+                    className="form-control form-control-sm dropdown-toggle sub-file"
                     aria-describedby="basic-addon1"
                     data-bs-toggle="dropdown"
                     id={"subFile" + index}

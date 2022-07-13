@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Mandal.css";
-const Mandal = ( {data, updateCase } ) => {
+const Mandal = ({ data, updateCase }) => {
   const [mandalArray, settMandalArray] = useState([
     "TIRUMALAGIRI",
     "SHAIKPET",
@@ -19,20 +19,116 @@ const Mandal = ( {data, updateCase } ) => {
     "ASIFNAGAR",
     "AMBERPET",
   ]);
-  const [mandal, setMandal] = useState(data?.mandal?.length >0 ? data.mandal[0].mandalName : "");
-  const [village, setVillage] = useState(data?.mandal?.length >0 ? data.mandal[0].village : "");
-  const [road, setRoad] = useState(data?.mandal?.length >0 ? data.mandal[0].road : "");
-  const [locality, setLocality] = useState(data?.mandal?.length >0 ? data.mandal[0].locality : "");
-
-  function updateMandal(){
-    const mandalvalues = { 
-      "mandalName" : mandal ,
-      "village" : village,
-      "road" : road,
-      "locality" : locality
+  const [villageArray, setVillageArray] = useState(["SELECT A MANDAL"]);
+  const [mandal, setMandal] = useState(
+    data?.mandal?.length > 0 ? data.mandal[0].mandalName : ""
+  );
+  const [village, setVillage] = useState(
+    data?.mandal?.length > 0 ? data.mandal[0].village : ""
+  );
+  const [road, setRoad] = useState(
+    data?.mandal?.length > 0 ? data.mandal[0].road : ""
+  );
+  const [locality, setLocality] = useState(
+    data?.mandal?.length > 0 ? data.mandal[0].locality : ""
+  );
+  // useEffect(() => {
+  //   if (mandal == "AMBERPET") {
+  //     setVillageArray([
+  //       "AMBERPET",
+  //       "DRAINAGE LINGAMPALLY",
+  //       "AMBERPET SARFEKHAS",
+  //       "MALAKPET",
+  //     ]);
+  //   } else if (mandal == "HIMAYATNAGAR") {
+  //     setVillageArray([
+  //       "BAGH LINGAMPALLY",
+  //       "GAGANMAHAL",
+  //       "DAIRA",
+  //       "HASANALIGUDA",
+  //     ]);
+  //   } else if (mandal == "NAMPALLY") {
+  //     setVillageArray(["NAMPALLY", "TOTAGUDA"]);
+  //   } else if (mandal == "ASIFNAGAR") {
+  //     setVillageArray([
+  //       "ASIF NAGAR",
+  //       "MALLEPALLI",
+  //       "GUDDIMAKLAPUR",
+  //       "KULSUMPURA",
+  //       "RAZDARKHANPET",
+  //     ]);
+  //   } else if (mandal == "SAIDABAD") {
+  //     setVillageArray([
+  //       "SAIDHABAD",
+  //       "MADANNAPET",
+  //       "TEEGALGUDA",
+  //       "MOOSARAMBAGH",
+  //       "GADDIANNARAM",
+  //     ]);
+  //   } else if (mandal == "BHADURPURA") {
+  //     setVillageArray([
+  //       "Bahadurpura",
+  //       "Meersagar",
+  //       "Nandi-Muslaiguda",
+  //       "Bondilguda",
+  //       "Charmahal",
+  //       "Zeregumbad",
+  //     ]);
+  //   } else if (mandal == "BANDLAGUDA") {
+  //     setVillageArray([
+  //       "BANDLAGUDA(KALSA)",
+  //       "SULTAN BAGH",
+  //       "NAWABSAHEBKUNTA",
+  //       "AMJADUDDUOWLA",
+  //       "ALI SAMUNDER",
+  //       "KANDIKAL",
+  //       "KANCHANBAGH",
+  //     ]);
+  //   } else if (mandal == "GOLCONDA") {
+  //     setVillageArray(["LANGER HOUSE", "QILA MOHD.NAGAR", "IBRAHIAM BAGH"]);
+  //   } else if (mandal == "CHARMINAR") {
+  //     setVillageArray(["KAIWANJA", "TALABCHANCHALAM", "MURAD MAHAL"]);
+  //   } else if (mandal == "AMEERPET") {
+  //     setVillageArray(["AMEERPET", "BAHLOOKHANGUDA", "SOMAJIGUDA"]);
+  //   } else if (mandal == "TIRUMALAGIRI") {
+  //     setVillageArray([
+  //       "TIRUMALAGIRI",
+  //       "AMMUGUDA",
+  //       "MACHABOLARAM",
+  //       "BOWENPALLY",
+  //       "KAKAGUDA",
+  //       "CHANDULAL BOWLI",
+  //       "SITARAMPUR",
+  //       "THOKATTA",
+  //     ]);
+  //   } else if (mandal == "MAREEDPALLY") {
+  //     setVillageArray([
+  //       "MAREDPALLY (SARFEKHAS)",
+  //       "MARREDPALLY (PAIGAH)",
+  //       "LALAGUDA",
+  //       "MALKAJGIRI (CANTONMENT)",
+  //     ]);
+  //   } else if (mandal == "SHAIKPET") {
+  //     setVillageArray(["SHAIKPET", "HAKEEMPET", "BAKHTAWARGUDA"]);
+  //   } else if (mandal == "KHAIRATABAD") {
+  //     setVillageArray(["YELLAREDDYGUDA", "KHAIRTABAD", "YOUSUFGUDA"]);
+  //   } else if (mandal == "SECUNDERABAD") {
+  //     setVillageArray(["BHOLAKPUR", "RASOOLPURA"]);
+  //   } else if (mandal == "MUSHEERABAD") {
+  //     setVillageArray(["MUSHEERABAD", "BAKARAM", "ZAMISTANPUR", "MIYAKUNTA"]);
+  //   } else {
+  //     setVillageArray("SELECT A MANDAL");
+  //   }
+  // }, [mandal]);
+  function updateMandal() {
+    const mandalvalues = {
+      mandalName: mandal,
+      village: village,
+      road: road,
+      locality: locality,
     };
 
-    updateCase({"mandal" : [mandalvalues] }) ;
+    updateCase({ mandal: [mandalvalues] });
   }
   return (
     <div className="mandal-parent">
@@ -85,14 +181,19 @@ const Mandal = ( {data, updateCase } ) => {
             required
           />
           <ul className="dropdown-menu custom-scroll" role="menu">
-            <li>
-              <div
-                className="dropdown-item"
-                onClick={(e) => setVillage("SECUNDERABAD")}
-              >
-                SECUNDERABAD
-              </div>
-            </li>
+            {villageArray.map(function (value, index) {
+              return (
+                <li>
+                  <div
+                    id={index}
+                    className="dropdown-item"
+                    onClick={(e) => setVillage(value)}
+                  >
+                    {value}
+                  </div>
+                </li>
+              );
+            })}
           </ul>
         </div>
         <div className="input-group mb-3 mandal-input">
@@ -129,7 +230,9 @@ const Mandal = ( {data, updateCase } ) => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button" onClick={updateMandal()}>Save</div>
+        <div className="specific-button" onClick={updateMandal()}>
+          Save
+        </div>
       </div>
     </div>
   );
