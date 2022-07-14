@@ -1,0 +1,47 @@
+.exist-table {
+    display: flex;
+    justify-content: center;
+    margin: 26px;
+    align-items: center;
+}
+.special-table{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-direction: column;
+}
+.left-table,.right-table{
+    width: 33.3333%;
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.output-table{
+    width: 65%;
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.output-posting{
+    width: 35%;
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.exist-divide{
+    width: 25%;
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.exist-left,.exist-right{
+    border: 1px solid black;
+    background-color: #a0d99558;
+    color: black;
+    text-align: center;
+}

@@ -218,7 +218,7 @@ const Sub = () => {
             <table>
               <tr>
                 <th>Filed BY</th>
-                <th colSpan={3}>Case No</th>
+                <th colSpan={3}>Case No.</th>
                 <th>Petitioner</th>
                 <th>Respondent</th>
                 <th>Prayer</th>

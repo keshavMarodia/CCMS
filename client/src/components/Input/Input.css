@@ -14,7 +14,7 @@ td {
   text-align: center;
 }
 td,th{
-    padding: 12px 22px;
+    padding: 12px;
 }
 th{
   font-size: 14px;
@@ -38,7 +38,7 @@ th{
 .land-scroll{
   height: auto;
   border-radius: 0.2rem;
-  min-width: 5.8%;
+  min-width: 6.8%;
   font-size: 12px;
 }
 .imp{
@@ -48,7 +48,7 @@ th{
 }
 .imp-scroll {
   height: auto;
-  min-width: 5.9%;
+  min-width: 6.8%;
   font-size: 12px;
   border-radius: 0.2rem;
 }
@@ -58,7 +58,7 @@ th{
 }
 .file-scroll {
   height: auto;
-  min-width: 9%;
+  min-width: 10%;
   font-size: 12px;
   border-radius: 0.2rem;
 }
@@ -67,7 +67,7 @@ th{
   box-shadow: 0 0 2px white;
 }
 .court-scroll {
-  min-width: 12.5%;
+  min-width: 13.5%;
   font-size: 12px;
   height: auto;
   border-radius: 0.2rem;
@@ -78,7 +78,7 @@ th{
 }
 .judge-scroll {
   height: auto;
-  min-width: 10%;
+  min-width: 11.2%;
   font-size: 12px;
   border-radius: 0.2rem;
 }
@@ -88,7 +88,7 @@ th{
 }
 .hall-scroll {
   height: auto;
-  min-width: 15.4%;
+  min-width: 16.4%;
   font-size: 12px;
   border-radius: 0.2rem;
 }
