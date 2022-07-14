@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-
 import "./Case.css";
-const Case = () => {
+
+const Case = ({ data ,updateCase }) => {
   const [caseArray, setCaseArray] = useState([]);
   const [typeArray, setTypeArray] = useState([
     "OS",
@@ -26,6 +26,28 @@ const Case = () => {
   // useEffect(() => {
   //   caseArray.length === 0 ? setShow(false) : setShow(true);
   // }, [caseArray]);
+
+  useEffect(() => {
+    if(data.otherCase.length>0){
+      setEntry(false);
+      const caseArr =[],addArr =[] , tickArr =[] , caseNoArr =[] , caseTypeArr =[] , caseYearArr = [];
+      data.otherCase.forEach((element, index) => {
+        caseArr.push("a");
+        addArr.push(false);
+        tickArr.push(true);
+        caseNoArr.push(element.caseNo);
+        caseTypeArr.push(element.caseType);
+        caseYearArr.push(element.caseYear);
+      });
+      setCaseArray(caseArr);
+      setType(caseTypeArr);
+      setNo(caseNoArr);
+      setYear(caseYearArr);
+        setAdd(addArr);
+        setTick(tickArr);
+    }
+  }, []);
+
   const handleClick = (e) => {
     if (caseArray.length === 0) {
       setEntry(false);
@@ -82,6 +104,22 @@ const Case = () => {
     setTick(tick.filter((x, i) => i !== index));
     setCaseArray(caseArray.filter((x, i) => i != index));
   };
+  function updateOtherCase(){
+    updateCase({"otherCase" : []});
+    const newotherOptions = [];
+
+    tick.forEach((val,index) => {
+      if(val){
+        newotherOptions.push({
+          "caseType" :  type[index] ,
+          "caseNo" : no[index]  ,
+          "caseYear" : year[index],
+        })
+      }
+    })
+    updateCase({"otherCase" : newotherOptions});
+  }
+  ;
   // const listURL = "http://localhost:8000/api/list";
   // const data = { type, no };
   // const seel = (e) => {
@@ -203,7 +241,7 @@ const Case = () => {
         </table>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button">Save</div>
+        <div className="specific-button" onClick={updateOtherCase()}>Save</div>
       </div>
     </div>
   );

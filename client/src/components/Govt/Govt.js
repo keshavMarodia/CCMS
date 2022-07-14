@@ -1,11 +1,12 @@
 import { useState } from "react";
 import "./Govt.css";
-const Govt = () => {
-  const [govt, setGovt] = useState("");
-  const [govtNo, setGovtNo] = useState(false);
-  const [govtYes, setGovtYes] = useState(false);
-  const [govtYesDept, setGovtYesDept] = useState("");
-  const [govtYesCat, setGovtYesCat] = useState("");
+
+const Govt = ({data , updateCase}) => {
+  const [govt, setGovt] = useState(data?.otherDept?.length > 0 ? data.otherDept[0].deptInterest : "");
+  const [govtNo, setGovtNo] = useState(data?.otherDept[0]?.deptInterest === "No" ? true :false);
+  const [govtYes, setGovtYes] = useState(data?.otherDept[0]?.deptInterest === "Yes" ? true :false);
+  const [govtYesDept, setGovtYesDept] = useState(data?.otherDept?.length > 0 ? data.otherDept[0].dept : "");
+  const [govtYesCat, setGovtYesCat] = useState(data?.otherDept?.length > 0 ? data.otherDept[0].category : "");
   const [dept, setDept] = useState([
     "GHMC",
     "ENDOWMENT",
@@ -31,6 +32,16 @@ const Govt = () => {
     "EP",
     "OTHERS",
   ]);
+  
+  function updateOther(){
+    const othervalues = { 
+      "deptInterest" : govt,
+      "dept" : govtYesDept,
+      "category" : govtYesCat
+    };
+    updateCase({"otherDept" : [othervalues]});
+  }
+
   return (
     <div className="govt-parent">
       <div className="intro-heading">Other Govt Department</div>
@@ -75,7 +86,7 @@ const Govt = () => {
             </ul>
           </div>
           <div className="specific-button-container">
-            <div className="specific-button">Save</div>
+            <div className="specific-button" onClick={updateOther()}>Save</div>
           </div>
         </div>
         <div className="govt-result">

@@ -1,8 +1,12 @@
 import { useState } from "react";
 import "./Pleader.css";
-const Pleader = () => {
+const Pleader = ({ data , updateCase }) => {
   const [pleaderArray, setPleaderArray] = useState(["GP", "AGP", "SPECIAL GP"]);
-  const [pleader, setPleader] = useState("");
+  const [pleader, setPleader] = useState(data?.govtPleader  || "");
+
+  function updatePleader(){
+    updateCase({"govtPleader" : pleader});
+  }
   return (
     <div className="pleader=parent">
       <div className="intro-heading">Government Pleader</div>
@@ -40,7 +44,7 @@ const Pleader = () => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button">Save</div>
+        <div className="specific-button" onClick={updatePleader()}>Save</div>
       </div>
     </div>
   );

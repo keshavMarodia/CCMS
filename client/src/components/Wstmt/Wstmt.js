@@ -8,7 +8,7 @@ const Wstmt = ( { data ,updateCase } ) => {
   const [wstmtOther, setWstmtOther] = useState(data?.wstmtOptions[0]?.wscf === "OTHER DEPT. TO BE FILLED" ? true :false);
   const [pending, setPending] = useState(data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].pendingAt : "");
   const [reason, setReason] = useState(data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].reasonforPend : "");
-  const datesetter = new Date(data.wstmtOptions[0].noticeDate).toLocaleString().split(',')[0];
+  const datesetter = new Date(data.wstmtOptions[0].noticeDate).toISOString().split('T')[0];
   const [notice, setNotice] = useState(datesetter?.length > 0? datesetter:  "");
   const [wstmtNoOther, setWstmtNoOther] = useState(data?.wstmtOptions[0]?.pendingAt === "OTHERS" ? true: false);
   const [wstmtNoOtherReason, setWstmtNoOtherReason] = useState(data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].specifyOthers :"");

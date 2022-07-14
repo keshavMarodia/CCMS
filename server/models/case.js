@@ -7,6 +7,7 @@ const { OtherDept ,otherDeptSchema } = require("./otherDept");
 const { Mandal , mandalSchema }  = require("./mandal");
 const { Pahani , pahaniSchema} = require("./pahani");
 const { PostDetails , postDetailsSchema} = require("./postDetails");
+const { OtherCase , otherCaseSchema} = require("./otherCase");
 
 const caseSchema = new mongoose.Schema ({
     caseType:{
@@ -77,10 +78,13 @@ const caseSchema = new mongoose.Schema ({
       type : [otherDeptSchema]
     },
     fileNo : {
-      type : [fileNoSchema]
+      type : fileNoSchema
     },
     postDetails : {
       type : [postDetailsSchema]
+    },
+    otherCase : {
+      type : [otherCaseSchema]
     },
     govtPleader : { 
       type: String

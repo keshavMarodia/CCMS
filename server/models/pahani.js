@@ -7,7 +7,13 @@ const pahaniSchema = new mongoose.Schema ({
     pahaniYear: { 
         type : String
     },
-    surveyNo :{
+    surveyNo1 :{
+        type : String
+    },
+    surveyNo2 :{
+        type : String
+    },
+    surveyNo3 :{
         type : String
     },
     village :{

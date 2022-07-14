@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 
 const fileNoSchema = new mongoose.Schema ({
     MROfileNo:{
-       type: String
+       type: [String]
     },
     DROfileNo:{
-        type: String
+        type: [String]
     },
     collectorateFileNo:{
-        type: String
+        type: [String]
     }
 });
   
