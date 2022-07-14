@@ -1,4 +1,4 @@
-import { useState ,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Case from "../Case/Case";
 import Extent from "../Extent/Extent";
@@ -22,11 +22,11 @@ import "./Input.css";
 const Input = () => {
   const location = useLocation();
   const { court, caseType, caseNo, caseYear } = location.state;
-  const params = { 
-    "court": court,
-    "caseType" : caseType,
-    "caseNo" : caseNo,
-    "caseYear" :caseYear
+  const params = {
+    court: court,
+    caseType: caseType,
+    caseNo: caseNo,
+    caseYear: caseYear,
   };
   const [data, setData] = useState(undefined);
   const [yesNoArray, setYesNoArray] = useState(["NO", "YES"]);
@@ -51,10 +51,7 @@ const Input = () => {
     "CHIEF JUDGE",
     "NIL",
   ]);
-  const [hallArray, setHallArray] = useState([
-    "I ASJ FOR SPE AND ACB CUM V ACJ",
-    "ADD MORE",
-  ]);
+  const [hallArray, setHallArray] = useState(["SELECT JUDGE DESIGNATION"]);
   const [specificArrayOne, setSpecificArrayOne] = useState([
     "WSTMT/COUNT",
     "RELIEF",
@@ -99,86 +96,157 @@ const Input = () => {
     false,
     false,
   ]);
-  console.log(specific);
-  async function setAttribute(value , type){
-      switch(type){
-        case 'filedBy': setFiled(value); 
-                    const filed = {'filedBy' : value};
-                    await updateCase(filed);
-                     break;
-        case 'imp' : setImp(value);
-                     const imp = {'impCase' : value==='YES'? true : false};
-                     await updateCase(imp);
-                     break;
-        case 'landCase' : setLand(value);
-                    const land ={'landCase' : value=='YES'?true : false};
-                    await updateCase(land);
-                    break;
-        case 'icourt': setiCourt(value);
-                    const icourt ={'icourt' : value};
-                    await updateCase(icourt);
-                    break;
-        case 'judge': setJudge(value);
-                    const judge ={'judgeDesig' : value};
-                    await updateCase(judge);
-                    break;
-        case 'courtHall': setHall(value);
-                    const courthall ={'courtHall' : value};
-                    await updateCase(courthall);
-                    break;
+  useEffect(() => {
+    if (judge == "JR. CIVIL JUDGE") {
+      setHallArray([
+        "I JUNIOR CIVIL JUDGE",
+        "II JUNIOR CIVIL JUDGE",
+        "III JUNIOR CIVIL JUDGE",
+        "IV JUNIOR CIVIL JUDGE",
+        "V JUNIOR CIVIL JUDGE",
+        "VI JUNIOR CIVIL JUDGE",
+        "VII JUNIOR CIVIL JUDGE",
+        "VIII JUNIOR CIVIL JUDGE",
+        "IX JUNIOR CIVIL JUDGE",
+        "X  JUNIOR CIVIL JUDGE",
+        "XI  JUNIOR CIVIL JUDGE",
+        "XIX  JUNIOR CIVIL JUDGE",
+        "XX  JUNIOR CIVIL JUDGE",
+        "XXI  JUNIOR CIVIL JUDGE",
+        "XXII  JUNIOR CIVIL JUDGE",
+      ]);
+    } else if (judge == "SR. CIVIL JUDGE") {
+      setHallArray([
+        "I SENIOR CIVIL JUDGE",
+        "II SENIOR CIVIL JUDGE",
+        "III SENIOR CIVIL JUDGE",
+        "IV SENIOR CIVIL JUDGE",
+        "V SENIOR CIVIL JUDGE",
+        "VII SENIOR CIVIL JUDGE",
+        "XVII SENIOR CIVIL JUDGE",
+        "XVII SENIOR CIVIL JUDGE",
+        "WAQF TRIBUNAL",
+      ]);
+    } else if (judge == "ADDL. SR. CIVIL JUDGE") {
+      setHallArray([
+        "VIII ADDL SENIOR CIVIL JUDGE",
+        "IX ADDL SENIOR CIVIL JUDGE",
+        "X ADDL SENIOR CIVIL JUDGE",
+        "XI ADDL SENIOR CIVIL JUDGE",
+        "I ASJ FOR SPE AND ACB CUM V ACJ",
+      ]);
+    } else if (judge == "ADDL. CHIEF JUDGE") {
+      setHallArray([
+        "I ADDL CHIEF JUDGE",
+        "II ADDL CHIEF JUDGE",
+        "III ADDL CHIEF JUDGE",
+        "IV ADDL CHIEF JUDGE",
+        "IX ADDL CHIEF JUDGE",
+        "X ADDL  CHIEF JUDGE",
+        "XI ADDL CHIEF JUDGE",
+        "XII ADDL CHIEF JUDGE",
+        "XIII ADDL CHIEF JUDGE (FAST TRACK)",
+        "XIV ADDL CHIEF JUDGE (FAST TRACK)",
+        "XXIV ADDL CHIEF JUDGE",
+        "XXV ADDL CHIEF JUDGE",
+        "XXVI ADDL CHIEF JUDGE",
+        "FAMILY COURT",
+        "ADDL FAMILY COURT",
+      ]);
+    } else if (judge == "CHIEF JUDGE") {
+      setHallArray(["CHIEF JUDGE"]);
+    } else if (judge == "NIL") {
+      setHallArray(["SELECT JUDGE DESIGNATION"]);
+    } else {
+      setHallArray(["SELECT JUDGE DESIGNATION"]);
+    }
+  }, [judge]);
+  async function setAttribute(value, type) {
+    switch (type) {
+      case "filedBy":
+        setFiled(value);
+        const filed = { filedBy: value };
+        await updateCase(filed);
+        break;
+      case "imp":
+        setImp(value);
+        const imp = { impCase: value === "YES" ? true : false };
+        await updateCase(imp);
+        break;
+      case "landCase":
+        setLand(value);
+        const land = { landCase: value == "YES" ? true : false };
+        await updateCase(land);
+        break;
+      case "icourt":
+        setiCourt(value);
+        const icourt = { icourt: value };
+        await updateCase(icourt);
+        break;
+      case "judge":
+        setJudge(value);
+        const judge = { judgeDesig: value };
+        await updateCase(judge);
+        break;
+      case "courtHall":
+        setHall(value);
+        const courthall = { courtHall: value };
+        await updateCase(courthall);
+        break;
 
-        default : console.log("invalid type");
-      }
+      default:
+        console.log("invalid type");
+    }
   }
 
-  async function updateCase(caseObj){
-    const newFlag = {isNewCase:false};
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...params , ...newFlag , ...caseObj})
-      };
-    
-      const resp = await fetch('http://localhost:8000/case' , requestOptions);
-      const result = await resp.json();
-      return result;
+  async function updateCase(caseObj) {
+    const newFlag = { isNewCase: false };
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...params, ...newFlag, ...caseObj }),
+    };
+
+    const resp = await fetch("http://localhost:8000/case", requestOptions);
+    const result = await resp.json();
+    return result;
   }
 
   useEffect(() => {
     async function saveNewCase() {
-      const newFlag = {isNewCase: true};
+      const newFlag = { isNewCase: true };
       const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...params , ...newFlag})
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...params, ...newFlag }),
       };
-    
-      const resp = await fetch('http://localhost:8000/case' , requestOptions);
+
+      const resp = await fetch("http://localhost:8000/case", requestOptions);
       const result = await resp.json();
       return result;
     }
     async function fetchData() {
-      const resp = await fetch('http://localhost:8000/case?' + ( new URLSearchParams( params ) ).toString());
+      const resp = await fetch(
+        "http://localhost:8000/case?" + new URLSearchParams(params).toString()
+      );
       const result = await resp.json();
       console.log(result);
-      if(result.length>0){
+      if (result.length > 0) {
         setData(result[0]);
       } else {
         const savedResp = await saveNewCase(params);
         console.log(savedResp);
         setData(savedResp[0]);
       }
-      setFiled(result[0]['filedBy']);
-      setImp(result[0]['impCase'] ? 'YES' :'NO'); 
-      setLand(result[0]['landCase'] ? 'YES' :'NO');
-      setiCourt(result[0]['icourt']);
-      setHall(result[0]['courtHall']);
-      setJudge(result[0]['judgeDesig']);
-      
+      setFiled(result[0]["filedBy"]);
+      setImp(result[0]["impCase"] ? "YES" : "NO");
+      setLand(result[0]["landCase"] ? "YES" : "NO");
+      setiCourt(result[0]["icourt"]);
+      setHall(result[0]["courtHall"]);
+      setJudge(result[0]["judgeDesig"]);
     }
     fetchData();
-  },[]);
-    
+  }, []);
 
   return (
     <div>
@@ -223,7 +291,7 @@ const Input = () => {
                         <li>
                           <div
                             className="dropdown-item"
-                            onClick={(e) => setAttribute(value ,"filedBy")}
+                            onClick={(e) => setAttribute(value, "filedBy")}
                           >
                             {value}
                           </div>
@@ -249,7 +317,7 @@ const Input = () => {
                         <li>
                           <div
                             className="dropdown-item"
-                            onClick={(e) => setAttribute(value , 'landCase')}
+                            onClick={(e) => setAttribute(value, "landCase")}
                           >
                             {value}
                           </div>
@@ -275,7 +343,7 @@ const Input = () => {
                         <li>
                           <div
                             className="dropdown-item"
-                            onClick={(e) => setAttribute(value ,"imp")}
+                            onClick={(e) => setAttribute(value, "imp")}
                           >
                             {value}
                           </div>
@@ -302,7 +370,7 @@ const Input = () => {
                         <li>
                           <div
                             className="dropdown-item"
-                            onClick={(e) => setAttribute(value , "icourt")}
+                            onClick={(e) => setAttribute(value, "icourt")}
                           >
                             {value}
                           </div>
@@ -328,7 +396,7 @@ const Input = () => {
                         <li>
                           <div
                             className="dropdown-item"
-                            onClick={(e) => setAttribute(value , "judge")}
+                            onClick={(e) => setAttribute(value, "judge")}
                           >
                             {value}
                           </div>
@@ -354,7 +422,7 @@ const Input = () => {
                         <li>
                           <div
                             className="dropdown-item"
-                            onClick={(e) => setAttribute(value ,"courtHall")}
+                            onClick={(e) => setAttribute(value, "courtHall")}
                           >
                             {value}
                           </div>

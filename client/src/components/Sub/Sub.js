@@ -224,16 +224,16 @@ const Sub = () => {
                 <th>Prayer</th>
                 <th>Status Of Land</th>
                 <th>Next Hearing Date</th>
-                <th colSpan={2}>Status</th>
+                {/* <th colSpan={2}>Status</th> */}
                 <th>Add</th>
                 <th>Remove</th>
               </tr>
               <tr id={"row1" + index}>
-                <td rowSpan={6} className="sub-list">
+                <td rowSpan={5} className="sub-list">
                   <input
                     type="text"
                     value={subFile[index]}
-                    className="form-control form-control-sm dropdown-toggle"
+                    className="form-control form-control-sm dropdown-toggle sub-file"
                     aria-describedby="basic-addon1"
                     data-bs-toggle="dropdown"
                     id={"subFile" + index}
@@ -260,7 +260,7 @@ const Sub = () => {
                     })}
                   </ul>
                 </td>
-                <td className="sub-list" rowSpan={2}>
+                <td className="sub-list" rowSpan={1}>
                   <input
                     type="text"
                     value={subCase1[index]}
@@ -291,7 +291,7 @@ const Sub = () => {
                     })}
                   </ul>
                 </td>
-                <td rowSpan={2}>
+                <td rowSpan={1}>
                   <input
                     type="text"
                     value={subCase2[index]}
@@ -302,7 +302,7 @@ const Sub = () => {
                     id={"subCase2" + index}
                   />
                 </td>
-                <td className="sub-list" rowSpan={2}>
+                <td className="sub-list" rowSpan={1}>
                   <input
                     type="text"
                     value={subCase3[index]}
@@ -333,7 +333,7 @@ const Sub = () => {
                     })}
                   </ul>
                 </td>
-                <td rowSpan={6} className="sub-list">
+                <td rowSpan={5} className="sub-list">
                   <input
                     type="text"
                     value={subPet[index]}
@@ -364,7 +364,7 @@ const Sub = () => {
                     })}
                   </ul>
                 </td>
-                <td rowSpan={6}>
+                <td rowSpan={5}>
                   <input
                     type="text"
                     value={subRes[index]}
@@ -375,7 +375,7 @@ const Sub = () => {
                     id={"subRes" + index}
                   />
                 </td>
-                <td rowSpan={6}>
+                <td rowSpan={5}>
                   <input
                     type="text"
                     value={subPrayer[index]}
@@ -386,7 +386,7 @@ const Sub = () => {
                     id={"subPrayer" + index}
                   />
                 </td>
-                <td rowSpan={6}>
+                <td rowSpan={5}>
                   <input
                     type="text"
                     value={subLand[index]}
@@ -397,7 +397,7 @@ const Sub = () => {
                     id={"subLand" + index}
                   />
                 </td>
-                <td rowSpan={6}>
+                <td rowSpan={5}>
                   <input
                     type="date"
                     value={subDate[index]}
@@ -407,22 +407,20 @@ const Sub = () => {
                     id={"subDate" + index}
                   />
                 </td>
-                <td>Status</td>
-                <td>Order Date</td>
-                <td id={"add" + index} rowSpan={6} className="add-button">
+                <td id={"add" + index} rowSpan={7}>
                   {add[index] && (
                     <div
-                      className="add-sub"
+                      className="add-table"
                       onClick={(e) => handleAdd(e, index)}
                     >
                       +
                     </div>
                   )}
                   {tick[index] && (
-                    <span class="material-symbols-outlined">done</span>
+                    <span class="material-symbols-outlined tick">done</span>
                   )}
                 </td>
-                <td rowSpan={6} className="remove-button">
+                <td rowSpan={7}>
                   <div
                     className="remove"
                     onClick={(e) => handleDelete(e, index)}
@@ -432,7 +430,46 @@ const Sub = () => {
                 </td>
               </tr>
               <tr id={"row2" + index}>
-                <td>
+                <td colSpan={3}>Sub-Case Date</td>
+              </tr>
+              <tr id={"row3" + index}>
+                <td colSpan={3}>
+                  <input
+                    type="date"
+                    value={subCaseDate[index]}
+                    className="form-control form-control-sm"
+                    aria-describedby="basic-addon1"
+                    required
+                    id={"subCaseDate" + index}
+                  />
+                </td>
+              </tr>
+              <tr id={"row4" + index}>
+                <td colSpan={3}>Upload Affadavit</td>
+                {/* <td colSpan={2}>Upload Judgement</td> */}
+              </tr>
+              <tr id={"row5" + index}>
+                <td colSpan={3}>
+                  {" "}
+                  <input
+                    type="file"
+                    // value={subCaseFile}
+                    className="form-control form-control-sm"
+                    aria-describedby="basic-addon1"
+                    required
+                    id={"subCaseFile" + index}
+                  />
+                </td>
+              </tr>
+              <tr id={"row6" + index}>
+                <td colSpan={2}>Status</td>
+                <td colSpan={2}>Order Date</td>
+                <td colSpan={2}>Gist Of Order</td>
+                <td colSpan={2}>Upload Judgement</td>
+                <td colSpan={1}>CE Date</td>
+              </tr>
+              <tr id={"row7" + index}>
+                <td colSpan={2}>
                   <input
                     type="text"
                     value={statusDrop[index]}
@@ -463,7 +500,7 @@ const Sub = () => {
                     })}
                   </ul>
                 </td>
-                <td>
+                <td colSpan={2}>
                   <input
                     type="date"
                     value={statusDate[index]}
@@ -473,24 +510,7 @@ const Sub = () => {
                     id={"statusDate" + index}
                   />
                 </td>
-              </tr>
-              <tr id={"row3" + index}>
-                <td colSpan={3}>Sub-Case Date</td>
-                <td>Gist Of Order</td>
-                <td>CE Date</td>
-              </tr>
-              <tr id={"row4" + index}>
-                <td colSpan={3}>
-                  <input
-                    type="date"
-                    value={subCaseDate[index]}
-                    className="form-control form-control-sm"
-                    aria-describedby="basic-addon1"
-                    required
-                    id={"subCaseDate" + index}
-                  />
-                </td>
-                <td>
+                <td colSpan={2}>
                   <input
                     type="text"
                     value={statusGist[index]}
@@ -499,6 +519,16 @@ const Sub = () => {
                     required
                     autoComplete="off"
                     id={"statusGist" + index}
+                  />
+                </td>
+                <td colSpan={2}>
+                  <input
+                    type="file"
+                    // value={statusFile}
+                    className="form-control form-control-sm"
+                    aria-describedby="basic-addon1"
+                    required
+                    id={"statusFile" + index}
                   />
                 </td>
                 <td>
@@ -510,168 +540,12 @@ const Sub = () => {
                     required
                     autoComplete="off"
                     id={"statusCe" + index}
-                  />
-                </td>
-              </tr>
-              <tr id={"row5" + index}>
-                <td colSpan={3}>Upload Affadavit</td>
-                <td colSpan={2}>Upload Judgement</td>
-              </tr>
-              <tr id={"row6" + index}>
-                <td colSpan={3}>
-                  {" "}
-                  <input
-                    type="file"
-                    // value={subCaseFile}
-                    className="form-control form-control-sm"
-                    aria-describedby="basic-addon1"
-                    required
-                    id={"subCaseFile" + index}
-                  />
-                </td>
-                <td colSpan={2}>
-                  <input
-                    type="file"
-                    // value={statusFile}
-                    className="form-control form-control-sm"
-                    aria-describedby="basic-addon1"
-                    required
-                    id={"statusFile" + index}
                   />
                 </td>
               </tr>
             </table>
           );
         })}
-        {/* {subArray.map(function (value, index) {
-            return (
-              <tr id={"row2" + index}>
-                <td>
-                  <input
-                    type="text"
-                    value={statusDrop[index]}
-                    className="form-control form-control-sm dropdown-toggle"
-                    aria-describedby="basic-addon1"
-                    data-bs-toggle="dropdown"
-                    id={"statusDrop" + index}
-                    required
-                  />
-                  <ul className="dropdown-menu sub-scroll" role="menu">
-                    {statusDropArray.map(function (v, i) {
-                      return (
-                        <li>
-                          <div
-                            className="dropdown-item"
-                            onClick={(e) => {
-                              setStatusDrop(
-                                statusDrop.map((val, idx) =>
-                                  idx === index ? v : val
-                                )
-                              );
-                            }}
-                          >
-                            {v}
-                          </div>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </td>
-                <td>
-                  <input
-                    type="date"
-                    value={statusDate[index]}
-                    className="form-control form-control-sm"
-                    aria-describedby="basic-addon1"
-                    required
-                    id={"statusDate" + index}
-                  />
-                </td>
-              </tr>
-            );
-          })} */}
-        {/* {subArray.map(function (value, index) {
-            return (
-              <tr id={"row3" + index}>
-                <td colSpan={3}>Sub-Case Date</td>
-                <td>Gist Of Order</td>
-                <td>CE Date</td>
-              </tr>
-            );
-          })} */}
-        {/* {subArray.map(function (value, index) {
-            return (
-              <tr id={"row4" + index}>
-                <td colSpan={3}>
-                  <input
-                    type="date"
-                    value={subCaseDate[index]}
-                    className="form-control form-control-sm"
-                    aria-describedby="basic-addon1"
-                    required
-                    id={"subCaseDate" + index}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={statusGist[index]}
-                    className="form-control form-control-sm"
-                    aria-describedby="basic-addon1"
-                    required
-                    autoComplete="off"
-                    id={"statusGist" + index}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={statusCe[index]}
-                    className="form-control form-control-sm"
-                    aria-describedby="basic-addon1"
-                    required
-                    autoComplete="off"
-                    id={"statusCe" + index}
-                  />
-                </td>
-              </tr>
-            );
-          })} */}
-        {/* {subArray.map(function (value, index) {
-            return (
-              <tr id={"row5" + index}>
-                <td colSpan={3}>Upload Affadavit</td>
-                <td colSpan={2}>Upload Judgement</td>
-              </tr>
-            );
-          })} */}
-        {/* {subArray.map(function (value, index) {
-            return (
-              <tr id={"row6" + index}>
-                <td colSpan={3}>
-                  {" "}
-                  <input
-                    type="file"
-                    // value={subCaseFile}
-                    className="form-control form-control-sm"
-                    aria-describedby="basic-addon1"
-                    required
-                    id={"subCaseFile" + index}
-                  />
-                </td>
-                <td colSpan={2}>
-                  <input
-                    type="file"
-                    // value={statusFile}
-                    className="form-control form-control-sm"
-                    aria-describedby="basic-addon1"
-                    required
-                    id={"statusFile" + index}
-                  />
-                </td>
-              </tr>
-            );
-          })} */}
         {/* {type.map(function (value) {
             return <div>{value}</div>;
           })}

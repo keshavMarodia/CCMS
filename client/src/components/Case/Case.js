@@ -204,14 +204,14 @@ const Case = ({ data ,updateCase }) => {
                 <td id={"add" + index}>
                   {add[index] && (
                     <div
-                      className="add-case"
+                      className="add-table"
                       onClick={(e) => handleAdd(e, index)}
                     >
                       +
                     </div>
                   )}
                   {tick[index] && (
-                    <span class="material-symbols-outlined">done</span>
+                    <span class="material-symbols-outlined tick">done</span>
                   )}
                 </td>
                 <td>
