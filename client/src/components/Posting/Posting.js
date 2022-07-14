@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Posting.css";
-const Posting = ({ data , updateCase }) => {
+const Posting = ({ data, updateCase }) => {
   const [postArray, setPostArray] = useState([]);
   const [reasonArray, setReasonArray] = useState([
     "No Admission",
@@ -19,37 +19,33 @@ const Posting = ({ data , updateCase }) => {
     "Others",
   ]);
 
- 
   const [pDate, setPDate] = useState([]);
   const [pReason, setPReason] = useState([]);
   const [add, setAdd] = useState([]);
   const [tick, setTick] = useState([]);
   // const [show, setShow] = useState(false);
   const [entry, setEntry] = useState(false);
-    useEffect(() => {
-      if(data.postDetails){
-        const initpDate = [];
-        const initpReason = [];
-        data.postDetails.forEach((val, index)=> {
-          initpDate.push(val.postDate);
-          initpReason.push(val.postReason);
-        
-        })
-        setPDate(initpDate);
-        setPReason(initpReason);
+  useEffect(() => {
+    if (data.postDetails) {
+      const initpDate = [];
+      const initpReason = [];
+      data.postDetails.forEach((val, index) => {
+        initpDate.push(val.postDate);
+        initpReason.push(val.postReason);
+      });
+      setPDate(initpDate);
+      setPReason(initpReason);
+    }
+    // postArray.length === 0 ? setShow(false) : setShow(true);
+  }, []);
 
-      }
-      // postArray.length === 0 ? setShow(false) : setShow(true);
-    }, []);
+  function updatePosting() {
+    const postDetails = [];
+    postArray.forEach((val, index) => {
+      postDetails.push({ postDate: pDate[index], postReason: pReason[index] });
+    });
 
-  function updatePosting(){
-
-      const postDetails = [];
-      postArray.forEach((val, index)=> {
-        postDetails.push({"postDate":pDate[index], "postReason": pReason[index]})
-    })
-
-      updateCase({"postDetails" : postDetails})
+    updateCase({ postDetails: postDetails });
   }
   const handleClick = (e) => {
     if (postArray.length === 0) {
@@ -174,14 +170,14 @@ const Posting = ({ data , updateCase }) => {
                 <td id={"add" + index}>
                   {add[index] && (
                     <div
-                      className="add-post"
+                      className="add-table"
                       onClick={(e) => handleAdd(e, index)}
                     >
                       +
                     </div>
                   )}
                   {tick[index] && (
-                    <span class="material-symbols-outlined">done</span>
+                    <span class="material-symbols-outlined tick">done</span>
                   )}
                 </td>
                 <td>
@@ -208,7 +204,9 @@ const Posting = ({ data , updateCase }) => {
         </table>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button" onClick={updatePosting()}>Save</div>
+        <div className="specific-button" onClick={updatePosting()}>
+          Save
+        </div>
       </div>
     </div>
   );
