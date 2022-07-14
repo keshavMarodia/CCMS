@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import "./Posting.css";
+
 const Posting = ({ data , updateCase }) => {
   const [postArray, setPostArray] = useState([]);
   const [reasonArray, setReasonArray] = useState([
@@ -26,31 +26,27 @@ const Posting = ({ data , updateCase }) => {
   const [tick, setTick] = useState([]);
   // const [show, setShow] = useState(false);
   const [entry, setEntry] = useState(false);
+
     useEffect(() => {
-      if(data.postDetails){
-        const initpDate = [];
-        const initpReason = [];
-        data.postDetails.forEach((val, index)=> {
-          initpDate.push(val.postDate);
-          initpReason.push(val.postReason);
-        
-        })
-        setPDate(initpDate);
-        setPReason(initpReason);
+      if(data.postDetails.length >0 ){
+      setEntry(false);
+      const postArr =[],addArr =[] , tickArr =[] , dateArr =[] , reasonArr =[];
+      data.postDetails.forEach((element, index) => {
+        postArr.push("a");
+        addArr.push(false);
+        tickArr.push(true);
+        const datesetter = new Date(element.postDate).toISOString().split('T')[0];
+        dateArr.push(datesetter);
+        reasonArr.push(element.postReason);
+      });
+      setPostArray(postArr);
+      setPDate(dateArr);
+      setPReason(reasonArr);
+        setAdd(addArr);
+        setTick(tickArr);
+    }
+  }, []);
 
-      }
-      // postArray.length === 0 ? setShow(false) : setShow(true);
-    }, []);
-
-  function updatePosting(){
-
-      const postDetails = [];
-      postArray.forEach((val, index)=> {
-        postDetails.push({"postDate":pDate[index], "postReason": pReason[index]})
-    })
-
-      updateCase({"postDetails" : postDetails})
-  }
   const handleClick = (e) => {
     if (postArray.length === 0) {
       setEntry(false);
@@ -103,6 +99,20 @@ const Posting = ({ data , updateCase }) => {
     setTick(tick.filter((x, i) => i !== index));
     setPostArray(postArray.filter((x, i) => i != index));
   };
+  function updatePosting(){
+    updateCase({"postDetails" : []});
+    const newpostOptions = [];
+
+    tick.forEach((val,index) => {
+      if(val){
+        newpostOptions.push({
+          "postDate" :  pDate[index] ,
+          "postReason" : pReason[index]  ,
+        })
+      }
+    })
+    updateCase({"postDetails" : newpostOptions});
+};
   // const listURL = "http://localhost:8000/api/list";
   // const data = { type, no };
   // const seel = (e) => {

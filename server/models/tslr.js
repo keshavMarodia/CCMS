@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
 const tslrSchema = new mongoose.Schema ({
-    primaryKey :{
-        type : String
-    },
     ward : { 
         type : String
     },

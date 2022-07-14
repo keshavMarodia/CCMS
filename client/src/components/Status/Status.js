@@ -1,15 +1,27 @@
 import { useState } from "react";
 import "./Status.css";
-const Status = () => {
-  const [status, setStatus] = useState("");
-  const [svalue, setSvalue] = useState("");
-  const [sdate, setSdate] = useState("");
+
+const Status = ({data ,updateCase }) => {
+  const [status, setStatus] = useState(data?.landStatus?.length >0 ? data.landStatus[0].status : "");
+  const [svalue, setSvalue] = useState(data?.landStatus?.length >0 ? data.landStatus[0].value : "" );
+  const datesetter = new Date(data.landStatus[0].valuedAtDate).toISOString().split('T')[0];
+  const [sdate, setSdate] = useState(data?.landStatus?.length >0 ? datesetter : "" );
   const [statusArray, setStatusArray] = useState([
     "VACANT LAND",
     "SEMI STRUCTURED",
     "FULLY STRUCTURED",
     "OTHERS",
   ]);
+  function updateLandStatus(){
+
+    const landvalues = { 
+      "valuedAtDate" : sdate,
+      "status" : status,
+      "value" : svalue
+    };
+
+    updateCase({"landStatus" : [landvalues] }) ;
+  }
   return (
     <div className="status-parent">
       <div className="intro-heading">Land Status</div>
@@ -78,7 +90,7 @@ const Status = () => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button">Save</div>
+        <div className="specific-button"  onClick={ updateLandStatus()} >Save</div>
       </div>
     </div>
   );

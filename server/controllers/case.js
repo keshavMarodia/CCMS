@@ -17,12 +17,18 @@ async function updateCase(req,res){
         return createdCase;
     }
     else{
+        let isChanged = false;
         const updatedCase = await Case.findOneAndUpdate({ 
             "court": caseBody.court,
             "caseType" : caseBody.caseType,
             "caseNo" : caseBody.caseNo,
             "caseYear" :caseBody.caseYear
         }, {$set: caseBody}, {new: true});
+        if(caseBody?.tslrOptions?.length > 0){
+            updatedCase.tslrOptions = caseBody.tslrOptions;
+            isChanged=true;
+        }
+        updatedCase.save();
         console.log("update Case");
         console.log(updatedCase);
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import "./Pahani.css";
-const Pahani = () => {
+
+const Pahani = ({ data ,updateCase }) => {
   const [pahArray, setPahArray] = useState([]);
   const [pahaniArray, setPahaniArray] = useState([
     "KHASRA PAHANI",
@@ -26,6 +26,42 @@ const Pahani = () => {
   // useEffect(() => {
   //   pahArray.length === 0 ? setShow(false) : setShow(true);
   // }, [pahArray]);
+
+  useEffect(() => {
+    if(data.pahani.length>0){
+      setEntry(false);
+      const pahaniArr =[] , addArr =[] , tickArr =[] , sethwarArr =[]  , yearArr =[] , survey1Arr =[] , survey2Arr =[] ,survey3Arr =[] ,villageArr =[] , extentArr =[] , guntasArr =[] , pattedarArr =[] , enjoyerArr = [];
+      data.pahani.forEach((element, index) => {
+        pahaniArr.push("a");
+        addArr.push(false);
+        tickArr.push(true);
+        sethwarArr.push(element.sethwar);
+        yearArr.push(element.pahaniYear);
+        survey1Arr.push(element.surveyNo1);
+        survey2Arr.push(element.surveyNo2);
+        survey3Arr.push(element.surveyNo3);
+        villageArr.push(element.village);
+        extentArr.push(element.extentA);
+        guntasArr.push(element.extentGuntas);
+        pattedarArr.push(element.pattedarName);
+        enjoyerArr.push(element.enjoyerName);
+      });
+      setPahArray(pahaniArr);
+      setPahani(sethwarArr);
+        setPahYear(yearArr);
+        setSno1(survey1Arr);
+        setSno2(survey2Arr);
+        setSno3(survey3Arr);
+        setPahVillage(villageArr);
+        setAc(extentArr);
+        setGuntas(guntasArr);
+        setPattedar(pattedarArr);
+        setEnjoyer(enjoyerArr);
+        setAdd(addArr);
+        setTick(tickArr);
+    }
+  }, []);
+
   const handleClick = (e) => {
     if (pahArray.length === 0) {
       setEntry(false);
@@ -110,13 +146,31 @@ const Pahani = () => {
     setTick(tick.filter((x, i) => i !== index));
     setPahArray(pahArray.filter((x, i) => i != index));
   };
-  const listURL = "http://localhost:8000/api/list";
-  const data = { pahani, enjoyer };
-  const seel = (e) => {
-    axios.post(listURL, data).then((response) => {
-      console.log(response);
-    });
-  };
+
+  function updatePahani(){
+    updateCase({"pahani" : []});
+    const newpahaniOptions = [];
+
+    tick.forEach((val,index) => {
+      if(val){
+        newpahaniOptions.push({
+          "sethwar " :  pahani[index] ,
+          "pahaniYear: " : pahYear[index]  ,
+          "surveyNo1 " : sno1[index] ,
+          "surveyNo2 " :  sno2[index] ,
+          "surveyNo3 " :  sno3[index],
+          "village " : pahVillage[index] ,
+          "extentA " :   ac[index]  ,
+          "extentGuntas" :   guntas[index],
+          "pattedarName " :   pattedar[index],
+          "enjoyerName " :   enjoyer[index],
+        })
+      }
+    })
+    updateCase({"pahani" : newpahaniOptions});
+  }
+  ;
+
   return (
     <div className="pah-parent">
       <div className="pah-intro">
@@ -324,7 +378,7 @@ const Pahani = () => {
         </table>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button">Save</div>
+        <div className="specific-button" onClick={updatePahani()}>Save</div>
       </div>
     </div>
   );

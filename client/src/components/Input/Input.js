@@ -414,16 +414,16 @@ const Input = () => {
             {specific[2] && <Petitioner data={data} updateCase={updateCase}/>}
             {specific[3] && <Respondent data={data} updateCase={updateCase}/>}
             {specific[4] && <Property data={data} updateCase={updateCase}/>}
-            {specific[5] && <Tslr />}
+            {specific[5] && <Tslr data={data} updateCase={updateCase} />}
             {specific[6] && <Extent data={data} updateCase={updateCase} />}
             {specific[7] && <Mandal data={data} updateCase={updateCase} />}
-            {specific[8] && <Pahani />}
-            {specific[9] && <Status />}
-            {specific[10] && <Govt />}
-            {specific[11] && <File />}
-            {specific[12] && <Case />}
+            {specific[8] && <Pahani data={data} updateCase={updateCase} />}
+            {specific[9] && <Status data={data} updateCase={updateCase} />}
+            {specific[10] && <Govt data={data} updateCase={updateCase} />}
+            {specific[11] && <File data={data} updateCase={updateCase} />}
+            {specific[12] && <Case data={data} updateCase={updateCase}/>}
             {specific[13] && <Posting data={data} updateCase={updateCase} />}
-            {specific[14] && <Pleader />}
+            {specific[14] && <Pleader data={data} updateCase={updateCase}/>}
             {specific[15] && <MainCase />}
           </div>
         </form>

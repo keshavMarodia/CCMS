@@ -1,12 +1,41 @@
 import { useState } from "react";
 import "./File.css";
-const File = () => {
-  const [mro, setMro] = useState(["", "", ""]);
-  const [dro, setDro] = useState(["", "", ""]);
-  const [collectorate, setCollectorate] = useState(["", "", ""]);
-  console.log(mro);
-  console.log(dro);
-  console.log(collectorate);
+
+const File = ({data  , updateCase }) => {
+  const [mro, setMro] = useState((data?.fileNo?.MROfileNo && data?.fileNo?.MROfileNo.length >0) ? data?.fileNo?.MROfileNo : ["","",""]);
+  const [dro, setDro] = useState((data?.fileNo?.DROfileNo && data?.fileNo?.DROfileNo.length >0) ? data?.fileNo?.DROfileNo : ["","",""]);
+  const [collectorate, setCollectorate] = useState((data?.fileNo?.collectorateFileNo && data?.fileNo?.collectorateFileNo.length >0) ? data?.fileNo?.collectorateFileNo : ["","",""]);
+  console.log([mro]);
+  console.log([dro]);
+  console.log([collectorate]);
+
+  function updatefileNo(isSave){
+    if(isSave){
+      const fileNoValues = { 
+      "MROfileNo" : mro ,
+      "DROfileNo" : dro ,
+      "collectorateFileNo" : collectorate
+    };
+    updateCase({"fileNo" : fileNoValues});
+  }
+  }
+
+  function setAttr(type, ind, newval) {
+    switch(type) {
+    case "mro":
+      setMro(mro.map((val, idx) => (idx === ind ? newval : val)));
+      break;
+    case "dro":
+      setDro(dro.map((val, idx) => (idx === ind ? newval : val)));
+      break;
+    case "collectorate":
+      setCollectorate(collectorate.map((val, idx) => (idx === ind ? newval : val)))
+      break;
+    default:
+      console.log('Unhanddle case');
+    }
+}
+
   return (
     <div className="file-parent">
       <div className="intro-heading">File Number</div>
@@ -23,9 +52,7 @@ const File = () => {
               type="text"
               value={mro[0]}
               onChange={(e) => {
-                setMro(
-                  mro.map((val, idx) => (idx === 0 ? e.target.value : val))
-                );
+                setAttr("mro",0, e.target.value);
               }}
               className="form-control file-text"
               aria-describedby="basic-addon1"
@@ -36,9 +63,7 @@ const File = () => {
               type="text"
               value={mro[1]}
               onChange={(e) => {
-                setMro(
-                  mro.map((val, idx) => (idx === 1 ? e.target.value : val))
-                );
+                setAttr("mro",1, e.target.value);
               }}
               className="form-control file-text"
               aria-describedby="basic-addon1"
@@ -49,9 +74,7 @@ const File = () => {
               type="text"
               value={mro[2]}
               onChange={(e) => {
-                setMro(
-                  mro.map((val, idx) => (idx === 2 ? e.target.value : val))
-                );
+                setAttr("mro",2, e.target.value);
               }}
               className="form-control file-text"
               aria-describedby="basic-addon1"
@@ -71,9 +94,7 @@ const File = () => {
               type="text"
               value={dro[0]}
               onChange={(e) => {
-                setDro(
-                  dro.map((val, idx) => (idx === 0 ? e.target.value : val))
-                );
+                setAttr("dro",0, e.target.value);
               }}
               className="form-control file-text"
               aria-describedby="basic-addon1"
@@ -84,9 +105,7 @@ const File = () => {
               type="text"
               value={dro[1]}
               onChange={(e) => {
-                setDro(
-                  dro.map((val, idx) => (idx === 1 ? e.target.value : val))
-                );
+                setAttr("dro",1, e.target.value);
               }}
               className="form-control file-text"
               aria-describedby="basic-addon1"
@@ -97,9 +116,7 @@ const File = () => {
               type="text"
               value={dro[2]}
               onChange={(e) => {
-                setDro(
-                  dro.map((val, idx) => (idx === 2 ? e.target.value : val))
-                );
+                setAttr("dro",2, e.target.value);
               }}
               className="form-control file-text"
               aria-describedby="basic-addon1"
@@ -119,11 +136,7 @@ const File = () => {
               type="text"
               value={collectorate[0]}
               onChange={(e) => {
-                setCollectorate(
-                  collectorate.map((val, idx) =>
-                    idx === 0 ? e.target.value : val
-                  )
-                );
+                setAttr("collectorate",0, e.target.value);
               }}
               className="form-control file-text"
               aria-describedby="basic-addon1"
@@ -134,11 +147,7 @@ const File = () => {
               type="text"
               value={collectorate[1]}
               onChange={(e) => {
-                setCollectorate(
-                  collectorate.map((val, idx) =>
-                    idx === 1 ? e.target.value : val
-                  )
-                );
+                setAttr("collectorate",1, e.target.value);
               }}
               className="form-control file-text"
               aria-describedby="basic-addon1"
@@ -149,11 +158,7 @@ const File = () => {
               type="text"
               value={collectorate[2]}
               onChange={(e) => {
-                setCollectorate(
-                  collectorate.map((val, idx) =>
-                    idx === 2 ? e.target.value : val
-                  )
-                );
+                setAttr("collectorate",2, e.target.value);
               }}
               className="form-control file-text"
               aria-describedby="basic-addon1"
@@ -163,7 +168,7 @@ const File = () => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button">Save</div>
+        <div className="specific-button" onClick={() => updatefileNo(true)}>Save</div>
       </div>
     </div>
   );
