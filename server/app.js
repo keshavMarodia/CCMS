@@ -38,7 +38,6 @@ const userSchema = new mongoose.Schema({
 const User = new mongoose.model("User", userSchema);
 // this route is used for getting the initial list for the dropdown menu an d the post request is forthe sign up users
 app.route("/api/list").post(function (req, res) {
-  console.log(req.body);
   // bcrypt is used to hash the password to be saved in database
   bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
     User.findOne({ username: req.body.username }, function (err, foundUser) {
