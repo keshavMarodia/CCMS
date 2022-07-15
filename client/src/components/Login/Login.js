@@ -6,22 +6,35 @@ const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [list, setList] = useState([]);
+  const [list, setList] = useState([
+    "LAWOFFICER",
+    "ULC HYD",
+    "RDO-HYD",
+    "RDO-SEDBAD",
+    "AMBERPET",
+    "HIMAYATNAGAR",
+    "NAMPALLY",
+    "ASIFNAGAR",
+    "SAIDABAD",
+    "BHADURPURA",
+    "BANDLAGUDA",
+    "GOLKONDA",
+    "CHARMINAR",
+    "AMEERPET",
+    "TIRUMALAGIRI",
+    "MAREEDPALLY",
+    "SHAIKPET",
+    "KHAIRATABAD",
+    "SECUNDERABAD",
+    "MUSHEERABAD",
+  ]);
   const [fill, setFill] = useState(false);
   const [error, setError] = useState(false);
   const [empty, setEmpty] = useState(false);
   const [incorrect, setIncorrect] = useState(false);
+
   const listURL = "http://localhost:8000/api/list";
   const userURL = "http://localhost:8000/api/user";
-  useEffect(() => {
-    axios.get(listURL).then(function (response) {
-      if (response.status == "200") {
-        setList(response.data);
-      } else {
-        setError(true);
-      }
-    });
-  }, []);
   const handleLogin = (e) => {
     const data = { username, password };
     e.preventDefault();
@@ -96,15 +109,15 @@ const Login = () => {
                 data-bs-toggle="dropdown"
               />
               <ul className="dropdown-menu scrollable-menu" role="menu">
-                {list.map(function (value) {
+                {list.map(function (value, index) {
                   return (
                     <li>
                       <div
-                        id={value._id}
+                        id={index}
                         className="dropdown-item"
-                        onClick={(e) => setUsername(value.username)}
+                        onClick={(e) => setUsername(value)}
                       >
-                        {value.username}
+                        {value}
                       </div>
                     </li>
                   );
