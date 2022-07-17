@@ -147,27 +147,29 @@ const Pahani = ({ data ,updateCase }) => {
     setPahArray(pahArray.filter((x, i) => i != index));
   };
 
-  function updatePahani(){
+  function updatePahani(isSave){
+    if(isSave){
     updateCase({"pahani" : []});
     const newpahaniOptions = [];
 
     tick.forEach((val,index) => {
       if(val){
         newpahaniOptions.push({
-          "sethwar " :  pahani[index] ,
-          "pahaniYear: " : pahYear[index]  ,
-          "surveyNo1 " : sno1[index] ,
-          "surveyNo2 " :  sno2[index] ,
-          "surveyNo3 " :  sno3[index],
-          "village " : pahVillage[index] ,
-          "extentA " :   ac[index]  ,
+          "sethwar" :  pahani[index] ,
+          "pahaniYear" : pahYear[index]  ,
+          "surveyNo1" : sno1[index] ,
+          "surveyNo2" :  sno2[index] ,
+          "surveyNo3" :  sno3[index],
+          "village" : pahVillage[index],
+          "extentA" :   ac[index]  ,
           "extentGuntas" :   guntas[index],
-          "pattedarName " :   pattedar[index],
-          "enjoyerName " :   enjoyer[index],
+          "pattedarName" :   pattedar[index],
+          "enjoyerName" :   enjoyer[index],
         })
       }
     })
     updateCase({"pahani" : newpahaniOptions});
+    } 
   }
   ;
 
@@ -378,7 +380,7 @@ const Pahani = ({ data ,updateCase }) => {
         </table>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button" onClick={updatePahani()}>Save</div>
+        <div className="specific-button" onClick={() => updatePahani(true)}>Save</div>
       </div>
     </div>
   );

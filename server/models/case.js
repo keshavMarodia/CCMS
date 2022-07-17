@@ -66,7 +66,7 @@ const caseSchema = new mongoose.Schema ({
       type: String
     },
     mandal : {
-      type : [mandalSchema]
+      type : mandalSchema
     },
     pahani : {
       type : [pahaniSchema]

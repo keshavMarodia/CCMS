@@ -81,6 +81,7 @@ const Posting = ({ data , updateCase }) => {
       }
     }
   };
+
   const handleAdd = (e, index) => {
     setEntry(false);
     setPDate((prev) => {
@@ -90,6 +91,7 @@ const Posting = ({ data , updateCase }) => {
     setTick(tick.map((val, idx) => (idx === index ? true : val)));
     document.getElementById("add" + index).click(false);
   };
+
   const handleDelete = (e, index) => {
     setEntry(false);
     setPDate(pDate.filter((x, i) => i !== index));

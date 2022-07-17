@@ -21,6 +21,7 @@ import "./Input.css";
 
 const Input = () => {
   const location = useLocation();
+ 
   const { court, caseType, caseNo, caseYear } = location.state;
   const params = {
     court: court,
@@ -161,6 +162,7 @@ const Input = () => {
       setHallArray(["SELECT JUDGE DESIGNATION"]);
     }
   }, [judge]);
+  
   async function setAttribute(value, type) {
     switch (type) {
       case "filedBy":

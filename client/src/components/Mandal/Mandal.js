@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Mandal.css";
+
 const Mandal = ({ data, updateCase }) => {
   const [mandalArray, settMandalArray] = useState([
     "TIRUMALAGIRI",
@@ -21,16 +22,16 @@ const Mandal = ({ data, updateCase }) => {
   ]);
   const [villageArray, setVillageArray] = useState(["SELECT A MANDAL"]);
   const [mandal, setMandal] = useState(
-    data?.mandal?.length > 0 ? data.mandal[0].mandalName : ""
+    data?.mandal?.mandalName ? data.mandal.mandalName : ""
   );
   const [village, setVillage] = useState(
-    data?.mandal?.length > 0 ? data.mandal[0].village : ""
+    data?.mandal?.village? data.mandal.village : ""
   );
   const [road, setRoad] = useState(
-    data?.mandal?.length > 0 ? data.mandal[0].road : ""
+    data?.mandal?.road? data.mandal.road : ""
   );
   const [locality, setLocality] = useState(
-    data?.mandal?.length > 0 ? data.mandal[0].locality : ""
+    data?.mandal?.locality? data.mandal.locality : ""
   );
   // useEffect(() => {
   //   if (mandal == "AMBERPET") {
@@ -122,13 +123,13 @@ const Mandal = ({ data, updateCase }) => {
   // }, [mandal]);
   function updateMandal() {
     const mandalvalues = {
-      mandalName: mandal,
-      village: village,
-      road: road,
-      locality: locality,
+      "mandalName": mandal,
+      "village": village,
+      "road": road,
+      "locality": locality,
     };
 
-    updateCase({ mandal: [mandalvalues] });
+    updateCase({ "mandal" : mandalvalues });
   }
   return (
     <div className="mandal-parent">
@@ -230,7 +231,7 @@ const Mandal = ({ data, updateCase }) => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button" onClick={updateMandal()}>
+        <div className="specific-button" onClick={() => updateMandal()}>
           Save
         </div>
       </div>

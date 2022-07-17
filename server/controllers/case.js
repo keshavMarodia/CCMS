@@ -28,6 +28,12 @@ async function updateCase(req,res){
             updatedCase.tslrOptions = caseBody.tslrOptions;
             isChanged=true;
         }
+        console.log("pahani data");
+        console.log(caseBody.pahani);
+        if(caseBody?.pahani?.length > 0){
+            updatedCase.pahani = caseBody.pahani;
+            isChanged=true;
+        }
         updatedCase.save();
         console.log("update Case");
         console.log(updatedCase);

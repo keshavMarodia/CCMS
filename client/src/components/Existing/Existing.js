@@ -1,16 +1,37 @@
 import { useState } from "react";
+import { useLocation ,useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Sub from "../Sub/Sub";
 import "./Existing.css";
+
 const Existing = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const sample = ["1", "1", "1"];
   const [subShow, setSubShow] = useState(true);
+  const [data, setData] = useState(location.state?.length > 0 ? location.state[0] : {});
+  
+
+  function handleEdit(){
+    
+    const params = { 
+      "court": data.court,
+      "caseType" : data.caseType,
+      "caseNo" : data.caseNo,
+      "caseYear" : data.caseYear
+  };
+
+    navigate("/input", {
+      state: params,
+    });
+  }
+
   return (
     <div>
       <Navbar />
       <div className="exist-parent">
         <div className="specific-button-container">
-          <div className="specific-button">Edit</div>
+          <div className="specific-button" onClick={() => handleEdit() }>Edit</div>
         </div>
         <div className="exist-table">
           <table>
@@ -25,16 +46,16 @@ const Existing = () => {
             </tr>
             <tr>
               <td>
-                <div className="static">value</div>
+                <div className="static">{data.caseType}</div>
               </td>
               <td>
-                <div className="static">value</div>
+                <div className="static">{data.caseNo}</div>
               </td>
               <td>
-                <div className="static">value</div>
+                <div className="static">{data.caseYear}</div>
               </td>
               <td>
-                <div className="static">value</div>
+                <div className="static">{data.filedBy}</div>
               </td>
               <td>
                 <div className="static">value</div>
