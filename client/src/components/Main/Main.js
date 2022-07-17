@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import "./Main.css";
@@ -8,6 +8,7 @@ const Main = () => {
   const location = useLocation();
   const navigate = useNavigate();
   let court = location.state.court;
+  const [data, setData] = useState(undefined);
   const [caseTypeArray, setCaseTypeArray] = useState([
     "OS",
     "LGOP",
@@ -35,10 +36,42 @@ const Main = () => {
       "caseNo" : caseNo,
       "caseYear" :caseYear
   };
-    navigate("/input", {
-      state: params,
+
+  if(data.length > 0 ){
+    navigate("/existing", {
+      state: data,
     });
+  }else{
+      navigate("/input", {
+        state: params,
+      });
+    }
   };
+
+  useEffect(() => {
+    async function fetchData() {
+
+    if(court && caseType && caseNo && caseYear){
+      const params = {
+        court: court,
+        caseType: caseType,
+        caseNo: caseNo,
+        caseYear: caseYear,
+      };
+      const resp = await fetch(
+        "http://localhost:8000/case?" + new URLSearchParams(params).toString()
+      );
+      const result = await resp.json();
+      console.log(result);
+      if (result.length > 0) {
+        setData(result);
+      }
+    }
+  }
+  fetchData();
+    
+  }, [court,caseType,caseNo,caseYear]);
+
   return (
     <div>
       <Navbar />
@@ -47,7 +80,7 @@ const Main = () => {
         <div className="main-body">
           <div className="enter-heading">Enter Case Details</div>
           <div className="main-input">
-            <form className="main-form" onSubmit={handleSubmit}>
+            <form className="main-form" onSubmit={() => handleSubmit()}>
               {/* Case Type */}
               <div className="input-group mb-3">
                 <span
