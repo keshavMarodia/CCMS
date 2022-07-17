@@ -45,3 +45,18 @@
     color: black;
     text-align: center;
 }
+.file-no{
+    display: flex;
+    align-items: center;
+    
+}
+.first-file{
+    margin-right: 6px;
+}
+.second-file{
+    margin-right: 6px;
+    margin-left: 6px;
+}
+.third-file{
+    margin-left: 6px;
+}
