@@ -31,17 +31,18 @@ const Main = () => {
   const handleSubmit = async(e) => {
     // const data = { court, caseType, caseNo, caseYear };
     const params = { 
-      "court": court,
+      "court" : court,
       "caseType" : caseType,
       "caseNo" : caseNo,
       "caseYear" :caseYear
   };
 
-  if(data.length > 0 ){
-    navigate("/existing", {
-      state: data,
-    });
-  }else{
+    if(data?.length > 0){
+      navigate("/existing", {
+        state: data,
+      });
+    }
+    else {
       navigate("/input", {
         state: params,
       });
@@ -53,10 +54,10 @@ const Main = () => {
 
     if(court && caseType && caseNo && caseYear){
       const params = {
-        court: court,
-        caseType: caseType,
-        caseNo: caseNo,
-        caseYear: caseYear,
+        "court" : court,
+        "caseType" : caseType,
+        "caseNo": caseNo,
+        "caseYear" : caseYear,
       };
       const resp = await fetch(
         "http://localhost:8000/case?" + new URLSearchParams(params).toString()
