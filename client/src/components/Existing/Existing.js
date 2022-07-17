@@ -148,20 +148,26 @@ const Existing = () => {
               </tr>
               <tr>
                 <td className="exist-right">MRO File No.</td>
-                <td className="exist-right">
-                  <div className="static">value</div>
+                <td className="exist-right file-no">
+                  <div className="static first-file">value</div>/
+                  <div className="static second-file">value</div>/
+                  <div className="static third-file">value</div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-right">DRO File No.</td>
-                <td className="exist-right">
-                  <div className="static">value</div>
+                <td className="exist-right file-no">
+                  <div className="static first-file">value</div>/
+                  <div className="static second-file">value</div>/
+                  <div className="static third-file">value</div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-right">Collectorate File No.</td>
-                <td className="exist-right">
-                  <div className="static">value</div>
+                <td className="exist-right file-no">
+                  <div className="static first-file">value</div>/
+                  <div className="static second-file">value</div>/
+                  <div className="static third-file">value</div>
                 </td>
               </tr>
             </table>
