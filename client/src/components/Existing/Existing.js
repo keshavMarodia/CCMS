@@ -427,7 +427,7 @@ const Existing = () => {
           <div className="output-table">
             <table>
               <tr className="exist-left">
-                <th colSpan={8} className="exist-left">
+                <th colSpan={9} className="exist-left">
                   Tslr
                 </th>
               </tr>
