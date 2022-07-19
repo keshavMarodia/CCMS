@@ -89,8 +89,8 @@ const Existing = () => {
                 <td className="exist-left">Counter Filed</td>
                 <td className="exist-left">
                   <div className="static">
-                    {data?.wstmtOptions[0]?.wscf?.length > 0
-                      ? data?.wstmtOptions[0]?.wscf
+                    { data?.wstmtOptions && data?.wstmtOptions.length >0 && data?.wstmtOptions[0]
+                      ? data?.wstmtOptions[0].wscf
                       : ""}
                   </div>
                 </td>

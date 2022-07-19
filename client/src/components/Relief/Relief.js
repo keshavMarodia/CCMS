@@ -4,8 +4,10 @@ import "./Relief.css";
 const Relief = ({ data, updateCase }) => {
   const [relief, setRelief] = useState(data?.relief || "");
 
-  function updateRelief() {
+  function updateRelief(isTrue) {
+    if(isTrue){
     updateCase({ relief: relief });
+    }
   }
 
   return (
@@ -25,7 +27,7 @@ const Relief = ({ data, updateCase }) => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button" onClick={updateRelief()}>
+        <div className="specific-button" onClick={() => updateRelief(true)}>
           Save
         </div>
       </div>

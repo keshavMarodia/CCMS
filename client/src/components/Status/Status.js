@@ -4,16 +4,23 @@ import "./Status.css";
 const Status = ({data ,updateCase }) => {
   const [status, setStatus] = useState(data?.landStatus?.length >0 ? data.landStatus[0].status : "");
   const [svalue, setSvalue] = useState(data?.landStatus?.length >0 ? data.landStatus[0].value : "" );
-  const datesetter = new Date(data.landStatus[0].valuedAtDate).toISOString().split('T')[0];
-  const [sdate, setSdate] = useState(data?.landStatus?.length >0 ? datesetter : "" );
+  var landDate;
+  if (data?.landStatus[0]?.valuedAtDate) {
+    landDate = new Date(data.landStatus[0].valuedAtDate)
+      .toISOString()
+      .split("T")[0];
+  } else {
+    landDate = "";
+  }
+  const [sdate, setSdate] = useState(landDate);
   const [statusArray, setStatusArray] = useState([
     "VACANT LAND",
     "SEMI STRUCTURED",
     "FULLY STRUCTURED",
     "OTHERS",
   ]);
-  function updateLandStatus(){
-
+  function updateLandStatus(isTrue){
+    if(isTrue){
     const landvalues = { 
       "valuedAtDate" : sdate,
       "status" : status,
@@ -21,6 +28,7 @@ const Status = ({data ,updateCase }) => {
     };
 
     updateCase({"landStatus" : [landvalues] }) ;
+  }
   }
   return (
     <div className="status-parent">
@@ -90,7 +98,7 @@ const Status = ({data ,updateCase }) => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button"  onClick={ updateLandStatus()} >Save</div>
+        <div className="specific-button"  onClick={ () => updateLandStatus(true)} >Save</div>
       </div>
     </div>
   );

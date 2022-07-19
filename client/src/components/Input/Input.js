@@ -211,6 +211,7 @@ const Input = () => {
 
     const resp = await fetch("http://localhost:8000/case", requestOptions);
     const result = await resp.json();
+    setData(result);
     return result;
   }
 
@@ -494,7 +495,7 @@ const Input = () => {
             {specific[12] && <Case data={data} updateCase={updateCase}/>}
             {specific[13] && <Posting data={data} updateCase={updateCase} />}
             {specific[14] && <Pleader data={data} updateCase={updateCase}/>}
-            {specific[15] && <MainCase />}
+            {specific[15] && <MainCase data={data} updateCase={updateCase}/>}
           </div>
         </form>
       </div>

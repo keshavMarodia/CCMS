@@ -100,7 +100,8 @@ const Posting = ({ data , updateCase }) => {
     setTick(tick.filter((x, i) => i !== index));
     setPostArray(postArray.filter((x, i) => i != index));
   };
-  function updatePosting(){
+  function updatePosting(isTrue){
+    if(isTrue){
     updateCase({"postDetails" : []});
     const newpostOptions = [];
 
@@ -113,6 +114,7 @@ const Posting = ({ data , updateCase }) => {
       }
     })
     updateCase({"postDetails" : newpostOptions});
+  }
 };
   // const listURL = "http://localhost:8000/api/list";
   // const data = { type, no };
@@ -219,7 +221,7 @@ const Posting = ({ data , updateCase }) => {
         </table>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button" onClick={updatePosting()}>
+        <div className="specific-button" onClick={() => updatePosting(true)}>
           Save
         </div>
       </div>

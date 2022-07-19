@@ -1,12 +1,45 @@
 import { useState } from "react";
 import "./Interim.css";
-const Interim = () => {
-  const [interimDate, setInterimDate] = useState("");
-  const [interimType, setInterimType] = useState("");
-  const [force, setForce] = useState("");
+
+const Interim = ({ interimdata , updateMainCase}) => {
+  console.log(interimdata);
+  var intdate;
+  var forcedate;
+  if(interimdata?.mainCaseStatus[0]?.intOrderDate){
+    intdate =new Date(interimdata?.mainCaseStatus[0]?.intOrderDate)
+    .toISOString()
+    .split("T")[0];
+  }else{
+    intdate="";
+  }
+  if(interimdata?.mainCaseStatus[0]?.intOrderForce){
+    forcedate =new Date(interimdata?.mainCaseStatus[0]?.intOrderForce)
+    .toISOString()
+    .split("T")[0];
+  }else{
+    forcedate="";
+  }
+  const [interimDate, setInterimDate] = useState(intdate);
+  const [interimType, setInterimType] = useState(interimdata?.mainCaseStatus[0]?.intType ? interimdata.mainCaseStatus[0].intType : "");
+  const [force, setForce] = useState(forcedate);
   const [interimFile, setinterimFile] = useState("");
-  const [interimOther, setInterimOther] = useState("");
-  const [specify, setSpecify] = useState(false);
+  const [interimOther, setInterimOther] = useState(interimdata?.mainCaseStatus[0]?.specifyOther ? interimdata.mainCaseStatus[0].specifyOther : "");
+  const [specify, setSpecify] = useState(interimdata?.mainCaseStatus[0]?.intType==="OTHERS" ? true: false);
+
+  function updateInterim(istrue){
+    if(istrue){
+    const interimvalues = {
+      "intOrderDate": interimDate,
+      "intType": interimType,
+      "intOrderForce":force,
+      "specifyOther":interimOther,
+    };
+
+    updateMainCase(interimvalues);
+    
+  }
+}
+
   return (
     <div className="interim-parent">
       <div className="interim-form">
@@ -142,7 +175,7 @@ const Interim = () => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button">Save</div>
+        <div className="specific-button" onClick={() => updateInterim(true)}>Save</div>
       </div>
     </div>
   );

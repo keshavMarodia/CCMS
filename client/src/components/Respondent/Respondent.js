@@ -3,11 +3,13 @@ import "./Respondent.css";
 
 const Respondent = ({ data , updateCase }) => {
   const [resp, setResp] = useState("");
-  const [respList, setRespList] = useState(data.respondents || []);
+  const [respList, setRespList] = useState(data?.respondents || []);
   const [respWarn, setRespWarn] = useState(false);
 
-  function updateRespondent(){
+  function updateRespondent(isTrue){
+    if(isTrue){
     updateCase({"respondents" : respList});
+    }
   }
 
   const handleClick = (e) => {
@@ -53,7 +55,7 @@ const Respondent = ({ data , updateCase }) => {
           </div>
           {respWarn && <div className="resp-warn">Fill Entry</div>}
           <div className="specific-button-container">
-            <div className="specific-button" onClick={updateRespondent}>Save</div>
+            <div className="specific-button" onClick={() => updateRespondent(true)}>Save</div>
           </div>
         </div>
         <div className="resp-list-parent">

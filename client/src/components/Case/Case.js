@@ -104,7 +104,8 @@ const Case = ({ data ,updateCase }) => {
     setTick(tick.filter((x, i) => i !== index));
     setCaseArray(caseArray.filter((x, i) => i != index));
   };
-  function updateOtherCase(){
+  function updateOtherCase(isTrue){
+    if(isTrue){
     updateCase({"otherCase" : []});
     const newotherOptions = [];
 
@@ -118,6 +119,7 @@ const Case = ({ data ,updateCase }) => {
       }
     })
     updateCase({"otherCase" : newotherOptions});
+  }
   }
   ;
   // const listURL = "http://localhost:8000/api/list";
@@ -241,7 +243,7 @@ const Case = ({ data ,updateCase }) => {
         </table>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button" onClick={updateOtherCase()}>Save</div>
+        <div className="specific-button" onClick={() => updateOtherCase(true)}>Save</div>
       </div>
     </div>
   );

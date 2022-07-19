@@ -21,7 +21,7 @@ const Wstmt = ({ data, updateCase }) => {
     data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].reasonforPend : ""
   );
   var datesetter;
-  if (data?.wstmtOptions[0]?.noticeDate?.length > 0) {
+  if (data?.wstmtOptions[0]?.noticeDate) {
     datesetter = new Date(data?.wstmtOptions[0]?.noticeDate)
       .toISOString()
       .split("T")[0];
@@ -42,7 +42,8 @@ const Wstmt = ({ data, updateCase }) => {
     data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].deptName : ""
   );
 
-  function updateWstmt() {
+  function updateWstmt(isTrue) {
+    if(isTrue){
     const wstmtvalues = {
       wscf: wstmt,
       noticeDate: notice,
@@ -53,6 +54,7 @@ const Wstmt = ({ data, updateCase }) => {
       specifyOthers: wstmtNoOtherReason,
     };
     updateCase({ wstmtOptions: [wstmtvalues] });
+  }
   }
   return (
     <div className="wstmt-parent">
@@ -117,7 +119,7 @@ const Wstmt = ({ data, updateCase }) => {
             </ul>
           </div>
           <div className="specific-button-container">
-            <div className="specific-button" onClick={updateWstmt()}>
+            <div className="specific-button" onClick={() => updateWstmt(true)}>
               Save
             </div>
           </div>

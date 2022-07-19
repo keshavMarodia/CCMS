@@ -144,7 +144,7 @@ const Pahani = ({ data ,updateCase }) => {
     setEnjoyer(enjoyer.filter((x, i) => i !== index));
     setAdd(add.filter((x, i) => i !== index));
     setTick(tick.filter((x, i) => i !== index));
-    setPahArray(pahArray.filter((x, i) => i != index));
+    setPahArray(pahArray.filter((x, i) => i !== index));
   };
 
   function updatePahani(isSave){

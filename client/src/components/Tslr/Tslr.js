@@ -130,7 +130,8 @@ const Tslr = ({ data, updateCase }) => {
     setTslrArray(tslrArray.filter((x, i) => i != index));
   };
 
-  function updateTslr() {
+  function updateTslr(isTrue) {
+    if(isTrue){
     updateCase({ tslrOptions: [] });
     const newTslrOptions = [];
 
@@ -149,6 +150,7 @@ const Tslr = ({ data, updateCase }) => {
       }
     });
     updateCase({ tslrOptions: newTslrOptions });
+  }
   }
   // const listURL = "http://localhost:8000/api/list";
   // const data = { c20 };
@@ -298,7 +300,7 @@ const Tslr = ({ data, updateCase }) => {
         </table>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button" onClick={updateTslr()}>
+        <div className="specific-button" onClick={() => updateTslr(true)}>
           Save
         </div>
       </div>

@@ -1,9 +1,12 @@
 import { useState } from "react";
 import "./Property.css";
 const Property = ({data , updateCase}) => {
-  const [property, setProperty] = useState(data.property || "");
-  function updateProperty(){
+  const [property, setProperty] = useState(data?.property || "");
+
+  function updateProperty(isTrue){
+    if(isTrue){
     updateCase({"property" : property});
+    }
   }
 
   return (
@@ -23,7 +26,7 @@ const Property = ({data , updateCase}) => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button" onClick={updateProperty()}>Save</div>
+        <div className="specific-button" onClick={() => updateProperty(true)}>Save</div>
       </div>
     </div>
   );

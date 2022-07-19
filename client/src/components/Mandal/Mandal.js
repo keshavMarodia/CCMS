@@ -25,13 +25,13 @@ const Mandal = ({ data, updateCase }) => {
     data?.mandal?.mandalName ? data.mandal.mandalName : ""
   );
   const [village, setVillage] = useState(
-    data?.mandal?.village? data.mandal.village : ""
+    data?.mandal?.village ? data.mandal.village : ""
   );
   const [road, setRoad] = useState(
-    data?.mandal?.road? data.mandal.road : ""
+    data?.mandal?.road ? data.mandal.road : ""
   );
   const [locality, setLocality] = useState(
-    data?.mandal?.locality? data.mandal.locality : ""
+    data?.mandal?.locality ? data.mandal.locality : ""
   );
   // useEffect(() => {
   //   if (mandal == "AMBERPET") {
@@ -121,7 +121,8 @@ const Mandal = ({ data, updateCase }) => {
   //     setVillageArray("SELECT A MANDAL");
   //   }
   // }, [mandal]);
-  function updateMandal() {
+  function updateMandal(isTrue) {
+    if(isTrue){
     const mandalvalues = {
       "mandalName": mandal,
       "village": village,
@@ -130,6 +131,7 @@ const Mandal = ({ data, updateCase }) => {
     };
 
     updateCase({ "mandal" : mandalvalues });
+  }
   }
   return (
     <div className="mandal-parent">
@@ -231,7 +233,7 @@ const Mandal = ({ data, updateCase }) => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button" onClick={() => updateMandal()}>
+        <div className="specific-button" onClick={() => updateMandal(true)}>
           Save
         </div>
       </div>

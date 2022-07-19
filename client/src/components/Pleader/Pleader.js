@@ -4,8 +4,10 @@ const Pleader = ({ data , updateCase }) => {
   const [pleaderArray, setPleaderArray] = useState(["GP", "AGP", "SPECIAL GP"]);
   const [pleader, setPleader] = useState(data?.govtPleader  || "");
 
-  function updatePleader(){
+  function updatePleader(isTrue){
+    if(isTrue){
     updateCase({"govtPleader" : pleader});
+    }
   }
   return (
     <div className="pleader=parent">
@@ -44,7 +46,7 @@ const Pleader = ({ data , updateCase }) => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button" onClick={updatePleader()}>Save</div>
+        <div className="specific-button" onClick={() => updatePleader(true)}>Save</div>
       </div>
     </div>
   );

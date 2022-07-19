@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Sub.css";
-const Sub = () => {
+
+const Sub = ({ data, updateMainCase}) => {
   const [subArray, setSubArray] = useState([]);
   const [subFileArray, setSubFileArray] = useState([
     "COLLECTOR",
@@ -60,18 +61,18 @@ const Sub = () => {
   const [subCase2, setSubCase2] = useState([]);
   const [subCase3, setSubCase3] = useState([]);
   const [subCaseDate, setSubCaseDate] = useState([]);
-  const [subCaseFile, setSubCaseFile] = useState([]);
+  const [subCaseFile, setSubCaseFile] = useState([]);//docfile
   const [statusDrop, setStatusDrop] = useState([]);
   const [statusDate, setStatusDate] = useState([]);
   const [statusGist, setStatusGist] = useState([]);
-  const [statusFile, setStatusFile] = useState([]);
+  const [statusFile, setStatusFile] = useState([]);//docfile
   const [statusCe, setStatusCe] = useState([]);
-  const [subFile, setSubFile] = useState([]);
+  const [subFile, setSubFile] = useState([]); //filedby
   const [subPet, setSubPet] = useState([]);
   const [subRes, setSubRes] = useState([]);
   const [subPrayer, setSubPrayer] = useState([]);
   const [subLand, setSubLand] = useState([]);
-  const [subDate, setSubDate] = useState([]);
+  const [subDate, setSubDate] = useState([]);//next hearing date
   const [add, setAdd] = useState([]);
   const [tick, setTick] = useState([]);
   // const [show, setShow] = useState(false);
@@ -79,6 +80,53 @@ const Sub = () => {
   // useEffect(() => {
   //   postArray.length === 0 ? setShow(false) : setShow(true);
   // }, [postArray]);
+
+  useEffect(() => {
+    if(data?.mainCaseStatus?.length>0){
+      setEntry(false);
+      const subcaseArr =[] , addArr =[] , tickArr =[] ,subcasetypeArr =[] , subcasenoArr =[] , subcaseyearArr =[] ,  subDateArr =[]  , statDropArr =[] , statDateArr =[] , statGistArr =[] ,statFileArr =[] ,statCeArr =[] , subfilebyArr =[] , subPetArr =[] , subResArr =[] , subPrayerArr = [], subLandArr = [] ,nextHearingArr = [];
+      data.mainCaseStatus.forEach((element, index) => {
+        subcaseArr.push("a");
+        addArr.push(false);
+        tickArr.push(true);
+        subcasetypeArr.push(element.subcasetype);
+        subcasenoArr.push(element.subcaseno);
+        subcaseyearArr.push(element.subcaseyear);
+        subfilebyArr.push(element.filedby);
+        subDateArr.push(element.subCaseDate);
+        statDropArr.push(element.statDrop);
+        statDateArr.push(element.statDate);
+        statGistArr.push(element.statGist);
+        statFileArr.push(element.statFile);
+        statCeArr.push(element.statCe);
+        subPetArr.push(element.subPet);
+        subResArr.push(element.subRes);
+        subPrayerArr.push(element.subPrayer);
+        subLandArr.push(element.subLand);
+        nextHearingArr.push(element.nextHearing);
+      });
+      setSubArray(subcaseArr);
+      setSubCase1(subcasetypeArr);
+      setSubCase2(subcasenoArr);
+      setSubCase3(subcaseyearArr);
+      setSubCaseDate(subDateArr);
+      setSubFile(subfilebyArr);
+      setStatusDrop(statDropArr);
+      setStatusDate(statDateArr);
+      setStatusGist(statGistArr);
+      setStatusFile([]);
+      setStatusCe(statCeArr);
+      setSubCaseFile([]);
+      setSubPet(subPetArr);
+      setSubRes(subResArr);
+      setSubPrayer(subPrayerArr);
+      setSubLand(subLandArr);
+      setSubDate(nextHearingArr);
+      setAdd(addArr);
+      setTick(tickArr);
+    }
+  }, []);
+
   const handleClick = (e) => {
     if (subArray.length === 0) {
       setEntry(false);
@@ -199,6 +247,34 @@ const Sub = () => {
     setTick(tick.filter((x, i) => i !== index));
     setSubArray(subArray.filter((x, i) => i != index));
   };
+  function updateSubCase(isTrue){
+    if(isTrue){
+      const newsubcaseoptions = [];
+
+      tick.forEach((val,index) => {
+        if(val){
+          newsubcaseoptions.push({
+            "subcasetype" :  subCase1[index] ,
+            "subcaseno" : subCase2[index]  ,
+            "subcaseyear" : subCase3[index] ,
+            "filedby" :  subFile[index] ,
+            "subCaseDate" :  subCaseDate[index],
+            "statDrop" :   statusDrop[index]  ,
+            "statDate" :   statusDate[index],
+            "statGist" :   statusGist[index],
+            "statFile" :   statusFile[index],
+            "statCe" :   statusCe[index],
+            "subPet" :   subPet[index],
+            "subRes" :   subRes[index],
+            "subPrayer" :   subPrayer[index],
+            "subLand" :   subLand[index],
+            "nextHearing" :   subDate[index],
+          })
+        }
+      })
+      updateMainCase(newsubcaseoptions);
+    }
+  }
   // const listURL = "http://localhost:8000/api/list";
   // const data = { type, no };
   // const seel = (e) => {
@@ -558,7 +634,7 @@ const Sub = () => {
           <button onClick={seel}>dfg</button> */}
       </div>
       <div className="specific-button-container">
-        <div className="specific-button">Save</div>
+        <div className="specific-button" onClick={() => updateSubCase(true)}>Save</div>
       </div>
     </div>
   );

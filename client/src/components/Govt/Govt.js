@@ -33,13 +33,15 @@ const Govt = ({data , updateCase}) => {
     "OTHERS",
   ]);
   
-  function updateOther(){
+  function updateOther(isTrue){
+    if(isTrue){
     const othervalues = { 
       "deptInterest" : govt,
       "dept" : govtYesDept,
       "category" : govtYesCat
     };
     updateCase({"otherDept" : [othervalues]});
+  }
   }
 
   return (
@@ -86,7 +88,7 @@ const Govt = ({data , updateCase}) => {
             </ul>
           </div>
           <div className="specific-button-container">
-            <div className="specific-button" onClick={updateOther()}>Save</div>
+            <div className="specific-button" onClick={() => updateOther(true)}>Save</div>
           </div>
         </div>
         <div className="govt-result">

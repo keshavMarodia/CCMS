@@ -8,6 +8,7 @@ const { Mandal , mandalSchema }  = require("./mandal");
 const { Pahani , pahaniSchema} = require("./pahani");
 const { PostDetails , postDetailsSchema} = require("./postDetails");
 const { OtherCase , otherCaseSchema} = require("./otherCase");
+const { MainCase , mainCaseSchema} = require("./mainCase");
 
 const caseSchema = new mongoose.Schema ({
     caseType:{
@@ -90,7 +91,7 @@ const caseSchema = new mongoose.Schema ({
       type: String
     },
     mainCaseStatus : {
-      type :String
+      type : [mainCaseSchema]
     }
 });
   
