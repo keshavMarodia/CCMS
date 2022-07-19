@@ -103,6 +103,19 @@
   background-color: rgba(245, 247, 237,0.9);
   list-style: none;
 }
+.report-nav{
+  position: absolute;
+  border: 1px solid #6CC4A1;
+  box-shadow: 0 0 8px #6CC4A1;
+  padding: 10px 0px;
+  min-width: 194px;
+  display: none;
+  top: 7.5vh;
+  left: 46vh;
+  overflow: hidden;
+  background-color: rgba(245, 247, 237,0.9);
+  list-style: none;
+}
 ul li:hover ul{
   display: block;
 }

@@ -9,6 +9,15 @@ const Navbar = () => {
     "HIGH-COURT",
     "SUPREME-COURT",
   ]);
+  const [report, setReport] = useState([
+    "DISPOSED IN FAVOUR OF GOVT.",
+    "DISPOSED AGAINST GOVT.",
+    "DISPOSED WITH CERTAIN DIRECTIONS",
+    "DISMISSED",
+    "IMPORTANT CASE",
+    "LAND CASE",
+    "RELATED TO WAKF BOARD",
+  ]);
   const navigate = useNavigate();
   const handleClick = (e) => {
     navigate("/");
@@ -73,6 +82,21 @@ const Navbar = () => {
               >
                 Reports
               </Link>
+              <ul className="report-nav">
+                {report.map(function (value, index) {
+                  return (
+                    <li id={index} className="sub-items">
+                      <Link
+                        to={"/report"}
+                        state={{ report: value }}
+                        className="sub-link"
+                      >
+                        {value}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
             </li>
           </ul>
           {/* </nav> */}

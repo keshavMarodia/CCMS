@@ -4,6 +4,7 @@ import Home from "./components/Home/Home";
 import Main from "./components/Main/Main";
 import Input from "./components/Input/Input";
 import Existing from "./components/Existing/Existing";
+import Report from "./components/Report/Report";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/main" element={<Main />} />
           <Route path="/input" element={<Input />} />
           <Route path="/existing" element={<Existing />} />
+          <Route path="/report" element={<Report />} />
         </Routes>
       </BrowserRouter>
     </>

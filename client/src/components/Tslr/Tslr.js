@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Tslr.css";
-const Tslr = ({ data ,updateCase }) => {
+const Tslr = ({ data, updateCase }) => {
   const [tslrArray, setTslrArray] = useState([]);
   const [ward, setWard] = useState([]);
   const [block, setBlock] = useState([]);
@@ -16,9 +16,19 @@ const Tslr = ({ data ,updateCase }) => {
   const [entry, setEntry] = useState(false);
 
   useEffect(() => {
-    if(data.tslrOptions.length>0){
+    if (data.tslrOptions.length > 0) {
       setEntry(false);
-      const tslrArr =[] , addArr =[] , tickArr =[] , wardArr =[]  , blockArr =[] , tsnoArr =[] , tsExtentArr =[] , oldArr =[] , c10Arr =[] , c20Arr =[] , c30Arr = [];
+      const tslrArr = [],
+        addArr = [],
+        tickArr = [],
+        wardArr = [],
+        blockArr = [],
+        tsnoArr = [],
+        tsExtentArr = [],
+        oldArr = [],
+        c10Arr = [],
+        c20Arr = [],
+        c30Arr = [];
       data.tslrOptions.forEach((element, index) => {
         tslrArr.push("a");
         addArr.push(false);
@@ -32,17 +42,17 @@ const Tslr = ({ data ,updateCase }) => {
         c20Arr.push(element.colNo20);
         c30Arr.push(element.colNo30);
       });
-        setTslrArray(tslrArr);
-        setWard(wardArr);
-        setBlock(blockArr);
-        setTs(tsnoArr);
-        setTsExtent(tsExtentArr);
-        setOld(oldArr);
-        setC10(c10Arr);
-        setC20(c20Arr);
-        setC30(c30Arr);
-        setAdd(addArr);
-        setTick(tickArr);
+      setTslrArray(tslrArr);
+      setWard(wardArr);
+      setBlock(blockArr);
+      setTs(tsnoArr);
+      setTsExtent(tsExtentArr);
+      setOld(oldArr);
+      setC10(c10Arr);
+      setC20(c20Arr);
+      setC30(c30Arr);
+      setAdd(addArr);
+      setTick(tickArr);
     }
   }, []);
 
@@ -120,27 +130,26 @@ const Tslr = ({ data ,updateCase }) => {
     setTslrArray(tslrArray.filter((x, i) => i != index));
   };
 
-  function updateTslr(){
-    updateCase({"tslrOptions" : []});
+  function updateTslr() {
+    updateCase({ tslrOptions: [] });
     const newTslrOptions = [];
 
-    tick.forEach((val,index) => {
-      if(val){
+    tick.forEach((val, index) => {
+      if (val) {
         newTslrOptions.push({
-          "ward" :  ward[index] ,
-          "block" : block[index]  ,
-          "tsno" : ts[index] ,
-          "tsExtent" :  tsExtent[index] ,
-          "oldSurveyNo" :  old[index],
-          "colNo10" : c10[index] ,
-          "colNo20" :   c20[index]  ,
-          "colNo30" :   c30[index],
-        })
+          ward: ward[index],
+          block: block[index],
+          tsno: ts[index],
+          tsExtent: tsExtent[index],
+          oldSurveyNo: old[index],
+          colNo10: c10[index],
+          colNo20: c20[index],
+          colNo30: c30[index],
+        });
       }
-    })
-    updateCase({"tslrOptions" : newTslrOptions});
+    });
+    updateCase({ tslrOptions: newTslrOptions });
   }
-  ;
   // const listURL = "http://localhost:8000/api/list";
   // const data = { c20 };
   // const see = (e) => {
@@ -286,11 +295,12 @@ const Tslr = ({ data ,updateCase }) => {
               </tr>
             );
           })}
-  
         </table>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button" onClick={updateTslr()}>Save</div>
+        <div className="specific-button" onClick={updateTslr()}>
+          Save
+        </div>
       </div>
     </div>
   );

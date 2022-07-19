@@ -1,0 +1,82 @@
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
+import "./Report.css";
+const Report = () => {
+  const location = useLocation();
+  let report = location.state.report;
+  const [reportCase, setReportCase] = useState([
+    { court: "first", number: 1 },
+    { court: "second", number: 2 },
+  ]);
+  const handleClick = (e, index, value) => {
+    console.log(index);
+    console.log(value);
+  };
+  return (
+    <div>
+      <Navbar />
+      <div className="report-parent">
+        <div className="report-heading">{report}</div>
+        <div className="exist-table">
+          <table>
+            <tr>
+              <th colSpan={1}>Number Of Cases </th>
+              <td>
+                <div className="static">value</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div className="specific-button-container">
+          <div className="specific-button">View</div>
+        </div>
+        <div className="special-table">
+          <table>
+            <tr className="exist-left">
+              <th colSpan={10} className="exist-left">
+                Cases
+              </th>
+            </tr>
+            <tr>
+              <th colSpan={1}>S No.</th>
+              <th colSpan={1}>Court</th>
+              <th colSpan={1}>Case Type</th>
+              <th colSpan={1}>Case No.</th>
+              <th colSpan={1}>Case Year</th>
+              <th colSpan={1}>View</th>
+            </tr>
+            {reportCase.map(function (value, index) {
+              return (
+                <tr>
+                  <td>{index + 1}</td>
+                  <td colSpan={1}>
+                    <div className="static">{value.court}</div>
+                  </td>
+                  <td colSpan={1}>
+                    <div className="static">{value.number}</div>
+                  </td>
+                  <td colSpan={1}>
+                    <div className="static">value</div>
+                  </td>
+                  <td colSpan={1}>
+                    <div className="static">value</div>
+                  </td>
+                  <td
+                    colSpan={1}
+                    className="view"
+                    onClick={(e) => handleClick(e, index, value)}
+                  >
+                    <span class="material-symbols-outlined">visibility</span>
+                  </td>
+                </tr>
+              );
+            })}
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Report;
