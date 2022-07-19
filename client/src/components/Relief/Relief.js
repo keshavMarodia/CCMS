@@ -1,12 +1,11 @@
 import { useState } from "react";
-import "./Relief.css" ;
+import "./Relief.css";
 
-const Relief = ( {data , updateCase} ) => {
+const Relief = ({ data, updateCase }) => {
+  const [relief, setRelief] = useState(data?.relief || "");
 
-  const [relief, setRelief] = useState(data.relief || "");
-
-  function updateRelief(){
-    updateCase({"relief" : relief});
+  function updateRelief() {
+    updateCase({ relief: relief });
   }
 
   return (
@@ -26,7 +25,9 @@ const Relief = ( {data , updateCase} ) => {
         </div>
       </div>
       <div className="specific-button-container">
-        <div className="specific-button" onClick={updateRelief()}>Save</div>
+        <div className="specific-button" onClick={updateRelief()}>
+          Save
+        </div>
       </div>
     </div>
   );

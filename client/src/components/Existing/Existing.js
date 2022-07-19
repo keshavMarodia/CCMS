@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation ,useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Sub from "../Sub/Sub";
 import "./Existing.css";
@@ -9,17 +9,17 @@ const Existing = () => {
   const navigate = useNavigate();
   const sample = ["1", "1", "1"];
   const [subShow, setSubShow] = useState(true);
-  const [data, setData] = useState(location.state?.length > 0 ? location.state[0] : {});
-  
+  const [data, setData] = useState(
+    location.state?.length > 0 ? location.state[0] : {}
+  );
 
-  function handleEdit(){
-    
-    const params = { 
-      "court": data.court,
-      "caseType" : data.caseType,
-      "caseNo" : data.caseNo,
-      "caseYear" : data.caseYear
-  };
+  function handleEdit() {
+    const params = {
+      court: data.court,
+      caseType: data.caseType,
+      caseNo: data.caseNo,
+      caseYear: data.caseYear,
+    };
 
     navigate("/input", {
       state: params,
@@ -31,7 +31,9 @@ const Existing = () => {
       <Navbar />
       <div className="exist-parent">
         <div className="specific-button-container">
-          <div className="specific-button" onClick={() => handleEdit() }>Edit</div>
+          <div className="specific-button" onClick={() => handleEdit()}>
+            Edit
+          </div>
         </div>
         <div className="exist-table">
           <table>
@@ -58,10 +60,10 @@ const Existing = () => {
                 <div className="static">{data.filedBy}</div>
               </td>
               <td>
-                <div className="static">{data.landCase?"YES":"NO"}</div>
+                <div className="static">{data.landCase ? "YES" : "NO"}</div>
               </td>
               <td>
-                <div className="static">{data.impCase?"YES":"NO"}</div>
+                <div className="static">{data.impCase ? "YES" : "NO"}</div>
               </td>
               <td>
                 <div className="static">{data.icourt}</div>
@@ -86,43 +88,71 @@ const Existing = () => {
               <tr>
                 <td className="exist-left">Counter Filed</td>
                 <td className="exist-left">
-                  <div className="static">{data?.wstmtOptions[0]?.wscf?.length >0 ? data?.wstmtOptions[0]?.wscf : "" }</div>
+                  <div className="static">
+                    {data?.wstmtOptions[0]?.wscf?.length > 0
+                      ? data?.wstmtOptions[0]?.wscf
+                      : ""}
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-left">Pending At</td>
                 <td className="exist-left">
-                  <div className="static">{data?.wstmtOptions[0]?.pendingAt?.length >0 ? data?.wstmtOptions[0]?.pendingAt : "" }</div>
+                  <div className="static">
+                    {data?.wstmtOptions[0]?.pendingAt?.length > 0
+                      ? data?.wstmtOptions[0]?.pendingAt
+                      : ""}
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-left">Notice Recieved Date</td>
                 <td className="exist-left">
-                  <div className="static">{data?.wstmtOptions[0]?.noticeDate?.length >0 ? data?.wstmtOptions[0]?.noticeDate : "" }</div>
+                  <div className="static">
+                    {data?.wstmtOptions[0]?.noticeDate?.length > 0
+                      ? data?.wstmtOptions[0]?.noticeDate
+                      : ""}
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-left">Reason For Pending</td>
                 <td className="exist-left">
-                  <div className="static">{data?.wstmtOptions[0]?.reasonforPend?.length >0 ? data?.wstmtOptions[0]?.reasonforPend : "" }</div>
+                  <div className="static">
+                    {data?.wstmtOptions[0]?.reasonforPend?.length > 0
+                      ? data?.wstmtOptions[0]?.reasonforPend
+                      : ""}
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-left">Specify Other</td>
                 <td className="exist-left">
-                  <div className="static">{data?.wstmtOptions[0]?.specifyOthers?.length >0 ? data?.wstmtOptions[0]?.specifyOthers : "" }</div>
+                  <div className="static">
+                    {data?.wstmtOptions[0]?.specifyOthers?.length > 0
+                      ? data?.wstmtOptions[0]?.specifyOthers
+                      : ""}
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-left">Counter Affidavit Filed Date</td>
                 <td className="exist-left">
-                  <div className="static">{data?.wstmtOptions[0]?.coAffidavit?.length >0 ? data?.wstmtOptions[0]?.coAffidavit : "" }</div>
+                  <div className="static">
+                    {data?.wstmtOptions[0]?.coAffidavit?.length > 0
+                      ? data?.wstmtOptions[0]?.coAffidavit
+                      : ""}
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-left">Department Name</td>
                 <td className="exist-left">
-                  <div className="static">{data?.wstmtOptions[0]?.deptName?.length >0 ? data?.wstmtOptions[0]?.deptName : "" }</div>
+                  <div className="static">
+                    {data?.wstmtOptions[0]?.deptName?.length > 0
+                      ? data?.wstmtOptions[0]?.deptName
+                      : ""}
+                  </div>
                 </td>
               </tr>
             </table>
@@ -137,25 +167,33 @@ const Existing = () => {
               <tr>
                 <td className="exist-right">Mandal</td>
                 <td className="exist-right">
-                  <div className="static">{data?.mandal?.mandalName ? data.mandal.mandalName : ""}</div>
+                  <div className="static">
+                    {data?.mandal?.mandalName ? data.mandal.mandalName : ""}
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-right">Village</td>
                 <td className="exist-right">
-                  <div className="static">{data?.mandal?.village? data.mandal.village : ""}</div>
+                  <div className="static">
+                    {data?.mandal?.village ? data.mandal.village : ""}
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-right">Road</td>
                 <td className="exist-right">
-                  <div className="static">{data?.mandal?.road? data.mandal.road : ""}</div>
+                  <div className="static">
+                    {data?.mandal?.road ? data.mandal.road : ""}
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-right">Locality</td>
                 <td className="exist-right">
-                  <div className="static">{data?.mandal?.locality? data.mandal.locality : ""}</div>
+                  <div className="static">
+                    {data?.mandal?.locality ? data.mandal.locality : ""}
+                  </div>
                 </td>
               </tr>
             </table>
@@ -169,20 +207,41 @@ const Existing = () => {
               </tr>
               <tr>
                 <td className="exist-right">MRO File No.</td>
-                <td className="exist-right">
-                  <div className="static">{data?.fileNo?.MROfileNo && data?.fileNo?.MROfileNo.length >0 ? data?.fileNo?.MROfileNo : ["","",""]}</div>
+                <td className="exist-right file-no">
+                  <div className="static first-file">
+                    {data?.fileNo?.MROfileNo &&
+                    data?.fileNo?.MROfileNo.length > 0
+                      ? data?.fileNo?.MROfileNo
+                      : ["", "", ""]}
+                  </div>
+                  /<div className="static second-file">value</div>/
+                  <div className="static third-file">value</div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-right">DRO File No.</td>
-                <td className="exist-right">
-                  <div className="static">{data?.fileNo?.DROfileNo && data?.fileNo?.DROfileNo.length >0 ? data?.fileNo?.DROfileNo : ["","",""]}</div>
+                <td className="exist-right file-no ">
+                  <div className="static first-file">
+                    {data?.fileNo?.DROfileNo &&
+                    data?.fileNo?.DROfileNo.length > 0
+                      ? data?.fileNo?.DROfileNo
+                      : ["", "", ""]}
+                  </div>
+                  /<div className="static second-file">value</div>/
+                  <div className="static third-file">value</div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-right">Collectorate File No.</td>
-                <td className="exist-right">
-                  <div className="static">{data?.fileNo?.collectorateFileNo && data?.fileNo?.collectorateFileNo.length >0 ? data?.fileNo?.collectorateFileNo : ["","",""]}</div>
+                <td className="exist-right file-no ">
+                  <div className="static first-file">
+                    {data?.fileNo?.collectorateFileNo &&
+                    data?.fileNo?.collectorateFileNo.length > 0
+                      ? data?.fileNo?.collectorateFileNo
+                      : ["", "", ""]}
+                  </div>
+                  /<div className="static second-file">value</div>/
+                  <div className="static third-file">value</div>
                 </td>
               </tr>
             </table>
@@ -201,7 +260,9 @@ const Existing = () => {
                   <tr>
                     <td className="exist-left">{index + 1}</td>
                     <td className="exist-left">
-                      <div className="static">{data.petitioners[index] || ""}</div>
+                      <div className="static">
+                        {data.petitioners[index] || ""}
+                      </div>
                     </td>
                   </tr>
                 );
@@ -220,7 +281,9 @@ const Existing = () => {
                   <tr>
                     <td className="exist-left">{index + 1}</td>
                     <td className="exist-left">
-                      <div className="static">{data.respondents[index] || ""}</div>
+                      <div className="static">
+                        {data.respondents[index] || ""}
+                      </div>
                     </td>
                   </tr>
                 );
@@ -237,13 +300,21 @@ const Existing = () => {
               <tr>
                 <td className="exist-left">Status</td>
                 <td className="exist-left">
-                  <div className="static">{data?.landStatus?.length >0 ? data.landStatus[0].status : ""}</div>
+                  <div className="static">
+                    {data?.landStatus?.length > 0
+                      ? data.landStatus[0].status
+                      : ""}
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-left">Value</td>
                 <td className="exist-left">
-                  <div className="static">{data?.landStatus?.length >0 ? data.landStatus[0].value : ""}</div>
+                  <div className="static">
+                    {data?.landStatus?.length > 0
+                      ? data.landStatus[0].value
+                      : ""}
+                  </div>
                 </td>
               </tr>
               <tr>
@@ -264,19 +335,27 @@ const Existing = () => {
               <tr>
                 <td className="exist-left">Other Govt. Dept. Interested</td>
                 <td className="exist-left">
-                  <div className="static">{data?.otherDept[0]?.deptInterest? "Yes" :"No"}</div>
+                  <div className="static">
+                    {data?.otherDept[0]?.deptInterest ? "Yes" : "No"}
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-left">Department</td>
                 <td className="exist-left">
-                  <div className="static">{data?.otherDept?.length > 0 ? data.otherDept[0].dept : ""}</div>
+                  <div className="static">
+                    {data?.otherDept?.length > 0 ? data.otherDept[0].dept : ""}
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td className="exist-left">Category Of Land</td>
                 <td className="exist-left">
-                  <div className="static">{data?.otherDept?.length > 0 ? data.otherDept[0].category : ""}</div>
+                  <div className="static">
+                    {data?.otherDept?.length > 0
+                      ? data.otherDept[0].category
+                      : ""}
+                  </div>
                 </td>
               </tr>
             </table>
@@ -338,7 +417,7 @@ const Existing = () => {
               </tr>
               <tr>
                 <td className="exist-left">
-                  <div className="static">{data?.govtPleader  || ""}</div>
+                  <div className="static">{data?.govtPleader || ""}</div>
                 </td>
               </tr>
             </table>
@@ -368,28 +447,60 @@ const Existing = () => {
                   <tr>
                     <td>{index + 1}</td>
                     <td>
-                      <div className="static">{data?.tslrOptions[index]?.ward.length>0 ? data?.tslrOptions[index]?.ward : "" }</div>
+                      <div className="static">
+                        {data?.tslrOptions[index]?.ward.length > 0
+                          ? data?.tslrOptions[index]?.ward
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.tslrOptions[index]?.block.length>0 ? data?.tslrOptions[index]?.block : "" }</div>
+                      <div className="static">
+                        {data?.tslrOptions[index]?.block.length > 0
+                          ? data?.tslrOptions[index]?.block
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.tslrOptions[index]?.tsno.length>0 ? data?.tslrOptions[index]?.tsno : "" }</div>
+                      <div className="static">
+                        {data?.tslrOptions[index]?.tsno.length > 0
+                          ? data?.tslrOptions[index]?.tsno
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.tslrOptions[index]?.tsExtent.length>0 ? data?.tslrOptions[index]?.tsExtent : "" }</div>
+                      <div className="static">
+                        {data?.tslrOptions[index]?.tsExtent.length > 0
+                          ? data?.tslrOptions[index]?.tsExtent
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.tslrOptions[index]?.oldSurveyNo.length>0 ? data?.tslrOptions[index]?.oldSurveyNo : "" }</div>
+                      <div className="static">
+                        {data?.tslrOptions[index]?.oldSurveyNo.length > 0
+                          ? data?.tslrOptions[index]?.oldSurveyNo
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.tslrOptions[index]?.colNo10.length>0 ? data?.tslrOptions[index]?.colNo10 : "" }</div>
+                      <div className="static">
+                        {data?.tslrOptions[index]?.colNo10.length > 0
+                          ? data?.tslrOptions[index]?.colNo10
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.tslrOptions[index]?.colNo20.length>0 ? data?.tslrOptions[index]?.colNo20 : "" }</div>
+                      <div className="static">
+                        {data?.tslrOptions[index]?.colNo20.length > 0
+                          ? data?.tslrOptions[index]?.colNo20
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.tslrOptions[index]?.colNo30.length>0 ? data?.tslrOptions[index]?.colNo30 : "" }</div>
+                      <div className="static">
+                        {data?.tslrOptions[index]?.colNo30.length > 0
+                          ? data?.tslrOptions[index]?.colNo30
+                          : ""}
+                      </div>
                     </td>
                   </tr>
                 );
@@ -414,13 +525,25 @@ const Existing = () => {
                   <tr>
                     <td>{index + 1}</td>
                     <td>
-                      <div className="static">{data?.otherCase[index]?.caseType.length >0 ? data?.otherCase[index]?.caseType : "" }</div>
+                      <div className="static">
+                        {data?.otherCase[index]?.caseType.length > 0
+                          ? data?.otherCase[index]?.caseType
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.otherCase[index]?.caseNo.length >0 ? data?.otherCase[index]?.caseNo : "" }</div>
+                      <div className="static">
+                        {data?.otherCase[index]?.caseNo.length > 0
+                          ? data?.otherCase[index]?.caseNo
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.otherCase[index]?.caseYear.length >0 ? data?.otherCase[index]?.caseYear : "" }</div>
+                      <div className="static">
+                        {data?.otherCase[index]?.caseYear.length > 0
+                          ? data?.otherCase[index]?.caseYear
+                          : ""}
+                      </div>
                     </td>
                   </tr>
                 );
@@ -471,28 +594,60 @@ const Existing = () => {
                   <tr>
                     <td>{index + 1}</td>
                     <td>
-                      <div className="static">{data?.pahani[index]?.sethwar.length>0 ? data?.pahani[index]?.sethwar :"" }</div>
+                      <div className="static">
+                        {data?.pahani[index]?.sethwar.length > 0
+                          ? data?.pahani[index]?.sethwar
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.pahani[index]?.pahaniYear.length>0 ? data?.pahani[index]?.pahaniYear :"" }</div>
+                      <div className="static">
+                        {data?.pahani[index]?.pahaniYear.length > 0
+                          ? data?.pahani[index]?.pahaniYear
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.pahani[index]?.surveyNo1.length>0 ? data?.pahani[index]?.surveyNo1 :"" }</div>
+                      <div className="static">
+                        {data?.pahani[index]?.surveyNo1.length > 0
+                          ? data?.pahani[index]?.surveyNo1
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.pahani[index]?.village.length>0 ? data?.pahani[index]?.village :"" }</div>
+                      <div className="static">
+                        {data?.pahani[index]?.village.length > 0
+                          ? data?.pahani[index]?.village
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.pahani[index]?.extentA.length>0 ? data?.pahani[index]?.extentA :"" }</div>
+                      <div className="static">
+                        {data?.pahani[index]?.extentA.length > 0
+                          ? data?.pahani[index]?.extentA
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.pahani[index]?.extentGuntas.length>0 ? data?.pahani[index]?.extentGuntas :"" }</div>
+                      <div className="static">
+                        {data?.pahani[index]?.extentGuntas.length > 0
+                          ? data?.pahani[index]?.extentGuntas
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.pahani[index]?.pattedarName.length>0 ? data?.pahani[index]?.pattedarName :"" }</div>
+                      <div className="static">
+                        {data?.pahani[index]?.pattedarName.length > 0
+                          ? data?.pahani[index]?.pattedarName
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.pahani[index]?.enjoyerName.length>0 ? data?.pahani[index]?.enjoyerName :"" }</div>
+                      <div className="static">
+                        {data?.pahani[index]?.enjoyerName.length > 0
+                          ? data?.pahani[index]?.enjoyerName
+                          : ""}
+                      </div>
                     </td>
                   </tr>
                 );
@@ -516,10 +671,18 @@ const Existing = () => {
                   <tr>
                     <td>{index + 1}</td>
                     <td>
-                      <div className="static">{data?.postDetails[index]?.postDate.length >0 ? data?.postDetails[index]?.postDate : ""}</div>
+                      <div className="static">
+                        {data?.postDetails[index]?.postDate.length > 0
+                          ? data?.postDetails[index]?.postDate
+                          : ""}
+                      </div>
                     </td>
                     <td>
-                      <div className="static">{data?.postDetails[index]?.postReason.length >0 ? data?.postDetails[index]?.postReason : ""}</div>
+                      <div className="static">
+                        {data?.postDetails[index]?.postReason.length > 0
+                          ? data?.postDetails[index]?.postReason
+                          : ""}
+                      </div>
                     </td>
                   </tr>
                 );

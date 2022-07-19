@@ -1,31 +1,58 @@
 import { useState } from "react";
 import "./Wstmt.css";
 
-const Wstmt = ( { data ,updateCase } ) => {
-  const [wstmt, setWstmt] = useState(data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].wscf : "");
-  const [wstmtNo, setWstmtNo] = useState(data?.wstmtOptions[0]?.wscf === "NO" ? true :false);
-  const [wstmtYes, setWstmtYes] = useState(data?.wstmtOptions[0]?.wscf === "YES" ? true :false);
-  const [wstmtOther, setWstmtOther] = useState(data?.wstmtOptions[0]?.wscf === "OTHER DEPT. TO BE FILLED" ? true :false);
-  const [pending, setPending] = useState(data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].pendingAt : "");
-  const [reason, setReason] = useState(data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].reasonforPend : "");
-  const datesetter = new Date(data.wstmtOptions[0].noticeDate).toISOString().split('T')[0];
-  const [notice, setNotice] = useState(datesetter?.length > 0? datesetter:  "");
-  const [wstmtNoOther, setWstmtNoOther] = useState(data?.wstmtOptions[0]?.pendingAt === "OTHERS" ? true: false);
-  const [wstmtNoOtherReason, setWstmtNoOtherReason] = useState(data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].specifyOthers :"");
-  const [counter, setCounter] = useState(data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].coAffidavit  : "");
-  const [dept, setDept] = useState(data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].deptName :"");
+const Wstmt = ({ data, updateCase }) => {
+  const [wstmt, setWstmt] = useState(
+    data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].wscf : ""
+  );
+  const [wstmtNo, setWstmtNo] = useState(
+    data?.wstmtOptions[0]?.wscf === "NO" ? true : false
+  );
+  const [wstmtYes, setWstmtYes] = useState(
+    data?.wstmtOptions[0]?.wscf === "YES" ? true : false
+  );
+  const [wstmtOther, setWstmtOther] = useState(
+    data?.wstmtOptions[0]?.wscf === "OTHER DEPT. TO BE FILLED" ? true : false
+  );
+  const [pending, setPending] = useState(
+    data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].pendingAt : ""
+  );
+  const [reason, setReason] = useState(
+    data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].reasonforPend : ""
+  );
+  var datesetter;
+  if (data?.wstmtOptions[0]?.noticeDate?.length > 0) {
+    datesetter = new Date(data?.wstmtOptions[0]?.noticeDate)
+      .toISOString()
+      .split("T")[0];
+  } else {
+    datesetter = "";
+  }
+  const [notice, setNotice] = useState(datesetter);
+  const [wstmtNoOther, setWstmtNoOther] = useState(
+    data?.wstmtOptions[0]?.pendingAt === "OTHERS" ? true : false
+  );
+  const [wstmtNoOtherReason, setWstmtNoOtherReason] = useState(
+    data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].specifyOthers : ""
+  );
+  const [counter, setCounter] = useState(
+    data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].coAffidavit : ""
+  );
+  const [dept, setDept] = useState(
+    data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].deptName : ""
+  );
 
-  function updateWstmt(){
-    const wstmtvalues = { 
-      "wscf": wstmt,
-      "noticeDate" : notice,
-      "pendingAt" : pending,
-      "reasonforPend" : reason,
-      "coAffidavit" : counter,
-      "deptName" : dept,
-      "specifyOthers" : wstmtNoOtherReason
+  function updateWstmt() {
+    const wstmtvalues = {
+      wscf: wstmt,
+      noticeDate: notice,
+      pendingAt: pending,
+      reasonforPend: reason,
+      coAffidavit: counter,
+      deptName: dept,
+      specifyOthers: wstmtNoOtherReason,
     };
-    updateCase({"wstmtOptions" : [wstmtvalues]});
+    updateCase({ wstmtOptions: [wstmtvalues] });
   }
   return (
     <div className="wstmt-parent">
@@ -90,7 +117,9 @@ const Wstmt = ( { data ,updateCase } ) => {
             </ul>
           </div>
           <div className="specific-button-container">
-            <div className="specific-button" onClick={updateWstmt()}>Save</div>
+            <div className="specific-button" onClick={updateWstmt()}>
+              Save
+            </div>
           </div>
         </div>
         <div className="wstmt-result">
