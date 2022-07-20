@@ -52,9 +52,6 @@ const Report = () => {
             </tr>
           </table>
         </div>
-        <div className="specific-button-container">
-          <div className="specific-button">View</div>
-        </div>
         <div className="special-table">
           <table>
             <tr className="exist-left">
