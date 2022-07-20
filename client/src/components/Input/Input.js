@@ -21,7 +21,7 @@ import "./Input.css";
 
 const Input = () => {
   const location = useLocation();
- 
+
   const { court, caseType, caseNo, caseYear } = location.state;
   const params = {
     court: court,
@@ -161,8 +161,9 @@ const Input = () => {
     } else {
       setHallArray(["SELECT JUDGE DESIGNATION"]);
     }
+    console.log(hallArray);
   }, [judge]);
-  
+
   async function setAttribute(value, type) {
     switch (type) {
       case "filedBy":
@@ -482,9 +483,9 @@ const Input = () => {
           <div className="specific-parent">
             {specific[0] && <Wstmt data={data} updateCase={updateCase} />}
             {specific[1] && <Relief data={data} updateCase={updateCase} />}
-            {specific[2] && <Petitioner data={data} updateCase={updateCase}/>}
-            {specific[3] && <Respondent data={data} updateCase={updateCase}/>}
-            {specific[4] && <Property data={data} updateCase={updateCase}/>}
+            {specific[2] && <Petitioner data={data} updateCase={updateCase} />}
+            {specific[3] && <Respondent data={data} updateCase={updateCase} />}
+            {specific[4] && <Property data={data} updateCase={updateCase} />}
             {specific[5] && <Tslr data={data} updateCase={updateCase} />}
             {specific[6] && <Extent data={data} updateCase={updateCase} />}
             {specific[7] && <Mandal data={data} updateCase={updateCase} />}
@@ -492,10 +493,10 @@ const Input = () => {
             {specific[9] && <Status data={data} updateCase={updateCase} />}
             {specific[10] && <Govt data={data} updateCase={updateCase} />}
             {specific[11] && <File data={data} updateCase={updateCase} />}
-            {specific[12] && <Case data={data} updateCase={updateCase}/>}
+            {specific[12] && <Case data={data} updateCase={updateCase} />}
             {specific[13] && <Posting data={data} updateCase={updateCase} />}
-            {specific[14] && <Pleader data={data} updateCase={updateCase}/>}
-            {specific[15] && <MainCase data={data} updateCase={updateCase}/>}
+            {specific[14] && <Pleader data={data} updateCase={updateCase} />}
+            {specific[15] && <MainCase data={data} updateCase={updateCase} />}
           </div>
         </form>
       </div>

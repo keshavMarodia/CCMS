@@ -35,26 +35,34 @@ const Wstmt = ({ data, updateCase }) => {
   const [wstmtNoOtherReason, setWstmtNoOtherReason] = useState(
     data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].specifyOthers : ""
   );
+  var datesetteraff;
+  if (data?.wstmtOptions[0]?.coAffidavit) {
+    datesetteraff = new Date(data?.wstmtOptions[0]?.coAffidavit)
+      .toISOString()
+      .split("T")[0];
+  } else {
+    datesetteraff = "";
+  }
   const [counter, setCounter] = useState(
-    data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].coAffidavit : ""
+    data?.wstmtOptions?.length > 0 ? datesetteraff : ""
   );
   const [dept, setDept] = useState(
     data?.wstmtOptions?.length > 0 ? data.wstmtOptions[0].deptName : ""
   );
 
   function updateWstmt(isTrue) {
-    if(isTrue){
-    const wstmtvalues = {
-      wscf: wstmt,
-      noticeDate: notice,
-      pendingAt: pending,
-      reasonforPend: reason,
-      coAffidavit: counter,
-      deptName: dept,
-      specifyOthers: wstmtNoOtherReason,
-    };
-    updateCase({ wstmtOptions: [wstmtvalues] });
-  }
+    if (isTrue) {
+      const wstmtvalues = {
+        wscf: wstmt,
+        noticeDate: notice,
+        pendingAt: pending,
+        reasonforPend: reason,
+        coAffidavit: counter,
+        deptName: dept,
+        specifyOthers: wstmtNoOtherReason,
+      };
+      updateCase({ wstmtOptions: [wstmtvalues] });
+    }
   }
   return (
     <div className="wstmt-parent">

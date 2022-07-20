@@ -3,17 +3,32 @@ import Interim from "../Interim/Interim";
 import Sub from "../Sub/Sub";
 import "./MainCase.css";
 
-const MainCase = ({ data ,updateCase }) => {
-
-  const [mainCaseStatus, setMainCaseStatus] = useState(data?.mainCaseStatus?.length > 0 ? data.mainCaseStatus[0].mainStatus : "");
-  const [mainPending, setMainPending] = useState(data?.mainCaseStatus[0]?.mainStatus === "PENDING" ? true : false);
+const MainCase = ({ data, updateCase }) => {
+  const [mainCaseStatus, setMainCaseStatus] = useState(
+    data?.mainCaseStatus?.length > 0 ? data.mainCaseStatus[0].mainStatus : ""
+  );
+  const [mainPending, setMainPending] = useState(
+    data?.mainCaseStatus[0]?.mainStatus === "PENDING" ? true : false
+  );
   const [favour, setFavour] = useState(false);
   const [against, setAgainst] = useState(false);
-  const [direction, setDirection] = useState(data?.mainCaseStatus[0]?.mainStatus === "DISPOSED WITH CERTAIN DIRECTIONS" ? true : false);
-  const [dismissed, setDismissed] = useState(data?.mainCaseStatus[0]?.mainStatus === "DISMISSED" ? true : false);
-  const [pendInterim, setPendInterim] = useState(data?.mainCaseStatus[0]?.pending==="INTERIM ORDERS"? true :false);
-  const [pendWpmp, setPendWpmp] = useState(data?.mainCaseStatus[0]?.pending==="WPMP FILED" ?true :false);
-  const [pendCc, setPendCc] = useState(data?.mainCaseStatus[0]?.pending==="CC FILED" ?true :false);
+  const [direction, setDirection] = useState(
+    data?.mainCaseStatus[0]?.mainStatus === "DISPOSED WITH CERTAIN DIRECTIONS"
+      ? true
+      : false
+  );
+  const [dismissed, setDismissed] = useState(
+    data?.mainCaseStatus[0]?.mainStatus === "DISMISSED" ? true : false
+  );
+  const [pendInterim, setPendInterim] = useState(
+    data?.mainCaseStatus[0]?.pending === "INTERIM ORDERS" ? true : false
+  );
+  const [pendWpmp, setPendWpmp] = useState(
+    data?.mainCaseStatus[0]?.pending === "WPMP FILED" ? true : false
+  );
+  const [pendCc, setPendCc] = useState(
+    data?.mainCaseStatus[0]?.pending === "CC FILED" ? true : false
+  );
   const [againstInterim, setAgainstInterim] = useState(false);
   const [againstWpmp, setAgainstWpmp] = useState(false);
   const [againstCc, setAgainstCc] = useState(false);
@@ -31,34 +46,43 @@ const MainCase = ({ data ,updateCase }) => {
     "POSSESSION TAKEN BUT CASE IS PENDING",
     "FILED NEW FRESH CASE",
   ]);
-  const [pendingYes, setPendingYes] = useState(data?.mainCaseStatus[0]?.pending ? data.mainCaseStatus[0].pending : "");
+  const [pendingYes, setPendingYes] = useState(
+    data?.mainCaseStatus[0]?.pending ? data.mainCaseStatus[0].pending : ""
+  );
   const [favourYes, setFavourYes] = useState("");
   const [caveat, setCaveat] = useState("");
   const [appeal, setAppeal] = useState("");
   const [againstYes, setAgainstYes] = useState("");
-  const [dismissedYes, setDismissedYes] = useState(data?.mainCaseStatus[0]?.dismissedYes ? data.mainCaseStatus[0].dismissedYes : "");
-  const [directionYes, setDirectionYes] = useState(data?.mainCaseStatus[0]?.directionYes ? data.mainCaseStatus[0].directionYes : "");
+  const [dismissedYes, setDismissedYes] = useState(
+    data?.mainCaseStatus[0]?.dismissedYes
+      ? data.mainCaseStatus[0].dismissedYes
+      : ""
+  );
+  const [directionYes, setDirectionYes] = useState(
+    data?.mainCaseStatus[0]?.directionYes
+      ? data.mainCaseStatus[0].directionYes
+      : ""
+  );
 
-async function updateMainCase(caseDetails) {
-  
-  if(caseDetails==="a"){
-    const mainCasevalues= {
-    "mainStatus": mainCaseStatus,
-    "dismissedYes" : dismissedYes,
-    "directionYes" : directionYes,
-    };
-    updateCase({ "mainCaseStatus" : mainCasevalues });
+  async function updateMainCase(caseDetails) {
+    if (caseDetails === "a") {
+      const mainCasevalues = {
+        mainStatus: mainCaseStatus,
+        dismissedYes: dismissedYes,
+        directionYes: directionYes,
+      };
+      updateCase({ mainCaseStatus: mainCasevalues });
+    }
+    // fdsgsdf
+    else if (caseDetails) {
+      const mainCasevalues = {
+        mainStatus: mainCaseStatus,
+        pending: pendingYes,
+        ...caseDetails,
+      };
+      updateCase({ mainCaseStatus: mainCasevalues });
+    }
   }
-  else if(caseDetails){
-  const mainCasevalues = {
-    "mainStatus": mainCaseStatus,
-    "pending": pendingYes,
-    
-    ...caseDetails,
-  };
-  updateCase({ "mainCaseStatus" : mainCasevalues });
-  }
-}
 
   return (
     <div className="main-case-parent">
@@ -219,9 +243,11 @@ async function updateMainCase(caseDetails) {
               </ul>
             </div>
           </div>
-          {pendInterim && <Interim interimdata={data} updateMainCase={updateMainCase}/>}
-          {pendWpmp && <Sub data={data} updateMainCase={updateMainCase}/>}
-          {pendCc && <Sub data={data} updateMainCase={updateMainCase}/>}
+          {pendInterim && (
+            <Interim interimdata={data} updateMainCase={updateMainCase} />
+          )}
+          {pendWpmp && <Sub data={data} updateMainCase={updateMainCase} />}
+          {pendCc && <Sub data={data} updateMainCase={updateMainCase} />}
         </div>
       )}
       {favour && (
@@ -394,7 +420,12 @@ async function updateMainCase(caseDetails) {
             </div>
           </div>
           <div className="specific-button-container">
-            <div className="specific-button" onClick={() => updateMainCase("a")} >Save</div>
+            <div
+              className="specific-button"
+              onClick={() => updateMainCase("a")}
+            >
+              Save
+            </div>
           </div>
         </div>
       )}
@@ -433,9 +464,12 @@ async function updateMainCase(caseDetails) {
             </div>
           </div>
           <div className="specific-button-container">
-            <div className="specific-button" onClick={() => updateMainCase("a")}>
+            <div
+              className="specific-button"
+              onClick={() => updateMainCase("a")}
+            >
               Save
-              </div>
+            </div>
           </div>
         </div>
       )}
