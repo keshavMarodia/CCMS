@@ -67,17 +67,17 @@ const MainCase = ({ data, updateCase }) => {
   async function updateMainCase(caseDetails) {
     if (caseDetails === "a") {
       const mainCasevalues = {
-        mainStatus: mainCaseStatus,
-        dismissedYes: dismissedYes,
-        directionYes: directionYes,
+        "mainStatus": mainCaseStatus,
+        "dismissedYes": dismissedYes,
+        "directionYes": directionYes,
       };
       updateCase({ mainCaseStatus: mainCasevalues });
     }
     // fdsgsdf
     else if (caseDetails) {
       const mainCasevalues = {
-        mainStatus: mainCaseStatus,
-        pending: pendingYes,
+        "mainStatus": mainCaseStatus,
+        "pending": pendingYes,
         ...caseDetails,
       };
       updateCase({ mainCaseStatus: mainCasevalues });

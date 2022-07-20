@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
-const Login = () => {
+const Login = (props) => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -58,6 +58,7 @@ const Login = () => {
           setIncorrect(true);
         } else if (status == "match") {
           localStorage.setItem("username", username);
+          props.handleAuth(true);
           navigate("/home");
         } else {
           console.log("Unknown response");
@@ -76,6 +77,7 @@ const Login = () => {
         console.log(response);
         if (response.data.status == "UpdateSuccess") {
           localStorage.setItem("username", username);
+          props.handleAuth(true);
           navigate("/home");
         } else {
           setError(true);
