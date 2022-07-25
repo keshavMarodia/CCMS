@@ -63,7 +63,7 @@ const Sub = ({ data, updateMainCase }) => {
   const [subCaseDate, setSubCaseDate] = useState([]);
   const [subCaseFile, setSubCaseFile] = useState([]); //docfile
   const [statusDrop, setStatusDrop] = useState([]);
-  const [statusDate, setStatusDate] = useState([]);
+  const [statusDate, setStatusDate] = useState([]);//statdate
   const [statusGist, setStatusGist] = useState([]);
   const [statusFile, setStatusFile] = useState([]); //docfile
   const [statusCe, setStatusCe] = useState([]);
@@ -82,7 +82,7 @@ const Sub = ({ data, updateMainCase }) => {
   // }, [postArray]);
 
   useEffect(() => {
-    if (data?.mainCaseStatus?.length > 0) {
+    if (data?.mainCaseStatus?.subCase.length > 0) {
       setEntry(false);
       const subcaseArr = [],
         addArr = [],
@@ -102,7 +102,7 @@ const Sub = ({ data, updateMainCase }) => {
         subPrayerArr = [],
         subLandArr = [],
         nextHearingArr = [];
-      data.mainCaseStatus.forEach((element, index) => {
+      data.mainCaseStatus.subCase.forEach((element, index) => {
         subcaseArr.push("a");
         addArr.push(false);
         tickArr.push(true);
@@ -110,9 +110,25 @@ const Sub = ({ data, updateMainCase }) => {
         subcasenoArr.push(element.subcaseno);
         subcaseyearArr.push(element.subcaseyear);
         subfilebyArr.push(element.filedby);
-        subDateArr.push(element.subCaseDate);
+        var subcasedate;
+        if(element.subCaseDate){
+          subcasedate =new Date(element.subCaseDate)
+          .toISOString()
+          .split("T")[0];
+        }else{
+          subcasedate="";
+        }
+        subDateArr.push(subcasedate);
         statDropArr.push(element.statDrop);
-        statDateArr.push(element.statDate);
+        var statdate;
+        if(element.statDate){
+          statdate =new Date(element.statDate)
+          .toISOString()
+          .split("T")[0];
+        }else{
+          statdate="";
+        }
+        statDateArr.push(statdate);
         statGistArr.push(element.statGist);
         statFileArr.push(element.statFile);
         statCeArr.push(element.statCe);
@@ -120,7 +136,15 @@ const Sub = ({ data, updateMainCase }) => {
         subResArr.push(element.subRes);
         subPrayerArr.push(element.subPrayer);
         subLandArr.push(element.subLand);
-        nextHearingArr.push(element.nextHearing);
+        var nexthearingdate;
+        if(element.nextHearing){
+          nexthearingdate =new Date(element.nextHearing)
+          .toISOString()
+          .split("T")[0];
+        }else{
+          nexthearingdate="";
+        }
+        nextHearingArr.push(nexthearingdate);
       });
       setSubArray(subcaseArr);
       setSubCase1(subcasetypeArr);
@@ -271,21 +295,21 @@ const Sub = ({ data, updateMainCase }) => {
       tick.forEach((val, index) => {
         if (val) {
           newsubcaseoptions.push({
-            subcasetype: subCase1[index],
-            subcaseno: subCase2[index],
-            subcaseyear: subCase3[index],
-            filedby: subFile[index],
-            subCaseDate: subCaseDate[index],
-            statDrop: statusDrop[index],
-            statDate: statusDate[index],
-            statGist: statusGist[index],
-            statFile: statusFile[index],
-            statCe: statusCe[index],
-            subPet: subPet[index],
-            subRes: subRes[index],
-            subPrayer: subPrayer[index],
-            subLand: subLand[index],
-            nextHearing: subDate[index],
+            "subcasetype": subCase1[index],
+            "subcaseno": subCase2[index],
+            "subcaseyear": subCase3[index],
+            "filedby": subFile[index],
+            "subCaseDate": subCaseDate[index],
+            "statDrop": statusDrop[index],
+            "statDate": statusDate[index],
+            "statGist": statusGist[index],
+            "statFile": statusFile[index],
+            "statCe": statusCe[index],
+            "subPet": subPet[index],
+            "subRes": subRes[index],
+            "subPrayer": subPrayer[index],
+            "subLand": subLand[index],
+            "nextHearing": subDate[index],
           });
         }
       });

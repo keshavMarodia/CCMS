@@ -13,6 +13,36 @@ const Report = () => {
       impCase : true,
     }
   }
+  else if(report === "DISPOSED IN FAVOUR OF GOVT." ){
+    params={
+      "mainCaseStatus.mainStatus" : "DISPOSED IN FAVOUR OF GOVT.",
+    }
+    }
+  else if(report === "DISPOSED AGAINST GOVT." ){
+      params={
+        "mainCaseStatus.mainStatus"  : "DISPOSED AGAINST GOVT.",
+      }
+    }
+  else if(report === "DISPOSED WITH CERTAIN DIRECTIONS" ){
+      params={
+        "mainCaseStatus.mainStatus"  : "DISPOSED WITH CERTAIN DIRECTIONS",
+      }
+    }
+  else if(report === "DISMISSED" ){
+      params={
+        "mainCaseStatus.mainStatus" : "DISMISSED",
+      }
+    }
+  else if(report === "LAND CASE" ){
+      params={
+        landCase :true,
+      }
+    }
+  else if(report === "RELATED TO WAKF BOARD" ){
+      params={
+        icourt : "WKAF-TRIBUNAL-CCC-HYD",
+      }
+    }
 
   const [reportCase, setReportCase] = useState([]);
 
@@ -29,9 +59,13 @@ const Report = () => {
       );
       const result = await resp.json();
       console.log(result);
-      if( result.length > 0){
-          setReportCase(result); 
-      }
+      setReportCase(result);
+      // if( result.length > 0){
+      //     setReportCase(result); 
+      // }
+      // else{
+      //   setReportCase(result);
+      // }
     }
     fetchData();
    }, [report]);

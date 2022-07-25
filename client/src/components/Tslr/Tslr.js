@@ -16,7 +16,7 @@ const Tslr = ({ data, updateCase }) => {
   const [entry, setEntry] = useState(false);
 
   useEffect(() => {
-    if (data.tslrOptions.length > 0) {
+    if (data?.tslrOptions?.length > 0) {
       setEntry(false);
       const tslrArr = [],
         addArr = [],
@@ -29,7 +29,7 @@ const Tslr = ({ data, updateCase }) => {
         c10Arr = [],
         c20Arr = [],
         c30Arr = [];
-      data.tslrOptions.forEach((element, index) => {
+      data?.tslrOptions?.forEach((element, index) => {
         tslrArr.push("a");
         addArr.push(false);
         tickArr.push(true);

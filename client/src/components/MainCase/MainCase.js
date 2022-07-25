@@ -5,33 +5,37 @@ import "./MainCase.css";
 
 const MainCase = ({ data, updateCase }) => {
   const [mainCaseStatus, setMainCaseStatus] = useState(
-    data?.mainCaseStatus?.length > 0 ? data.mainCaseStatus[0].mainStatus : ""
+    data?.mainCaseStatus ? data.mainCaseStatus.mainStatus : ""
   );
   const [mainPending, setMainPending] = useState(
-    data?.mainCaseStatus[0]?.mainStatus === "PENDING" ? true : false
+    data?.mainCaseStatus?.mainStatus === "PENDING" ? true : false
   );
-  const [favour, setFavour] = useState(false);
-  const [against, setAgainst] = useState(false);
+  const [favour, setFavour] = useState(data?.mainCaseStatus?.mainStatus === "DISPOSED IN FAVOUR OF GOVT."
+  ? true
+  : false);
+  const [against, setAgainst] = useState(data?.mainCaseStatus?.mainStatus === "DISPOSED AGAINST GOVT."
+  ? true
+  : false);
   const [direction, setDirection] = useState(
-    data?.mainCaseStatus[0]?.mainStatus === "DISPOSED WITH CERTAIN DIRECTIONS"
+    data?.mainCaseStatus?.mainStatus === "DISPOSED WITH CERTAIN DIRECTIONS"
       ? true
       : false
   );
   const [dismissed, setDismissed] = useState(
-    data?.mainCaseStatus[0]?.mainStatus === "DISMISSED" ? true : false
+    data?.mainCaseStatus?.mainStatus === "DISMISSED" ? true : false
   );
   const [pendInterim, setPendInterim] = useState(
-    data?.mainCaseStatus[0]?.pending === "INTERIM ORDERS" ? true : false
+    data?.mainCaseStatus?.pending === "INTERIM ORDERS" ? true : false
   );
   const [pendWpmp, setPendWpmp] = useState(
-    data?.mainCaseStatus[0]?.pending === "WPMP FILED" ? true : false
+    data?.mainCaseStatus?.pending === "WPMP FILED" ? true : false
   );
   const [pendCc, setPendCc] = useState(
-    data?.mainCaseStatus[0]?.pending === "CC FILED" ? true : false
+    data?.mainCaseStatus?.pending === "CC FILED" ? true : false
   );
-  const [againstInterim, setAgainstInterim] = useState(false);
-  const [againstWpmp, setAgainstWpmp] = useState(false);
-  const [againstCc, setAgainstCc] = useState(false);
+  const [againstInterim, setAgainstInterim] = useState( data?.mainCaseStatus?.againstGovt === "INTERIM ORDERS" ? true : false);
+  const [againstWpmp, setAgainstWpmp] = useState(data?.mainCaseStatus?.againstGovt === "WPMP FILED" ? true : false);
+  const [againstCc, setAgainstCc] = useState(data?.mainCaseStatus?.againstGovt === "CC FILED" ? true : false);
   const [dismissedArray, setDismissedArray] = useState([
     "DISMISSED FOR NON PROSCUTION BY GOVT",
     "DISMISSED FOR NON PROSCUTION BY PVT. GOVT",
@@ -47,25 +51,25 @@ const MainCase = ({ data, updateCase }) => {
     "FILED NEW FRESH CASE",
   ]);
   const [pendingYes, setPendingYes] = useState(
-    data?.mainCaseStatus[0]?.pending ? data.mainCaseStatus[0].pending : ""
+    data?.mainCaseStatus?.pending ? data.mainCaseStatus.pending : ""
   );
-  const [favourYes, setFavourYes] = useState("");
-  const [caveat, setCaveat] = useState("");
-  const [appeal, setAppeal] = useState("");
-  const [againstYes, setAgainstYes] = useState("");
+  const [favourYes, setFavourYes] = useState(data?.mainCaseStatus?.remarks ? data.mainCaseStatus.remarks : "");
+  const [caveat, setCaveat] = useState(data?.mainCaseStatus?.caveatPetition ? data.mainCaseStatus.caveatPetition : "");
+  const [appeal, setAppeal] = useState(data?.mainCaseStatus?.appeal ? data.mainCaseStatus.appeal : "");
+  const [againstYes, setAgainstYes] = useState(data?.mainCaseStatus?.againstGovt ? data.mainCaseStatus.againstGovt : "");
   const [dismissedYes, setDismissedYes] = useState(
-    data?.mainCaseStatus[0]?.dismissedYes
-      ? data.mainCaseStatus[0].dismissedYes
+    data?.mainCaseStatus?.dismissedYes
+      ? data.mainCaseStatus.dismissedYes
       : ""
   );
   const [directionYes, setDirectionYes] = useState(
-    data?.mainCaseStatus[0]?.directionYes
-      ? data.mainCaseStatus[0].directionYes
+    data?.mainCaseStatus?.directionYes
+      ? data.mainCaseStatus.directionYes
       : ""
   );
 
   async function updateMainCase(caseDetails) {
-    if (caseDetails === "a") {
+    if (caseDetails === "dismiss/direction") {
       const mainCasevalues = {
         "mainStatus": mainCaseStatus,
         "dismissedYes": dismissedYes,
@@ -73,12 +77,27 @@ const MainCase = ({ data, updateCase }) => {
       };
       updateCase({ mainCaseStatus: mainCasevalues });
     }
-    // fdsgsdf
+    else if (caseDetails.type === "INTERIM") {
+      const mainCasevalues = {
+        "mainStatus": mainCaseStatus,
+        "pending": pendingYes,
+        "caveatPetition" : caveat,
+        "appeal" :appeal,
+        "remarks" :favourYes,
+        "againstGovt": againstYes,
+        ...caseDetails.interim,
+      };
+      updateCase({ mainCaseStatus: mainCasevalues });
+    }
     else if (caseDetails) {
       const mainCasevalues = {
         "mainStatus": mainCaseStatus,
         "pending": pendingYes,
-        ...caseDetails,
+        "caveatPetition" : caveat,
+        "appeal" :appeal,
+        "remarks" :favourYes,
+        "againstGovt": againstYes,
+        "subCase" : caseDetails,
       };
       updateCase({ mainCaseStatus: mainCasevalues });
     }
@@ -330,7 +349,7 @@ const MainCase = ({ data, updateCase }) => {
               />
             </div>
           </div>
-          <Sub />
+          <Sub data={data} updateMainCase={updateMainCase}/>
         </div>
       )}
       {against && (
@@ -394,9 +413,9 @@ const MainCase = ({ data, updateCase }) => {
               </ul>
             </div>
           </div>
-          {againstInterim && <Interim />}
-          {againstWpmp && <Sub />}
-          {againstCc && <Sub />}
+          {againstInterim && <Interim  interimdata={data} updateMainCase={updateMainCase}/>}
+          {againstWpmp && <Sub data={data} updateMainCase={updateMainCase}/>}
+          {againstCc && <Sub data={data} updateMainCase={updateMainCase} />}
         </div>
       )}
       {direction && (
@@ -422,7 +441,7 @@ const MainCase = ({ data, updateCase }) => {
           <div className="specific-button-container">
             <div
               className="specific-button"
-              onClick={() => updateMainCase("a")}
+              onClick={() => updateMainCase("dismiss/direction")}
             >
               Save
             </div>
@@ -466,7 +485,7 @@ const MainCase = ({ data, updateCase }) => {
           <div className="specific-button-container">
             <div
               className="specific-button"
-              onClick={() => updateMainCase("a")}
+              onClick={() => updateMainCase("dismiss/direction")}
             >
               Save
             </div>

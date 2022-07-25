@@ -27,10 +27,10 @@ const Posting = ({ data , updateCase }) => {
   const [entry, setEntry] = useState(false);
 
     useEffect(() => {
-      if(data.postDetails.length >0 ){
+      if(data?.postDetails?.length >0 ){
       setEntry(false);
       const postArr =[],addArr =[] , tickArr =[] , dateArr =[] , reasonArr =[];
-      data.postDetails.forEach((element, index) => {
+      data?.postDetails?.forEach((element, index) => {
         postArr.push("a");
         addArr.push(false);
         tickArr.push(true);

@@ -5,26 +5,26 @@ const Interim = ({ interimdata , updateMainCase}) => {
   console.log(interimdata);
   var intdate;
   var forcedate;
-  if(interimdata?.mainCaseStatus[0]?.intOrderDate){
-    intdate =new Date(interimdata?.mainCaseStatus[0]?.intOrderDate)
+  if(interimdata?.mainCaseStatus?.intOrderDate){
+    intdate =new Date(interimdata?.mainCaseStatus?.intOrderDate)
     .toISOString()
     .split("T")[0];
   }else{
     intdate="";
   }
-  if(interimdata?.mainCaseStatus[0]?.intOrderForce){
-    forcedate =new Date(interimdata?.mainCaseStatus[0]?.intOrderForce)
+  if(interimdata?.mainCaseStatus?.intOrderForce){
+    forcedate =new Date(interimdata?.mainCaseStatus?.intOrderForce)
     .toISOString()
     .split("T")[0];
   }else{
     forcedate="";
   }
   const [interimDate, setInterimDate] = useState(intdate);
-  const [interimType, setInterimType] = useState(interimdata?.mainCaseStatus[0]?.intType ? interimdata.mainCaseStatus[0].intType : "");
+  const [interimType, setInterimType] = useState(interimdata?.mainCaseStatus?.intType ? interimdata.mainCaseStatus.intType : "");
   const [force, setForce] = useState(forcedate);
   const [interimFile, setinterimFile] = useState("");
-  const [interimOther, setInterimOther] = useState(interimdata?.mainCaseStatus[0]?.specifyOther ? interimdata.mainCaseStatus[0].specifyOther : "");
-  const [specify, setSpecify] = useState(interimdata?.mainCaseStatus[0]?.intType==="OTHERS" ? true: false);
+  const [interimOther, setInterimOther] = useState(interimdata?.mainCaseStatus?.specifyOther ? interimdata.mainCaseStatus.specifyOther : "");
+  const [specify, setSpecify] = useState(interimdata?.mainCaseStatus?.intType==="OTHERS" ? true: false);
 
   function updateInterim(istrue){
     if(istrue){
@@ -35,7 +35,7 @@ const Interim = ({ interimdata , updateMainCase}) => {
       "specifyOther":interimOther,
     };
 
-    updateMainCase(interimvalues);
+    updateMainCase({"type" : "INTERIM" , "interim" : interimvalues});
     
   }
 }

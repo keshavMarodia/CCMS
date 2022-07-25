@@ -91,7 +91,7 @@ const caseSchema = new mongoose.Schema ({
       type: String
     },
     mainCaseStatus : {
-      type : [mainCaseSchema]
+      type : mainCaseSchema
     }
 });
   

@@ -28,10 +28,10 @@ const Pahani = ({ data ,updateCase }) => {
   // }, [pahArray]);
 
   useEffect(() => {
-    if(data.pahani.length>0){
+    if(data?.pahani?.length > 0){
       setEntry(false);
       const pahaniArr =[] , addArr =[] , tickArr =[] , sethwarArr =[]  , yearArr =[] , survey1Arr =[] , survey2Arr =[] ,survey3Arr =[] ,villageArr =[] , extentArr =[] , guntasArr =[] , pattedarArr =[] , enjoyerArr = [];
-      data.pahani.forEach((element, index) => {
+      data?.pahani?.forEach((element, index) => {
         pahaniArr.push("a");
         addArr.push(false);
         tickArr.push(true);

@@ -28,10 +28,10 @@ const Case = ({ data ,updateCase }) => {
   // }, [caseArray]);
 
   useEffect(() => {
-    if(data.otherCase.length>0){
+    if(data?.otherCase?.length>0){
       setEntry(false);
       const caseArr =[],addArr =[] , tickArr =[] , caseNoArr =[] , caseTypeArr =[] , caseYearArr = [];
-      data.otherCase.forEach((element, index) => {
+      data?.otherCase?.forEach((element, index) => {
         caseArr.push("a");
         addArr.push(false);
         tickArr.push(true);
