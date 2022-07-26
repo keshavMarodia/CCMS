@@ -18,6 +18,7 @@ const Existing = () => {
   const [otherDeptList, setotherDeptList] = useState(data?.otherCase || []);
   const [pahaniList, setpahaniList] = useState(data?.pahani || []);
   const [postDetailsList, setpostDetailsList] = useState(data?.postDetails || []);
+  const [subCaseList, setSubCaseList] = useState(data?.mainCaseStatus?.subCase || []);
   var landDate;
   if (data?.landStatus[0]?.valuedAtDate) {
     landDate = new Date(data.landStatus[0].valuedAtDate)
@@ -41,6 +42,22 @@ const Existing = () => {
       .split("T")[0];
   } else {
     wstmtcoAffDate = "";
+  }
+  var intdate;
+  var forcedate;
+  if(data?.mainCaseStatus?.intOrderDate){
+    intdate =new Date(data?.mainCaseStatus?.intOrderDate)
+    .toISOString()
+    .split("T")[0];
+  }else{
+    intdate="";
+  }
+  if(data?.mainCaseStatus?.intOrderForce){
+    forcedate =new Date(data?.mainCaseStatus?.intOrderForce)
+    .toISOString()
+    .split("T")[0];
+  }else{
+    forcedate="";
   }
   
   function handleEdit(isTrue) {
@@ -752,31 +769,31 @@ const Existing = () => {
             <tr>
               <td className="exist-left">Main Case Status</td>
               <td className="exist-left">
-                <div className="static">value</div>
+                <div className="static">{data?.mainCaseStatus ? data.mainCaseStatus.mainStatus : ""}</div>
               </td>
             </tr>
             <tr>
               <td className="exist-left">Pending</td>
               <td className="exist-left">
-                <div className="static">value</div>
+                <div className="static">{data?.mainCaseStatus?.pending ? data.mainCaseStatus.pending : ""}</div>
               </td>
             </tr>
             <tr>
               <td className="exist-left">Interim Order Date</td>
               <td className="exist-left">
-                <div className="static">value</div>
+                <div className="static">{intdate}</div>
               </td>
             </tr>
             <tr>
               <td className="exist-left">Interim Orders In Force/Expire</td>
               <td className="exist-left">
-                <div className="static">value</div>
+                <div className="static">{forcedate}</div>
               </td>
             </tr>
             <tr>
               <td className="exist-left">Interim Type</td>
               <td className="exist-left">
-                <div className="static">value</div>
+                <div className="static">{data?.mainCaseStatus?.intType ? data.mainCaseStatus.intType : ""}</div>
               </td>
             </tr>
             <tr>
@@ -788,7 +805,7 @@ const Existing = () => {
             <tr>
               <td className="exist-left">Caveat Petition Filed</td>
               <td className="exist-left">
-                <div className="static">value</div>
+                <div className="static">{data?.mainCaseStatus?.caveatPetition ? data.mainCaseStatus.caveatPetition : ""}</div>
               </td>
             </tr>
             <tr>
@@ -796,32 +813,42 @@ const Existing = () => {
                 Appeal/Fresh Case Filed By Other Party
               </td>
               <td className="exist-left">
-                <div className="static">value</div>
+                <div className="static">{data?.mainCaseStatus?.appeal ? data.mainCaseStatus.appeal : ""}</div>
               </td>
             </tr>
             <tr>
-              <td className="exist-left">Remarks(if any)</td>
+              <td className="exist-left">Remarks(Disp. in favour of govt)</td>
               <td className="exist-left">
-                <div className="static">value</div>
+                <div className="static">{data?.mainCaseStatus?.remarks ? data.mainCaseStatus.remarks : ""}</div>
               </td>
             </tr>
             <tr>
               <td className="exist-left">Against Govt.</td>
               <td className="exist-left">
-                <div className="static">value</div>
+                <div className="static">{data?.mainCaseStatus?.againstGovt ? data.mainCaseStatus.againstGovt : ""}</div>
+              </td>
+            </tr>
+            <tr>
+              <td className="exist-left">Remarks (Disposed with Direction)</td>
+              <td className="exist-left">
+                <div className="static">{data?.mainCaseStatus?.directionYes
+      ? data.mainCaseStatus.directionYes
+      : ""}</div>
               </td>
             </tr>
             <tr>
               <td className="exist-left">Dismissed</td>
               <td className="exist-left">
-                <div className="static">value</div>
+                <div className="static">{data?.mainCaseStatus?.dismissedYes
+      ? data.mainCaseStatus.dismissedYes
+      : ""}</div>
               </td>
             </tr>
           </table>
         </div>
         {subShow && (
           <div className="special-table">
-            {sample.map(function (value, index) {
+            {subCaseList.map(function (value, index) {
               return (
                 <table>
                   <tr className="exist-left">
@@ -842,31 +869,31 @@ const Existing = () => {
                   <tr>
                     <td rowSpan={7}>{index + 1}</td>
                     <td rowSpan={5}>
-                      <div className="static">value</div>
+                      <div className="static">{data?.mainCaseStatus?.subCase.length > 0 ? data.mainCaseStatus.subCase[index].filedby : ""}</div>
                     </td>
                     <td>
-                      <div className="static">value</div>
+                      <div className="static">{data?.mainCaseStatus?.subCase.length > 0 ? data.mainCaseStatus.subCase[index].subcasetype : ""}</div>
                     </td>
                     <td>
-                      <div className="static">value</div>
+                      <div className="static">{data?.mainCaseStatus?.subCase.length > 0 ? data.mainCaseStatus.subCase[index].subcaseno : ""}</div>
                     </td>
                     <td>
-                      <div className="static">value</div>
+                      <div className="static">{data?.mainCaseStatus?.subCase.length > 0 ? data.mainCaseStatus.subCase[index].subcaseyear : ""}</div>
                     </td>
                     <td rowSpan={5}>
-                      <div className="static">value</div>
+                      <div className="static">{data?.mainCaseStatus?.subCase.length > 0 ? data.mainCaseStatus.subCase[index].subPet : ""}</div>
                     </td>
                     <td rowSpan={5}>
-                      <div className="static">value</div>
+                      <div className="static">{data?.mainCaseStatus?.subCase.length > 0 ? data.mainCaseStatus.subCase[index].subRes : ""}</div>
                     </td>
                     <td rowSpan={5}>
-                      <div className="static">value</div>
+                      <div className="static">{data?.mainCaseStatus?.subCase.length > 0 ? data.mainCaseStatus.subCase[index].subPrayer : ""}</div>
                     </td>
                     <td rowSpan={5}>
-                      <div className="static">value</div>
+                      <div className="static">{data?.mainCaseStatus?.subCase.length > 0 ? data.mainCaseStatus.subCase[index].subLand : ""}</div>
                     </td>
                     <td rowSpan={5}>
-                      <div className="static">value</div>
+                      <div className="static">{data?.mainCaseStatus?.subCase.length > 0 ? data.mainCaseStatus.subCase[index].filedby : ""}</div>
                     </td>
                   </tr>
                   <tr>
@@ -894,19 +921,19 @@ const Existing = () => {
                   </tr>
                   <tr>
                     <td colSpan={2}>
-                      <div className="static">value</div>
+                      <div className="static">{data?.mainCaseStatus?.subCase.length > 0 ? data.mainCaseStatus.subCase[index].statDrop : ""}</div>
                     </td>
                     <td colSpan={2}>
                       <div className="static">value</div>
                     </td>
                     <td colSpan={2}>
-                      <div className="static">value</div>
+                      <div className="static">{data?.mainCaseStatus?.subCase.length > 0 ? data.mainCaseStatus.subCase[index].statGist : ""}</div>
                     </td>
                     <td colSpan={2}>
-                      <div className="static">value</div>
+                      <div className="static">judgement file</div>
                     </td>
                     <td colSpan={1}>
-                      <div className="static">value</div>
+                      <div className="static">{data?.mainCaseStatus?.subCase.length > 0 ? data.mainCaseStatus.subCase[index].statCe : ""}</div>
                     </td>
                   </tr>
                 </table>
