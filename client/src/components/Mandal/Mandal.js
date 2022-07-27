@@ -24,7 +24,62 @@ const Mandal = ({ data, updateCase }) => {
     data?.mandal?.mandalName ? data.mandal.mandalName : ""
   );
   const [mandalVillageArray, setMandalVillageArray] = useState([
-    "SELECT A MANDAL",
+        "AMBERPET",
+        "DRAINAGE LINGAMPALLY",
+        "AMBERPET SARFEKHAS",
+        "MALAKPET",
+        "BAGH LINGAMPALLY",
+        "GAGANMAHAL",
+        "DAIRA",
+        "HASANALIGUDA",
+        "NAMPALLY", "TOTAGUDA",
+        "ASIF NAGAR",
+        "MALLEPALLI",
+        "GUDDIMAKLAPUR",
+        "KULSUMPURA",
+        "RAZDARKHANPET",
+        "SAIDHABAD",
+        "MADANNAPET",
+        "TEEGALGUDA",
+        "MOOSARAMBAGH",
+        "GADDIANNARAM",
+        "BAHADURPURA",
+        "MEERSAGAR",
+        "NANDI-MUSLAIGUDA",
+        "BONDILGUDA",
+        "CHARMAHAL",
+        "ZEREGUMBAD",
+        "BANDLAGUDA(KALSA)",
+        "SULTAN BAGH",
+        "NAWABSAHEBKUNTA",
+        "AMJADUDDUOWLA",
+        "ALI SAMUNDER",
+        "KANDIKAL",
+        "KANCHANBAGH",
+        "LANGER HOUSE",
+        "QILA MOHD.NAGAR",
+        "IBRAHIAM BAGH",
+        "KAIWANJA", "TALABCHANCHALAM", "MURAD MAHAL",
+        "AMEERPET", "BAHLOOKHANGUDA", "SOMAJIGUDA",
+        "TIRUMALAGIRI",
+        "AMMUGUDA",
+        "MACHABOLARAM",
+        "BOWENPALLY",
+        "KAKAGUDA",
+        "CHANDULAL BOWLI",
+        "SITARAMPUR",
+        "THOKATTA",
+        "MAREDPALLY (SARFEKHAS)",
+        "MARREDPALLY (PAIGAH)",
+        "LALAGUDA",
+        "MALKAJGIRI (CANTONMENT)",
+        "SHAIKPET", "HAKEEMPET", "BAKHTAWARGUDA",
+        "YELLAREDDYGUDA", "KHAIRTABAD", "YOUSUFGUDA",
+        "BHOLAKPUR", "RASOOLPURA",
+        "MUSHEERABAD",
+        "BAKARAM",
+        "ZAMISTANPUR",
+        "MIYAKUNTA",
   ]);
   const [village, setVillage] = useState(
     data?.mandal?.village ? data.mandal.village : ""
@@ -45,104 +100,104 @@ const Mandal = ({ data, updateCase }) => {
       updateCase({ mandal: mandalvalues });
     }
   }
-  useEffect(() => {
-    if (mandal == "AMBERPET") {
-      setMandalVillageArray([
-        "AMBERPET",
-        "DRAINAGE LINGAMPALLY",
-        "AMBERPET SARFEKHAS",
-        "MALAKPET",
-      ]);
-    } else if (mandal == "HIMAYATNAGAR") {
-      setMandalVillageArray([
-        "BAGH LINGAMPALLY",
-        "GAGANMAHAL",
-        "DAIRA",
-        "HASANALIGUDA",
-      ]);
-    } else if (mandal == "NAMPALLY") {
-      setMandalVillageArray(["NAMPALLY", "TOTAGUDA"]);
-    } else if (mandal == "ASIFNAGAR") {
-      setMandalVillageArray([
-        "ASIF NAGAR",
-        "MALLEPALLI",
-        "GUDDIMAKLAPUR",
-        "KULSUMPURA",
-        "RAZDARKHANPET",
-      ]);
-    } else if (mandal == "SAIDABAD") {
-      setMandalVillageArray([
-        "SAIDHABAD",
-        "MADANNAPET",
-        "TEEGALGUDA",
-        "MOOSARAMBAGH",
-        "GADDIANNARAM",
-      ]);
-    } else if (mandal == "BHADURPURA") {
-      setMandalVillageArray([
-        "Bahadurpura",
-        "Meersagar",
-        "Nandi-Muslaiguda",
-        "Bondilguda",
-        "Charmahal",
-        "Zeregumbad",
-      ]);
-    } else if (mandal == "BANDLAGUDA") {
-      setMandalVillageArray([
-        "BANDLAGUDA(KALSA)",
-        "SULTAN BAGH",
-        "NAWABSAHEBKUNTA",
-        "AMJADUDDUOWLA",
-        "ALI SAMUNDER",
-        "KANDIKAL",
-        "KANCHANBAGH",
-      ]);
-    } else if (mandal == "GOLCONDA") {
-      setMandalVillageArray([
-        "LANGER HOUSE",
-        "QILA MOHD.NAGAR",
-        "IBRAHIAM BAGH",
-      ]);
-    } else if (mandal == "CHARMINAR") {
-      setMandalVillageArray(["KAIWANJA", "TALABCHANCHALAM", "MURAD MAHAL"]);
-    } else if (mandal == "AMEERPET") {
-      setMandalVillageArray(["AMEERPET", "BAHLOOKHANGUDA", "SOMAJIGUDA"]);
-    } else if (mandal == "TIRUMALAGIRI") {
-      setMandalVillageArray([
-        "TIRUMALAGIRI",
-        "AMMUGUDA",
-        "MACHABOLARAM",
-        "BOWENPALLY",
-        "KAKAGUDA",
-        "CHANDULAL BOWLI",
-        "SITARAMPUR",
-        "THOKATTA",
-      ]);
-    } else if (mandal == "MAREEDPALLY") {
-      setMandalVillageArray([
-        "MAREDPALLY (SARFEKHAS)",
-        "MARREDPALLY (PAIGAH)",
-        "LALAGUDA",
-        "MALKAJGIRI (CANTONMENT)",
-      ]);
-    } else if (mandal == "SHAIKPET") {
-      setMandalVillageArray(["SHAIKPET", "HAKEEMPET", "BAKHTAWARGUDA"]);
-    } else if (mandal == "KHAIRATABAD") {
-      setMandalVillageArray(["YELLAREDDYGUDA", "KHAIRTABAD", "YOUSUFGUDA"]);
-    } else if (mandal == "SECUNDERABAD") {
-      setMandalVillageArray(["BHOLAKPUR", "RASOOLPURA"]);
-    } else if (mandal == "MUSHEERABAD") {
-      setMandalVillageArray([
-        "MUSHEERABAD",
-        "BAKARAM",
-        "ZAMISTANPUR",
-        "MIYAKUNTA",
-      ]);
-    } else {
-      setMandalVillageArray("SELECT A MANDAL");
-    }
-    console.log(mandalVillageArray);
-  }, [mandal]);
+  // useEffect(() => {
+  //   if (mandal == "AMBERPET") {
+  //     setMandalVillageArray([
+  //       "AMBERPET",
+  //       "DRAINAGE LINGAMPALLY",
+  //       "AMBERPET SARFEKHAS",
+  //       "MALAKPET",
+  //     ]);
+  //   } else if (mandal == "HIMAYATNAGAR") {
+  //     setMandalVillageArray([
+  //       "BAGH LINGAMPALLY",
+  //       "GAGANMAHAL",
+  //       "DAIRA",
+  //       "HASANALIGUDA",
+  //     ]);
+  //   } else if (mandal == "NAMPALLY") {
+  //     setMandalVillageArray(["NAMPALLY", "TOTAGUDA"]);
+  //   } else if (mandal == "ASIFNAGAR") {
+  //     setMandalVillageArray([
+  //       "ASIF NAGAR",
+  //       "MALLEPALLI",
+  //       "GUDDIMAKLAPUR",
+  //       "KULSUMPURA",
+  //       "RAZDARKHANPET",
+  //     ]);
+  //   } else if (mandal == "SAIDABAD") {
+  //     setMandalVillageArray([
+  //       "SAIDHABAD",
+  //       "MADANNAPET",
+  //       "TEEGALGUDA",
+  //       "MOOSARAMBAGH",
+  //       "GADDIANNARAM",
+  //     ]);
+  //   } else if (mandal == "BHADURPURA") {
+  //     setMandalVillageArray([
+  //       "BAHADURPURA",
+  //       "MEERSAGAR",
+  //       "NANDI-MUSLAIGUDA",
+  //       "BONDILGUDA",
+  //       "CHARMAHAL",
+  //       "ZEREGUMBAD",
+  //     ]);
+  //   } else if (mandal == "BANDLAGUDA") {
+  //     setMandalVillageArray([
+  //       "BANDLAGUDA(KALSA)",
+  //       "SULTAN BAGH",
+  //       "NAWABSAHEBKUNTA",
+  //       "AMJADUDDUOWLA",
+  //       "ALI SAMUNDER",
+  //       "KANDIKAL",
+  //       "KANCHANBAGH",
+  //     ]);
+  //   } else if (mandal == "GOLCONDA") {
+  //     setMandalVillageArray([
+  //       "LANGER HOUSE",
+  //       "QILA MOHD.NAGAR",
+  //       "IBRAHIAM BAGH",
+  //     ]);
+  //   } else if (mandal == "CHARMINAR") {
+  //     setMandalVillageArray(["KAIWANJA", "TALABCHANCHALAM", "MURAD MAHAL"]);
+  //   } else if (mandal == "AMEERPET") {
+  //     setMandalVillageArray(["AMEERPET", "BAHLOOKHANGUDA", "SOMAJIGUDA"]);
+  //   } else if (mandal == "TIRUMALAGIRI") {
+  //     setMandalVillageArray([
+  //       "TIRUMALAGIRI",
+  //       "AMMUGUDA",
+  //       "MACHABOLARAM",
+  //       "BOWENPALLY",
+  //       "KAKAGUDA",
+  //       "CHANDULAL BOWLI",
+  //       "SITARAMPUR",
+  //       "THOKATTA",
+  //     ]);
+  //   } else if (mandal == "MAREEDPALLY") {
+  //     setMandalVillageArray([
+  //       "MAREDPALLY (SARFEKHAS)",
+  //       "MARREDPALLY (PAIGAH)",
+  //       "LALAGUDA",
+  //       "MALKAJGIRI (CANTONMENT)",
+  //     ]);
+  //   } else if (mandal == "SHAIKPET") {
+  //     setMandalVillageArray(["SHAIKPET", "HAKEEMPET", "BAKHTAWARGUDA"]);
+  //   } else if (mandal == "KHAIRATABAD") {
+  //     setMandalVillageArray(["YELLAREDDYGUDA", "KHAIRTABAD", "YOUSUFGUDA"]);
+  //   } else if (mandal == "SECUNDERABAD") {
+  //     setMandalVillageArray(["BHOLAKPUR", "RASOOLPURA"]);
+  //   } else if (mandal == "MUSHEERABAD") {
+  //     setMandalVillageArray([
+  //       "MUSHEERABAD",
+  //       "BAKARAM",
+  //       "ZAMISTANPUR",
+  //       "MIYAKUNTA",
+  //     ]);
+  //   } else {
+  //     setMandalVillageArray("SELECT A MANDAL");
+  //   }
+  //   console.log(mandalVillageArray);
+  // }, [mandal]);
   return (
     <div className="mandal-parent">
       <div className="intro-heading">Mandal</div>
